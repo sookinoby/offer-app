@@ -8,7 +8,7 @@
   /** @ngInject */
   function acmeNavbar() {
     var directive = {
-      restrict: 'E',
+      restrict: 'EA',
       templateUrl: 'app/components/navbar/navbar.html',
       scope: {
           creationDate: '='

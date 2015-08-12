@@ -1,3 +1,62 @@
+/*
 .acme-navbar-text{
   color: white;
+}*/
+
+
+.navbar * {
+    background-image: none !important;
+    -webkit-text-shadow: none !important;
+    -ms-text-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* Navbar */
+
+.navbar {
+    background: #000;
+}
+	.navbar-inverse {
+    background-color: #333;
+}
+
+    .navbar .container {
+        width: 97% !important;
+    }
+
+    .navbar .nav > li > a {
+        font-size: 13px !important;
+        color: #fff !important;
+    }
+
+    .navbar i {
+        margin-right: 3px;
+    }
+
+    .navbar .caret {
+        border-top-color: #fff !important;
+        border-bottom-color: #fff !important;
+    }
+
+    .navbar .nav-user-pic {
+        width: 20px;
+        margin-right: 10px;
+    }
+
+    .navbar .badge {
+        margin-left: 5px;
+    }
+
+.collapse.am-collapse {
+  animation-duration: .3s;
+  animation-timing-function: ease;
+  animation-fill-mode: backwards;
+  overflow: hidden;
+  &.in-remove {
+    animation-name: collapse;
+    display: block;
+  }
+  &.in-add {
+    animation-name: expand;
+  }
 }

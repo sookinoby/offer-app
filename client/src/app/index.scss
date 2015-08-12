@@ -2,7 +2,7 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/_variables.scss
  */
-$navbar-inverse-link-color: #5AADBB;
+
 $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
 
 /**
@@ -12,34 +12,9 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 // bower:scss
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
-
-.thumbnail {
-  height: 200px;
-
-  img.pull-right {
-    width: 50px;
-  }
-}
+/* custom theme */
 
 
-x* {
-    /*-webkit-box-shadow: none !important;
-    -ms-box-shadow: none !important;
-    box-shadow: none !important;
-    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
-    -webkit-text-shadow: none !important;
-    -ms-text-shadow: none !important;
-    text-shadow: none !important;*/
-    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    /*font-weight: 400;*/
-}
 
 .btn, .badge, .modal, .modal-dialog, .modal-content,
 input, select {
@@ -735,7 +710,7 @@ form {
 
 /* Sidebar dropdown */
 
-    .sidebar .sidebar-dropdown* {
+    .sidebar .sidebar-dropdown {
         text-decoration: none;
     }
 
@@ -1305,11 +1280,7 @@ form {
 /* Users ends */
 
 
-/*#endregion */
 
-
-
-/*For Bootstrap 3*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 
@@ -1317,9 +1288,7 @@ body {
     background-color: #FFF;
 }
 
-.navbar-inverse {
-    background-color: #333;
-}
+
 
 .sidebar-widget form {
     margin: 0em -1em;
@@ -1379,15 +1348,6 @@ select > option {
     color: black;
 }
 
-input.form-control,
-select.form-control,
-textarea.form-control {
-    /*width: 205px;*/
-    display: inline;
-    display: block;
-    width: 50%;
-    max-width: 30em;
-}
 
 .widget .padd {
     /*margin-bottom: 0;*/
@@ -1688,7 +1648,7 @@ a {
 /* #endregion */
 
 
-
+/*
 .avenger-name {
     font-size: 1.2em;
 }
@@ -1703,7 +1663,7 @@ a {
     background: url(images/avengersicon-xs.png) no-repeat left top !important;
 }
 
-
+*/
 
 /*#region wrapper for angular ng-include and ng-view animations*/
 .view-container {
@@ -1811,142 +1771,6 @@ a {
 /*#endregion */
 
 /*#region Responsive */
-
-@media (max-width: 979px) {
-    .sidebar-filler {
-        width: 200px;
-    }
-
-    .nav-collapse {
-        clear: none;
-    }
-
-        .nav-collapse .nav > li {
-            float: left;
-        }
-
-    .navbar .btn-navbar {
-        display: none;
-    }
-
-    .nav-collapse,
-    .nav-collapse.collapse {
-        height: inherit;
-        overflow: inherit;
-    }
-
-    .page-splash-message {
-        font-size: 300%;
-    }
-
-    .btn-group.pull-right {
-        float: none !important;
-        display: block;
-    }
-}
-
-@media (min-width: 768px) {
-    .sidebar .sidebar-inner {
-        display: block !important;
-    }
-}
-
-@media (max-width: 767px) {
-    .sidebar-filler {
-        display: none;
-    }
-
-    .nav-collapse {
-        clear: both;
-    }
-
-        .nav-collapse .nav > li {
-            float: none;
-        }
-
-    .navbar .btn-navbar {
-        display: block;
-    }
-
-    .nav-collapse,
-    .nav-collapse.collapse {
-        height: 0;
-        overflow: hidden;
-    }
-
-    .page-splash-message {
-        font-size: 200%;
-        margin: 40% auto 0 auto;
-    }
-
-        .page-splash-message.page-splash-message-subtle {
-            font-size: 150%;
-        }
-
-    .sidebar .sidebar-inner {
-        height: inherit;
-    }
-}
-
-@media (max-width: 480px) {
-    input.form-control, select.form-control, textarea.form-control {
-        width: 70%;
-    }
-}
-
-@media (max-width: 320px) {
-    .today-datas li {
-        padding: 1em .5em;
-        line-height: 1em;
-    }
-
-        .today-datas li i {
-            font-size: 2em;
-        }
-
-        .today-datas li .datas-text span {
-            font-size: 1em;
-        }
-
-    .btn {
-        margin: .2em;
-        width: 7em;
-    }
-
-    .btn-group > .btn {
-        display: block;
-        width: 7em;
-    }
-
-    .btn-group.pull-right {
-        margin: .2em 0;
-    }
-
-    input,
-    select {
-        width: 85% !important;
-    }
-
-    textarea {
-        width: 80%;
-    }
-
-    .img-thumbnail.user-pic {
-        width: 5em;
-    }
-
-    .user .user-details {
-        margin-left: 7em;
-        margin-right: .5em;
-    }
-
-    h3 {
-        font-size: 1.5em !important;
-        line-height: 1.2em !important;
-    }
-}
-
-/*#endregion */
 
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject

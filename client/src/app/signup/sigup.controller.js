@@ -6,7 +6,7 @@
     .controller('SignUpController', SignUpController);
 
      /** @ngInject */
-  function SignUpController($auth,$state,UserData,$window) {
+  function SignUpController($auth,$state,UserData,$window,$log) {
 
      this.signup = function() {
       var user = {
@@ -16,15 +16,15 @@
      
       // Satellizer
       $auth.signup(user).then(function(response){
-        console.log(response);
+        $log.debug(response);
         UserData.email = response.data.email;
         $window.localStorage.currentUser = JSON.stringify(response.data.email);
-        console.log(response.data);
-        $state.go('home');
+        $log.debug(response.data);
+        $state.debug('home');
       })
         .catch(function(response) {
-        	console.log("test");
-          console.log(response.data);
+        	$log.debug("test");
+          $log.debug(response.data);
         });
     };
 

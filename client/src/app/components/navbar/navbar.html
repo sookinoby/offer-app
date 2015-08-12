@@ -1,17 +1,26 @@
-<div class="navbar navbar-default navbar-static-top"
-     role="navigation" bs-navbar>
-  <div class="navbar-header">
-    <a class="navbar-brand" href="#">Your Offers</a>
-  </div>
-  <ul class="nav navbar-nav">
-    <li data-match-route="/$"><a href="/">HOME</a></li>
+<div class="navbar navbar-fixed-top navbar-inverse" role="navigation" bs-navbar bs-collapse>
+  <div class="container" bs-collapse  start-collapsed="true">
+    <div class="navbar-header">
+        <a href="/" class="navbar-brand"><span class="brand-title">Road 2 Math</span></a>
+        <a class="btn navbar-btn navbar-toggle" bs-collapse-toggle>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+    </div>
+      <div  class="collapse navbar-collapse"  bs-collapse-target>
+       
+        <div class="pull-right navbar-logo">
+        <ul class="nav navbar-nav pull-right">
+    <li data-match-route="/login"><a ui-sref="login">Login</a></li>
+    <li data-match-route="/signup"><a ui-sref="signup">Sign up</a></li>
   </ul>
-  <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
-    <li data-match-route="/login"><a href="/login">Login</a></li>
-    <li data-match-route="/signup"><a href="/signup">Sign up</a></li>
-  </ul>
-  <ul class="nav navbar-nav pull-right" ng-if="currentUser">
-    <li class="navbar-text" ng-bind="currentUser.email"></li>
-    <li><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
-  </ul>
+        </div>
+    </div>
 </div>
+
+
+</div>
+
+
+
