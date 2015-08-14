@@ -31,9 +31,29 @@
         templateUrl:'app/home/home.html',
         controller:'HomeController',
         controllerAs: 'homeCtrl'
+      })
+      .state('home.arrowgame',{
+        url:'/arrowgame',
+        templateUrl:'app/game/arrow/arrow.html',
+        controller:'ArrowController',
+        controllerAs: 'arrowCtrl'
+      })
+      .state('home.selectstrategy',{
+        url:'/selectstrategy',
+        templateUrl:'app/game/statergy/strategy.html',
+        controller:'StrategyController',
+        controllerAs: 'strCtrl'
+      })
+      .state('home.threedigit',{
+        url:'/threedigit',
+        templateUrl:'app/game/threedigit/threedigit.html',
+        controller:'ThreeDigitController',
+        controllerAs: 'threeCtrl'
       });
 
-//    $urlRouterProvider.otherwise('/');
+   
+
+   $urlRouterProvider.otherwise('/');
   }
 
 })();

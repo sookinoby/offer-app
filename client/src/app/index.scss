@@ -12,6 +12,49 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
 // bower:scss
 // endbower
 
+/*
+*
+* animation 
+*/
+
+
+.fadeanim.ng-enter, .fadeanim.ng-leave {
+    position: absolute;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+}
+
+.fadeanim.ng-enter {
+   -webkit-animation-name: fadeInUp;
+   animation-name: fadeInUp;
+}
+
+.fadeanim.ng-leave {
+   -webkit-animation-name: fadeOutDown;
+   animation-name: fadeOutDown;
+}
+
+/*
+*
+*/
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+/*
+*
+*
+/
+
 /* custom theme */
 
 

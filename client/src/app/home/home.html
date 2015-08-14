@@ -1,15 +1,36 @@
 <div class="container">
 
-  <div acme-navbar>
+ <div acme-navbar>
  
   </div>
 
-  <div class="jumbotron text-center">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">
-     Hi,This is the home ctrl. {{homeCtrl.message}}
-    </p>
+ 
+ <div id="wrapper">
 
-  </div>
+        <!-- Sidebar -->
+     <div side-navbar>
+     </div>
+        <!-- /#sidebar-wrapper -->
 
-</div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1>Welcome</h1>
+                      <div ui-view class="fadeanim"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+  
+  </div> <!-- end of container -->
+
+
+
+
+
