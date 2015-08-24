@@ -30,31 +30,36 @@
         url:'/home',
         templateUrl:'app/secure/home/home.html',
         controller:'HomeController',
-        controllerAs: 'homeCtrl'
+        controllerAs: 'homeCtrl',
+        authenticate: true
       })
       .state('home.arrowgame',{
         url:'/arrowgame',
         templateUrl:'app/secure/game/arrow/arrow.html',
         controller:'ArrowController',
-        controllerAs: 'arrowCtrl'
+        controllerAs: 'arrowCtrl',
+        authenticate: true
       })
       .state('home.selectstrategy',{
         url:'/selectstrategy',
         templateUrl:'app/secure/game/statergy/strategy.html',
         controller:'StrategyController',
-        controllerAs: 'strCtrl'
+        controllerAs: 'strCtrl',
+        authenticate:true
       })
       .state('home.threedigit',{
         url:'/threedigit',
         templateUrl:'app/secure/game/threedigit/threedigit.html',
         controller:'ThreeDigitController',
-        controllerAs: 'threeCtrl'
+        controllerAs: 'threeCtrl',
+        authenticate:true
       })
       .state('home.dashboard',{
         url:'/dashboard',
         templateUrl:'app/secure/dashboard/dashboard.html',
         controller:'DashBoardController',
-        controllerAs: 'dashCtrl'
+        controllerAs: 'dashCtrl',
+        authenticate:true
       });
 
    

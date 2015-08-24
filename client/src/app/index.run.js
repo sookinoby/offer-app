@@ -7,17 +7,14 @@
 
   /** @ngInject */
   function runBlock($log,$rootScope,$state,$auth) {
-
-   /*
-     $rootScope.$on('$stateChangeStart', function (event, next) {
-        if ($auth.isAuthenticated()) {
-          if(next.name!='home') {
-            event.preventDefault();
-            $state.go('home');
-          }
-        }
-    }); */
-      $log.debug('runBlock end');
-  }
-
+        // Redirect to login if route requires auth and you're not logged in
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+            if (toState.authenticate && !$auth.isAuthenticated()) {
+                 $state.transitionTo("login");
+                 event.preventDefault(); 
+              }
+          });
+       $log.debug('runBlock end');
+        };
+     
 })();
