@@ -1,18 +1,19 @@
-
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" ng-class="{'sidebar-wrapper-show':vm.shouldShowSideBar}" ng-click="vm.hideSideBar()">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
                       
                     </a>
                 </li>
-               
+                   <li >
+                    <a href="#" class="hidden-above-768" ng-click="vm.hideSideBar();"><span class="glyphicon glyphicon-remove"></span> Hide Menu</a>
+                </li>
                 <li data-match-route="/dashboard" >
-                    <a ui-sref="login"><span class="glyphicon glyphicon-dashboard"></span> Dash Board</a>
+                    <a ui-sref="home.dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dash Board</a>
 
                 </li>
-                <li> 
+                <li data-match-route="/home/arrowgame"> 
                    <a ui-sref="home.arrowgame"><span class="glyphicon glyphicon-queen"></span> Arrow Game</a>
                 </li>
                 <li data-match-route="/home/selectstrategy">
@@ -21,8 +22,14 @@
                 <li data-match-route="/home/threedigit">
                     <a ui-sref="home.threedigit"><span class="glyphicon glyphicon-bishop"></span> Three digit</a>
                 </li>
+             
                 
             </ul>
+        </div>
+        <div id="sidebar-wrapper-min">
+        <div class="sidebar-nav-min" ng-click="vm.showSideBar();" ng-class="{'sidebar-wrapper-show':vm.shouldShowSideBar}">
+        Click to Show Menu
+        </div>
         </div>
         <!-- /#sidebar-wrapper -->
 

@@ -3,10 +3,10 @@
 
   angular
     .module('client')
-    .controller('HomeController', HomeController);
+    .controller('DashBoardController', DashBoardController);
 
   /** @ngInject */
-  function HomeController($window, $rootScope, $auth,$state,UserData,Restangular,exceptionHandler) {
+  function DashBoardController($window, $rootScope, $auth,$state,UserData,Restangular,exceptionHandler) {
    var vm = this;
    vm.message = "nothing";
  /* if(2==2) {

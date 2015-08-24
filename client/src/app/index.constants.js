@@ -5,7 +5,7 @@
   angular
     .module('client')
    	.constant('UserData', {
-   	 email: ''
+   	 userName: ''
    	});
 
 })();

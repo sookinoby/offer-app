@@ -10,6 +10,7 @@ var unsecureController = require('../controllers/unSecureTest');
 router.get('/api/user', userController.view); 
 router.post('/api/user/login',userController.login);
 router.post('/api/user/signup',userController.signup);
+router.get('/api/user/isunique',userController.isUnique);
 
 router.get('/api/secure',utils.isAuthenicated,secureController.secure);
 router.get('/api/unsecure', unsecureController.unSecure);

@@ -23,7 +23,8 @@
     // set url for login
      $authProvider.loginUrl = 'http://localhost:10000/api/user/login';
      $authProvider.signupUrl = 'http://localhost:10000/api/user/signup';
-     $authProvider.loginOnSignup = true;
+     $authProvider.loginOnSignup = false;
+     $authProvider.loginRedirect = '/home';
   }
 
 })();

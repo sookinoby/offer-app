@@ -8,19 +8,20 @@
 
         <form name="loginForm">
 
-          <div class="form-group">
+          <div class="form-group  has-feedback">
             <input class="form-control input-lg" type="text" name="email"
-                   ng-model="loginCtrl.email" placeholder="Email" required autofocus>
+                   ng-model="loginCtrl.email" placeholder="Email" ng-trim="true" required autofocus>
+              <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
           </div>
 
-          <div class="form-group">
+          <div class="form-group  has-feedback">
             <input class="form-control input-lg" type="password" name="password"
                    ng-model="loginCtrl.password" placeholder="Password" required>
+                    <i class="glyphicon glyphicon-lock form-control-feedback"></i>
           </div>
 
-          <button type="submit" ng-disabled="loginForm.$invalid"
-                  class="btn btn-lg btn-block btn-success" ng-click="loginCtrl.emailLogin()">Sign In
-          </button>
+          <button type="submit" ng-disabled="loginForm.$invalid || loginCtrl.loggining"
+                  class="btn btn-lg btn-block btn-success" ng-click="loginCtrl.emailLogin()"><img ng-show="loginCtrl.loggining" height="30px" width="30px" src="assets/images/ajax-loader-light.gif"></img> {{loginCtrl.button_message}}</button>
         </form>
       </div>
     </div>

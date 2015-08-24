@@ -9,11 +9,18 @@
         </a>
     </div>
       <div  class="collapse navbar-collapse"  bs-collapse-target>
-       
+           
         <div class="pull-right navbar-logo">
         <ul class="nav navbar-nav pull-right">
-    <li data-match-route="/login"><a ui-sref="login">Login</a></li>
-    <li data-match-route="/signup"><a ui-sref="signup">Sign up</a></li>
+    <li ng-if="!vm.loggedIn" data-match-route="/login"><a ui-sref="login">Login</a></li>
+    <li ng-if="!vm.loggedIn" data-match-route="/signup"><a ui-sref="signup">Sign up</a></li>
+    <li ng-if="vm.loggedIn"> 
+        <a href="#">
+          Logged in as : {{vm.currentUser}}
+          </a>
+        
+    </li>
+    <li ng-if="vm.loggedIn"><a href="#" ng-click="vm.logout();">Log Out</a></li>
   </ul>
         </div>
     </div>

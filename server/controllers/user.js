@@ -3,20 +3,39 @@ var router = express.Router();
 var bcrypt = require('bcryptjs');
 var User = require('../model/user');
 var utils = require('../middleware/utils');
+var sleep = require('sleep');
 module.exports = {
 view : function(req, res, next) {
   res.send('respond with a resource');
 },
- 
+
+  isUnique : function(req,res){
+     console.log(req.query.email);
+    User.findOne({ email: req.query.email }, function(err, existingUser) {
+      if(!req.query.email || req.query.email == "" )
+      {
+        return res.sendStatus(400);
+      }
+      else if (existingUser) {
+       return res.sendStatus(409);
+      }
+      else {
+        res.sendStatus(200);
+      }
+    });
+  },
+
   signup : function(req, res) {
   User.findOne({ email: req.body.email }, function(err, existingUser) {
     if (existingUser) {
-    //  return res.status(409).send({ message: 'Email is already taken.' });
+         return res.sendStatus(409);
     }
-    console.log("testing");
+    console.log("testing" + req.body.userName);
+     console.log("Something" + req.body.email);
     var user = new User({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      userName: req.body.userName
     });
 
     bcrypt.genSalt(10, function(err, salt) {
@@ -63,7 +82,7 @@ view : function(req, res, next) {
       if(err)
       res.status(500).send("{error:something went wrong}");
       else {
-      res.status(200).send({ token: token, email: user.email });
+      res.status(200).send({ token: token, userName: user.userName });
         }
       } 
       var token = utils.createToken(user,responseToSend);
