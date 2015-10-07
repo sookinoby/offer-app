@@ -34,16 +34,23 @@
         authenticate: true
       })
       .state('home.arrowgame',{
-        url:'/arrowgame',
+        url:'/arrowgame/:type',
         templateUrl:'app/secure/game/arrow/arrow.html',
-        controller:'ArrowController',
+        controller:'arrowGameController',
+        controllerAs: 'arrowCtrl',
+        authenticate: true
+      })
+      .state('home.twominutechallenge',{
+        url:'/arrowgame/:type',
+        templateUrl:'app/secure/game/arrow/arrow.html',
+        controller:'arrowGameController',
         controllerAs: 'arrowCtrl',
         authenticate: true
       })
       .state('home.selectstrategy',{
         url:'/selectstrategy',
-        templateUrl:'app/secure/game/statergy/strategy.html',
-        controller:'StrategyController',
+        templateUrl:'app/secure/game/strategy/strategy.html',
+        controller:'selectStrategyGameController',
         controllerAs: 'strCtrl',
         authenticate:true
       })

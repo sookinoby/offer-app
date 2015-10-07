@@ -1,0 +1,164 @@
+//game_layout
+
+$outer-game-box : #FDE9D9;
+$outer-game-box-select-stratergy : #BFF1AD;
+$outer-game-box-challenge : #E4DFEC;
+$white : #FFFFFF;
+$select-stratergy-question-color : #43CEFF;
+$timer-color: #E0420D;
+
+.outer-game-box {
+	border: 2px;
+	border-style: solid;
+	width: 622px;
+	height: 580px;
+	//margin: auto;
+	background-color:rgba($outer-game-box, .50);
+	&.outer-game-box-select-stratergy {
+		background-color:rgba($outer-game-box-select-stratergy,.50);
+	}
+	&.outer-game-box-challenge  {
+		background-color:rgba($outer-game-box-challenge,.50);
+	}
+}
+
+
+.inner-game-box {
+	margin: auto;
+	padding: 20px;
+}
+
+.strategy-title {
+	width: 576px;
+	height: 70px;
+	text-align: center;
+	border: 2px solid;
+	line-height: 70px;
+	font-size: 1.2em; 
+	background-color: $white;
+	span {
+	display: inline-block;
+  	vertical-align: middle;
+  	line-height: normal; 
+  	} 
+
+  	.title_highlight {
+		color: #43CEFF;
+		font-style: normal !important;
+	}
+}
+
+
+
+.select-stratergy-question {
+	width: 400px;
+	height: 70px;
+	text-align: center;
+	border: 2px solid;
+	line-height: 70px;
+	font-size: 1.2em; 
+	background-color: $select-stratergy-question-color;
+	color:$white;
+	margin-left: -15px; //this is margin from the grid game container. So added it here too.
+	
+	span {
+	display: inline-block;
+  	vertical-align: middle;
+  	line-height: normal; 
+  	} 
+
+  	.title_highlight {
+		color: #43CEFF;
+		font-style: normal !important;
+	}
+}
+
+
+.button-top-bar {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.button-top-bar > button {
+	width: 197px;
+	height: 46px;
+	font-size: 1.1em;
+	&.small-button {
+		width: 158px;
+		margin-left: 14px;
+	}
+
+}
+
+.strategy-title {
+	width: 576px;
+	height: 70px;
+	text-align: center;
+	border: 2px solid;
+	line-height: 70px;
+	font-size: 1.2em; 
+	background-color: $white;
+	span {
+	display: inline-block;
+  	vertical-align: middle;
+  	line-height: normal; 
+  	} 
+
+  	.title_highlight {
+		color: #43CEFF;
+		font-style: normal !important;
+	}
+}
+
+
+
+.game-side-bar {
+	display: block;
+	margin-left: 10px;
+
+	> span {
+	height: 70px;
+	width: 158px;
+	display: block;
+	margin-left: 10px;
+	background-color: #FFFFFF;
+  	vertical-align: middle;
+  	line-height: normal; 
+  	text-align: center;
+  	border-top: 2px solid #46b8da;
+  	border-right: 2px solid #46b8da;
+  	border-left: 2px solid #46b8da;
+  	border-bottom: 2px solid #46b8da;
+  	padding-top: 8px;
+
+	}
+
+	.spacer {
+  		border: none;
+  		background-color:transparent;
+  		height: 10px;
+  	}
+
+	.build-facts {
+	 	height: 126px;
+	 	span {
+	 		display: block;
+	 		width: 154px;
+	 		text-align: center;
+	 		border-bottom:1px solid #FFFFFF;
+	 		
+	 	}
+	 	span:last-child {
+	 		border-bottom:none;
+	 	}
+
+	}
+
+	.timer {
+		color: $timer-color;
+		font-size: 1.2em;
+		font-weight: 600;
+	}
+}
+

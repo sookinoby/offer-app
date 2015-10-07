@@ -33,7 +33,7 @@
        //   console.log("the data obtained is form cookie storage is");
         //  console.log(JSON.parse($window.localStorage.currentUser));
          // console.log($auth.getToken());
-          $state.go('home');
+          $state.go('home.dashboard');
          
 
         })

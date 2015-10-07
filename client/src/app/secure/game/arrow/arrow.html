@@ -1,11 +1,95 @@
-<h1>Arrow Game</h1>
-<p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-<p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-</div>
+    <!-- heading -->
+    <div  id="heading" class="row">
+        <div class="col-sm-12" >
+            <div class="outer-game-box" ng-class="{'outer-game-box-challenge':arrowCtrl.gameType == 2}">
+                <div class="inner-game-box" >
+                    <div class="strategy-title">
+                         <span ng-bind-html=" (arrowCtrl.titleOfStrategy | titleHighlighter )"></span>
+                        <!-- arrowCtrl.titleOfStrategy -->
+                    </div>
+                    <div class="button-top-bar">
+                        
+                        <button type="button" class="btn btn-info" ng-click='arrowCtrl.newGame()'>New Game</button>
+                        
+                        <button type="button" class="btn btn-info" ng-click='arrowCtrl.game.changeStats()' ng-show="arrowCtrl.game.stats">Score Off</button>
+                        <button type="button" class="btn btn-info" ng-click='arrowCtrl.game.changeStats()' ng-show="!arrowCtrl.game.stats">Score On</button>
 
+                        <button type="button" class="btn btn-info small-button"  ng-disabled='!arrowCtrl.game.showSubmitButton.truthValue;' ng-show="!arrowCtrl.game.showNextButton.truthValue;" ng-click="arrowCtrl.game.evaluateAnswer();" >Submit</button>
 
+                        <button  type="button" class="btn btn-info small-button" ng-show='arrowCtrl.game.showNextButton.truthValue;' ng-click="arrowCtrl.game.showNextQuestions();" >Next </button>
 
+                    </div>
+                    <div class="col-xs-8" >
+                        <div id="game-container">
+                            <div arrow-grid id="game"  ng-model='arrowCtrl.game' class="row"></div>
+                            <div id="game-over" ng-show="!arrowCtrl.game.countdownfinished" class="row game-overlay" >
+                            <h3> <timer countdown="5" interval="1000"  name="gameCountDown">Your game will start in {{countdown}}</timer></h3>
+                        </div>
+                        <div id="game-over" ng-if="arrowCtrl.game.gameOver" class="row game-overlay">
+                            <h3>  Sorry , play again.
+                            <div class="lower">
+                                <button type="button" class="btn btn-info" ng-click="arrowCtrl.newGame();">Try Again</button>
+                            </div>
+                            </h3>
+                        </div>
+                        <!-- begining of win overlay -->
+                        <div id="win" ng-if="arrowCtrl.game.win" class="row game-overlay">
+                            You win!
+                            <div class="lower">
+                                <button type="button" class="btn btn-info" ng-click="arrowCtrl.newGame();">Try Again</button>
+                            </div>
+                        </div>
+                        <!-- end of win overlay -->
+                        </div> <!-- game-container -->
+                        </div> <!-- end of col-sm-8 -->
+                        <div class="col-xs-2 game-side-bar" >
+                                       
+                             <span ng-show="arrowCtrl.game.stats"> Total Questions <br />
+                              {{arrowCtrl.game.totalfacts}}
+                             </span> 
+                            <span  ng-show="arrowCtrl.game.stats">
+                            Score <br /> 
+                                     {{arrowCtrl.game.currentScore}}
+                            </span>
+                            <span class="spacer" ng-show="arrowCtrl.game.stats">
+
+                            </span>
+
+                            <span> 
+                            <span ng-if="arrowCtrl.game.rightAnswer && !arrowCtrl.game.netural" ><img  src="app/secure/game/arrow/images/happy.png" style="margin-top:1px;" /> </span>
+                             <span ng-if="!arrowCtrl.game.rightAnswer && !arrowCtrl.game.netural" ><img  src="app/secure/game/arrow/images/sad.png" style="margin-top:1px;" /></span>
+                             </span>    
+                             <br />
+                             <br />
+                             <span class="build-facts" ng-show="arrowCtrl.gameType == 1">
+                                    Build Facts <br />
+                             <span>
+                                    
+                                    <span  ng-repeat="factdisp in arrowCtrl.game.factContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}} 
+                                    </span>  
+                            </span>
+                            </span>
+                            <span class="spacer"></span>
+                             <span ng-show="arrowCtrl.gameType == 2"> Timer <br />
+                                <timer countdown="121" interval="1000" name="gameTimer" autoStart=false class="timer">{{countdown}} Sec.</timer> 
+                             </span>  
+                         
+
+                            </div> <!-- end of col-sm-2 -->
+                            </div> <!-- inner game box -->
+                            </div> <!-- outer game box -->
+                            </div> <!-- col sm 12 -->
+                            </div> <!-- end of id = heading -->
+
+ <div class="row">
+                                    <div dropdown-select="ddSelectOptions"
+                                        dropdown-model="ddSelectSelected"
+                                        dropdown-item-label="text" style="margin-left:0px;border-style: solid; border-width: 5px;">
+                                    </div>
+                                    <!-- score container -->
+                 
+
+                           
 
 
 

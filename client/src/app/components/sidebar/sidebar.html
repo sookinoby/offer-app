@@ -13,8 +13,11 @@
                     <a ui-sref="home.dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dash Board</a>
 
                 </li>
-                <li data-match-route="/home/arrowgame"> 
-                   <a ui-sref="home.arrowgame"><span class="glyphicon glyphicon-queen"></span> Arrow Game</a>
+                <li data-match-route="/home/arrowgame/1"> 
+                   <a ui-sref="home.arrowgame({type:1})"><span class="glyphicon glyphicon-queen"></span> Arrow Game</a>
+                </li>
+                  <li data-match-route="/home/arrowgame/2"> 
+                   <a ui-sref="home.arrowgame({type:2})"><span class="glyphicon glyphicon-queen"></span> Two Minute Challenge</a>
                 </li>
                 <li data-match-route="/home/selectstrategy">
                     <a ui-sref="home.selectstrategy"><span class="glyphicon glyphicon-pawn"></span> Select Statergy</a>

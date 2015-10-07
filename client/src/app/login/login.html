@@ -6,7 +6,7 @@
       <div class="panel-body">
         <h2 class="text-center">Login</h2>
 
-        <form name="loginForm">
+        <form name="loginForm" method="post" ng-submit="loginCtrl.emailLogin()" novalidate>
 
           <div class="form-group  has-feedback">
             <input class="form-control input-lg" type="text" name="email"
@@ -21,7 +21,7 @@
           </div>
 
           <button type="submit" ng-disabled="loginForm.$invalid || loginCtrl.loggining"
-                  class="btn btn-lg btn-block btn-success" ng-click="loginCtrl.emailLogin()"><img ng-show="loginCtrl.loggining" height="30px" width="30px" src="assets/images/ajax-loader-light.gif"></img> {{loginCtrl.button_message}}</button>
+                  class="btn btn-lg btn-block btn-success"><img ng-show="loginCtrl.loggining" height="30px" width="30px" src="assets/images/ajax-loader-light.gif"></img> {{loginCtrl.button_message}}</button>
         </form>
       </div>
     </div>

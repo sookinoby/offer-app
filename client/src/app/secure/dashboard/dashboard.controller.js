@@ -6,9 +6,9 @@
     .controller('DashBoardController', DashBoardController);
 
   /** @ngInject */
-  function DashBoardController($window, $rootScope, $auth,$state,UserData,Restangular,exceptionHandler) {
+  function DashBoardController($window, $rootScope, $auth,$state,UserData,Restangular,exceptionHandler,userDetailsLocalService) {
    var vm = this;
-   vm.message = "nothing";
+   vm.message = "Welcome " + userDetailsLocalService.getUserDetailFromLocal().userName;
  /* if(2==2) {
     var messageList = Restangular.all('api/secure');
     var mess = messageList.getList().then(function(data){

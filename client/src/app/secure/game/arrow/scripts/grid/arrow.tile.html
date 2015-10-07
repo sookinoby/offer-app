@@ -1,0 +1,7 @@
+<div ng-if='ngModel' class="tile position-{{ ngModel.x }}-{{ ngModel.y }}" 
+  ng-class="{ 'wrong-answer': ngModel.changeColor && !ngModel.answer, 'right-answer':ngModel.changeColor && ngModel.answer && ngModel.selected , 'tile-right-not-selected': ngModel.changeColor && !ngModel.selected && ngModel.answer , 'selected-answer': ngModel.selected,'tile-question':ngModel.question}" ng-click="storeAnswerAndSelectTileForProcessing(null,ngModel);">
+  <div class="tile-inner">
+    <!-- {{ ngModel.x }},{{ ngModel.y }} -->
+    {{ ngModel.value  }}
+  </div>
+</div>
