@@ -7,24 +7,20 @@
 
   /** @ngInject */
   /* */
-  function config($logProvider,$httpProvider,$locationProvider, $authProvider,RestangularProvider) {
+  function config($logProvider,$httpProvider,$locationProvider,RestangularProvider) {
     // Enable log
     $logProvider.debugEnabled(true);
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-
-    $locationProvider.html5Mode(true);
+    $httpProvider.interceptors.push('authInterceptorService');
+    $locationProvider.html5Mode(false);
     // Set options third-party lib
     RestangularProvider.setBaseUrl(
-      'http://localhost:10000'
+      'http://localhost:65159'
       );
 
     // set url for login
-     $authProvider.loginUrl = 'http://localhost:10000/api/user/login';
-     $authProvider.signupUrl = 'http://localhost:10000/api/user/signup';
-     $authProvider.loginOnSignup = false;
-     $authProvider.loginRedirect = '/home/dashboard';
-  }
+     }
 
 })();

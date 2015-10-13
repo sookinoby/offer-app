@@ -3,20 +3,20 @@
 
   angular
     .module('client')
-    .factory('isEmailAvailable', usernameService);
+    .factory('isEmailAvailable', emailService)
+    .factory('userNameService',userNameService);
 
   /** @ngInject */
-  function usernameService($http,$q,exceptionHandler) {
+  function emailService($http,$q,exceptionHandler) {
     return function(email) {
     var deferred = $q.defer();
-    $http.get('/api/user/isunique', {params :
-      { email:email } }
-    ).then(function() {
+    $http.get('http://localhost:65159/api/accounts/checkemail/' + email)
+      .then(function() {
       // Found the user, therefore not unique.
-       deferred.resolve();
+        deferred.reject();
     }, function() {
       // User not found, therefore unique!
-       deferred.reject();
+        deferred.resolve();
     });
 
     return deferred.promise;
@@ -24,6 +24,26 @@
 
   }
 
+  function userNameService($http,$q,exceptionHandler) {
+    return function(username) {
+      var deferred = $q.defer();
+      $http.get('http://localhost:65159/api/accounts/checkusername/' + username)
+        .then(function() {
+          // Found the user, therefore not unique.
+          deferred.reject();
+        }, function() {
+          // User not found, therefore unique!
+          deferred.resolve();
+        });
+
+      return deferred.promise;
+    }
+
+  }
+
 
 })();
 
+/*  $http.get('http://localhost:65159/api/accounts/user/check', {params :
+ { email:email } }
+ ) */

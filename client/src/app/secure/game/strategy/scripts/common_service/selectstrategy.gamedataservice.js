@@ -1,6 +1,7 @@
 (function() {
+  'use strict';
   var gameDataService = function ($http,$q) {
-   
+
       this.getGameData = function(gameDataFile)
       {
            var deferred = $q.defer();
@@ -8,7 +9,7 @@
             $http.get('app/secure/game/strategy/scripts/common_service/' + gameDataFile).then(function (data)
             {
               //game/game3/scripts/game3/
-                deferred.resolve(data);                            
+                deferred.resolve(data);
             });
           return deferred.promise;
       }

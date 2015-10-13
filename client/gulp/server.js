@@ -20,8 +20,8 @@ function browserSyncInit(baseDir, browser) {
       '/bower_components': 'bower_components'
     };
   }
-  var proxy = proxyMiddleware('/api', {target: 'http://localhost:10000'});
-  
+  var proxy = proxyMiddleware('/api', {target: 'http://localhost:65159'});
+
   var server = {
     baseDir: baseDir,
     routes: routes,
@@ -35,7 +35,7 @@ function browserSyncInit(baseDir, browser) {
    *
    * For more details and option, https://github.com/chimurai/http-proxy-middleware/blob/v0.0.5/README.md
    */
-  
+
 
   browserSync.instance = browserSync.init({
     startPath: '/',

@@ -27,7 +27,15 @@ angular.module('client')
       ctrl.$asyncValidators.unique = isEmailAvailable;
       }
     }
-  });
+  })
+  .directive('userNameUnique', function ($http,userNameService) {
+  return {
+    require: 'ngModel',
+    link: function (scope, elem, attrs,ctrl) {
+      ctrl.$asyncValidators.unique = userNameService;
+    }
+  }
+});
 
-  
+
 

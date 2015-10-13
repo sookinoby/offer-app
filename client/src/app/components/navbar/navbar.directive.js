@@ -21,28 +21,31 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController($window,$auth,userDetailsLocalService) {
+    function NavbarController($window,authService,$scope) {
       var vm = this;
+
+
+   //   console.log("outside" + vm.loggedIn );
       vm.loggedIn = false;
-      vm.currentUser = null;
-      vm.userData = userDetailsLocalService.getUserDetailFromLocal();
-     // console.log("outside" + vm.userData.userName);
-      if(vm.userData != null)
+      if(authService.authentication.isAuth)
       {
         vm.loggedIn = true;
-        vm.currentUser = vm.userData.userName;
-        console.log("inside" + vm.loggedIn);
+        console.log("Inside the if statment" + vm.loggedIn);
+        vm.currentUser = authService.authentication.userName;
+
       }
 
-      vm.logout = function logout()
+      vm.logout = function()
       {
         console.log("logout");
+
         vm.loggedIn = false;
+        console.log("logging out" + vm.loggedIn );
+
         vm.currentUser = null;
-        vm.userData = null;
-        userDetailsLocalService.deletetUserDetailFromLocal();
-        $auth.logout();
-       
+        vm.loggedIn = false;
+        authService.logOut();
+
       }
 
       // "vm.creation" is avaible by directive option "bindToController: true"

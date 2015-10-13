@@ -3,10 +3,10 @@
 
   angular
     .module('client')
-    .controller('MainController', MainController);
+    .controller('sigupconfirmController', sigupconfirmController);
 
   /** @ngInject */
-  function MainController(Restangular,UserData,$state,exceptionHandler) {
+  function sigupconfirmController(Restangular,UserData,$state,exceptionHandler) {
   var vm = this;
   this.message = "sooki";
 

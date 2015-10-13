@@ -6,9 +6,9 @@
     .controller('HomeController', HomeController);
 
   /** @ngInject */
-  function HomeController($window, $rootScope, $auth,$state,UserData,Restangular,exceptionHandler,userDetailsLocalService) {
+  function HomeController($window, $rootScope,$state,UserData,Restangular,exceptionHandler,authService) {
    var vm = this;
-   vm.message = "Welcome " + userDetailsLocalService.getUserDetailFromLocal().userName;
+   vm.message = "Welcome " + authService.authentication.userName;
 
 
   }

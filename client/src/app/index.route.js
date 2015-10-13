@@ -12,19 +12,27 @@
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
-        controllerAs: 'mainCtrl'
+        controllerAs: 'mainCtrl',
+        authenticate: false
       })
       .state('signup',{
         url:'/signup',
         templateUrl:'app/signup/signup.html',
         controller:'SignUpController',
-        controllerAs:'signCtrl'
+        controllerAs:'signCtrl',
+        authenticate: false
       })
       .state('login',{
         url:'/login',
         templateUrl:'app/login/login.html',
         controller:'LoginController',
-        controllerAs: 'loginCtrl'
+        controllerAs: 'loginCtrl',
+        authenticate: false
+      })
+      .state('confirmSignup',{
+        url:'/confirmSignup',
+        templateUrl:'app/SigupConfirmation/signupconfirm.html',
+        authenticate: false
       })
       .state('home',{
         url:'/home',
@@ -69,7 +77,7 @@
         authenticate:true
       });
 
-   
+
 
    $urlRouterProvider.otherwise('/');
   }

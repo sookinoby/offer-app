@@ -6,7 +6,7 @@
     .controller('SignUpController', SignUpController);
 
      /** @ngInject */
-  function SignUpController($auth,$state,UserData,$window,$log,$alert,exceptionHandler) {
+  function SignUpController(authService,$state,UserData,$window,$log,$alert,exceptionHandler) {
      var vm = this;
      this.account = "Create Account";
      this.creating = false;
@@ -16,16 +16,21 @@
       var user = {
         email: this.email,
         password: this.password,
-        userName: this.username
+        confirmPassword : this.confirmPassword,
+        userName: this.username,
+        fullName: this.fullname,
+        country: this.country,
+        phone: this.phone,
+        RoleName : "Mentor",
+        MentorType : this.mentorType,
+        Country :  this.country
       };
       // Satellizer
-      $auth.signup(user).then(function(response){
-   
+       authService.saveRegistration(user).then(function(response){
+
         $log.debug(response);
-        UserData.email = response.data.email;
-        $window.localStorage.currentUser = JSON.stringify(response.data.email);
         $log.debug(response.data);
-        $state.go('home');
+        $state.go('confirmSignup');
       })
         .catch(function(response) {
         //	$log.debug("test" + response.status);
@@ -37,14 +42,14 @@
           }
 
 
-          var jsonDataToshow = {title: error, 
-           content: '', placement: 'floater center top', type: 'danger', 
+          var jsonDataToshow = {title: error,
+           content: '', placement: 'floater center top', type: 'danger',
             show: true,
             aninmation:'am-fade-and-slide-top',
             duration:5};
             var myAlert = $alert(jsonDataToshow);
-           
 
+           $state.go('signup');
           $log.debug(response.data);
         });
     };
@@ -52,6 +57,6 @@
 
 
     }
-  
+
 
 })();

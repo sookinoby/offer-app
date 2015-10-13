@@ -1,34 +1,35 @@
 <div class="container">
 
  <div acme-navbar>
- 
+
   </div>
   <div class="row">
 
- 
+
     <div class="center-form panel">
       <form method="post" ng-submit="signCtrl.signup()" name="signupForm" novalidate>
         <div class="panel-body">
           <h2 class="text-center">Sign up</h2>
-          
+
 
            <div class="form-group has-feedback"
                ng-class="{ 'has-success' : signupForm.username.$valid && signupForm.username.$dirty, 'has-error' : signupForm.username.$invalid && signupForm.username.$dirty }">
               <input class="form-control input-lg" type="text" name="username"
-                   ng-model="signCtrl.username" placeholder="Your Name" required  ng-pattern="/^[a-zA-Z\s]*$/" novalidate autofocus>
+                   ng-model="signCtrl.username" placeholder="User Name" required ng-model-options="{ debounce: 400 }"  ng-pattern="/^[a-zA-Z0-9\s]*$/" novalidate autofocus  user-Name-unique>
              <i class="glyphicon glyphicon-user form-control-feedback"></i>
             <span class="help-block text-danger"
                  ng-if="signupForm.username.$dirty"
                  ng-messages="signupForm.username.$error">
-              <span ng-message="required">username is required.</span>
-              <span ng-message="pattern">only alphabets and spaces.</span>
+              <span ng-message="required">Username is required.</span>
+              <span ng-message="pattern">Only alphabets,number and spaces.</span>
+                <span ng-message="unique">Username id is not available.</span>
             </span>
           </div>
 
- 
+
           <div class="form-group has-feedback"
                ng-class="{ 'has-success' : signupForm.email.$valid && signupForm.email.$dirty,'has-error' : signupForm.email.$invalid && signupForm.email.$dirty }">
-            
+
             <input class="form-control input-lg" type="email" id="email"
                    name="email" ng-model="signCtrl.email" placeholder="Email" required
                     email-unique ng-trim="true" ng-model-options="{ debounce: 400 }">
@@ -65,6 +66,53 @@
                  ng-messages="signupForm.confirmPassword.$error">
               <span ng-message="required">You must confirm password.</span>
               <span ng-message="repeat">Passwords do not match.</span>
+            </span>
+          </div>
+
+          <div class="form-group has-feedback"
+               ng-class="{ 'has-success' : signupForm.fullname.$valid && signupForm.fullname.$dirty, 'has-error' : signupForm.fullname.$invalid && signupForm.fullname.$dirty }">
+            <input class="form-control input-lg" type="text" name="fullname"
+                   ng-model="signCtrl.fullname" placeholder="Your Full Name" required  ng-pattern="/^[a-zA-Z\s]*$/" novalidate >
+            <i class="glyphicon glyphicon-user form-control-feedback"></i>
+            <span class="help-block text-danger"
+                  ng-if="signupForm.fullname.$dirty"
+                  ng-messages="signupForm.fullname.$error">
+              <span ng-message="required">Your name is required.</span>
+              <span ng-message="pattern">only alphabets and spaces.</span>
+            </span>
+          </div>
+
+          <div class="form-group has-feedback"
+               ng-class="{ 'has-success' : signupForm.country.$valid && signupForm.country.$dirty, 'has-error' : signupForm.country.$invalid && signupForm.country.$dirty }">
+
+          <select  class="form-control input-lg" name="country" id="country" ng-model="signCtrl.country" required>
+            <option value="" disabled selected>Select Country</option> <!-- not selected / blank option -->
+            <option value="Canada">Canada</option> <!-- interpolation -->
+            <option value="Germany">Germany</option>
+            <span ng-message="required">Your Country is required.</span>
+          </select>
+          </div>
+
+          <div class="form-group has-feedback"
+               ng-class="{ 'has-success' : signupForm.mentorType.$valid && signupForm.mentorType.$dirty, 'has-error' : signupForm.mentorType.$invalid && signupForm.mentorType.$dirty }">
+          <select  class="form-control input-lg" name="mentorType" id="mentorType" ng-model="signCtrl.mentorType" required>
+            <option value="" disabled selected selected>Select Mentor Type</option> <!-- not selected / blank option -->
+            <option value="0" >Parent</option> <!-- interpolation -->
+            <option value="1">Teacher</option>
+            <span ng-message="required">Mentor Type is Required.</span>
+           </select>
+        </div>
+
+          <div class="form-group has-feedback"
+               ng-class="{ 'has-success' : signupForm.phone.$valid && signupForm.phone.$dirty,'has-error' : signupForm.phone.$invalid && signupForm.phone.$dirty }">
+
+            <input class="form-control input-lg" type="tel" id="phone"
+                   name="phone" ng-model="signCtrl.phone" placeholder="Phone"
+                   ng-trim="true" ng-pattern="/^[0-9\.\+]{1,12}$/">
+            <i class="glyphicon glyphicon-earphone form-control-feedback"></i>
+            <span class="help-block text-danger" ng-if="signupForm.phone.$dirty"
+                  ng-messages="signupForm.phone.$error"  >
+              <span ng-message="pattern">Enter valid phone number.</span>
             </span>
           </div>
 
