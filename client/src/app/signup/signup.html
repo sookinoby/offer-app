@@ -22,7 +22,7 @@
                  ng-messages="signupForm.username.$error">
               <span ng-message="required">Username is required.</span>
               <span ng-message="pattern">Only alphabets,number and spaces.</span>
-                <span ng-message="unique">Username id is not available.</span>
+                <span ng-message="unique">Username already in use.</span>
             </span>
           </div>
 
@@ -45,12 +45,14 @@
           <div class="form-group has-feedback"
                ng-class="{ 'has-success' : signupForm.password.$valid && signupForm.password.$dirty, 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
             <input class="form-control input-lg" type="password" name="password"
-                   ng-model="signCtrl.password" placeholder="Password" required >
+                   ng-model="signCtrl.password" placeholder="Password"  ng-minlength="6"  ng-minlength="20"  required >
             <i class="glyphicon glyphicon-lock form-control-feedback"></i>
             <span class="help-block text-danger"
                  ng-if="signupForm.password.$dirty"
                  ng-messages="signupForm.password.$error">
               <span ng-message="required">Password is required.</span>
+              <span ng-message="minlength">Password is too short.</span>
+              <span ng-message="maxlength">Password is too long.</span>
             </span>
           </div>
 

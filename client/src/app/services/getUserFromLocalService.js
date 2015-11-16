@@ -3,7 +3,7 @@ angular.module('client').factory('userDetailsLocalService', UserDetailsLocalServ
 
 function UserDetailsLocalService(UserData,$window)  {
 	var userDetail = {};
-	console.log("factory executed");
+	//console.log("factory executed");
 
 	userDetail.getUserDetailFromLocal = function () {
 	console.log("get UserDetail From Local executed");
@@ -13,7 +13,7 @@ function UserDetailsLocalService(UserData,$window)  {
       }
       else if($window.localStorage.currentUser && $window.localStorage.currentUser != null && $window.localStorage.currentUser != "") {
         UserData.userName = $window.localStorage.currentUser;
-        return UserData;     
+        return UserData;
    		}
    			console.log("window is not null");
    			return null;
@@ -25,6 +25,6 @@ function UserDetailsLocalService(UserData,$window)  {
         $window.localStorage.removeItem("currentUser");
 	};
 	return userDetail;
-	 
+
 };
 })();

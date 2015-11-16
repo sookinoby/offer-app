@@ -1,8 +1,8 @@
 (function() {
   'use strict';
-  angular.module('client').factory('authInterceptorService', authInterceptorService )
+  angular.module('client').factory('authInterceptorService', authInterceptorService)
 
-  function authInterceptorService ($q, $location, localStorageService) {
+  function authInterceptorService ($q, $location, localStorageService,$injector) {
 
   var authInterceptorServiceFactory = {};
 
@@ -20,7 +20,8 @@
 
   var _responseError = function (rejection) {
     if (rejection.status === 401) {
-      $location.path('/login');
+      var stateService = $injector.get('$state');
+      stateService.go('unauthorized');
     }
     return $q.reject(rejection);
   }

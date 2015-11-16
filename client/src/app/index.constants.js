@@ -4,8 +4,8 @@
 
   angular
     .module('client')
-   	.constant('UserData', {
-   	 userName: ''
+   	.constant('CONSTANT_DATA', {
+   	 base_url: 'http://r2mworks.azurewebsites.net/api/'
    	});
 
 })();

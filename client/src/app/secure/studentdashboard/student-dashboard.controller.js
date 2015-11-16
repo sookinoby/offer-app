@@ -3,10 +3,10 @@
 
   angular
     .module('client')
-    .controller('DashBoardController', DashBoardController);
+    .controller('StudentDashBoardController', StudentDashBoardController);
 
   /** @ngInject */
-  function DashBoardController($window,$state,authService,Restangular,exceptionHandler,$scope,$modal,$log,$alert,moment) {
+  function StudentDashBoardController($window,$state,authService,Restangular,exceptionHandler,$scope,$modal,$log,$alert,moment) {
    var vm = this;
    vm.message = "Welcome " + authService.authentication.userName;
    vm.secondMessage = "You are logged in as " + authService.authentication.roleName;
@@ -14,31 +14,15 @@
     var vm = this;
     this.account = "Add Student";
     this.creating = false;
-    this.refreshing = false;
     $scope.updated = false;
     this.dateTest = moment(this.dob);
     this.listOfStudents = [];
     var User = Restangular.all('accounts');
     var currentMentor = User.one('mentor',authService.authentication.mentoruid);
     this.gridOptions = {};
-    this.defaultPasswordAdded = null;
-    this.savePassword = function()
-    {
-        vm.defaultPasswordAdded = this.defaultPassword;
-        vm.password = vm.defaultPasswordAdded;
-        vm.confirmPassword = vm.defaultPasswordAdded;
-        var jsonDataToshow = {title: "Default Password Set",
-        content: '', placement: 'floater center top', type: 'success',
-        show: true,
-        aninmation:'am-fade-and-slide-top',
-        duration:5};
-      var myAlert = $alert(jsonDataToshow);
-
-    }
 
 
     this.populateData = function () {
-      vm.refreshing = true;
       currentMentor.getList('students').then(function (resourceList) {
         var responseList = resourceList.plain();
         console.log(responseList);
@@ -58,7 +42,6 @@
           vm.listOfStudents.push(student);
           index++;
         })
-        vm.refreshing = false;
         vm.updateGrid();
       });
     };
@@ -97,21 +80,11 @@
         referenceMentor :authService.authentication.mentoruid
       };
 
-
+      // Satellizer
       authService.saveRegistrationForStudent(user).then(function(response){
-        vm.fullname = '';
-        vm.password = '';
-        vm.confirmPassword = '';
-        if( vm.defaultPasswordAdded != null )
-        {
-          vm.password = vm.defaultPasswordAdded;
-          vm.confirmPassword = vm.defaultPasswordAdded;
-        }
 
-        vm.dateOfBirth = moment;
-
-      $log.debug(response);
-      $log.debug(response.data);
+        $log.debug(response);
+        $log.debug(response.data);
         vm.account = "Add Student";
         $scope.updated = true;
         vm.creating = false;
@@ -127,6 +100,8 @@
           {
             error = 'Email Already taken'
           }
+
+
           var jsonDataToshow = {title: error,
             content: '', placement: 'floater center top', type: 'danger',
             show: true,
@@ -139,7 +114,6 @@
 
 
     $scope.$watch('updated', function() {
-      vm.refreshing = true;
       vm.populateData();
     });
 

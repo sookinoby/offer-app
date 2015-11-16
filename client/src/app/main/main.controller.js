@@ -6,9 +6,19 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController(Restangular,UserData,$state,exceptionHandler) {
+  function MainController(Restangular,exceptionHandler,authService,$state) {
   var vm = this;
-  this.message = "sooki";
+  if(authService.authentication.isAuth == true)
+  {
+      if(authService.authentication.roleName == 'Mentor')
+      {
+        $state.go('home.dashboard');
+      }
+      else {
+        $state.go('home.arrowgame');
+      }
+  }
+
 
  /*
   var messageList = Restangular.all('api/unsecure');

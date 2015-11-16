@@ -6,13 +6,14 @@
     .controller('SignUpController', SignUpController);
 
      /** @ngInject */
-  function SignUpController(authService,$state,UserData,$window,$log,$alert,exceptionHandler) {
+  function SignUpController(authService,$state,$window,$log,$alert,exceptionHandler) {
      var vm = this;
      this.account = "Create Account";
      this.creating = false;
      this.signup = function() {
       vm.creating = true;
       vm.account = "Create Account";
+
       var user = {
         email: this.email,
         password: this.password,

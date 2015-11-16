@@ -3,30 +3,30 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
-                      
+
                     </a>
                 </li>
                    <li >
                     <a href="#" class="hidden-above-768" ng-click="vm.hideSideBar();"><span class="glyphicon glyphicon-remove"></span> Hide Menu</a>
                 </li>
-                <li data-match-route="/dashboard" >
+                <li data-match-route="/dashboard" ng-show="vm.shouldShowMentorDashBoard" >
                     <a ui-sref="home.dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dash Board</a>
 
                 </li>
-                <li data-match-route="/home/arrowgame/1"> 
+                <li data-match-route="/home/arrowgame/1">
                    <a ui-sref="home.arrowgame({type:1})"><span class="glyphicon glyphicon-queen"></span> Arrow Game</a>
                 </li>
-                  <li data-match-route="/home/arrowgame/2"> 
+                  <li data-match-route="/home/arrowgame/2">
                    <a ui-sref="home.arrowgame({type:2})"><span class="glyphicon glyphicon-queen"></span> Two Minute Challenge</a>
                 </li>
                 <li data-match-route="/home/selectstrategy">
-                    <a ui-sref="home.selectstrategy"><span class="glyphicon glyphicon-pawn"></span> Select Statergy</a>
+                    <a ui-sref="home.selectstrategy"><span class="glyphicon glyphicon-pawn"></span> Select Strategy</a>
                 </li>
                 <li data-match-route="/home/threedigit">
                     <a ui-sref="home.threedigit"><span class="glyphicon glyphicon-bishop"></span> Three digit</a>
                 </li>
-             
-                
+
+
             </ul>
         </div>
         <div id="sidebar-wrapper-min">

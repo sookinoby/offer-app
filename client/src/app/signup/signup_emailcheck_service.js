@@ -7,10 +7,12 @@
     .factory('userNameService',userNameService);
 
   /** @ngInject */
-  function emailService($http,$q,exceptionHandler) {
+  function emailService($http,$q,exceptionHandler,CONSTANT_DATA) {
     return function(email) {
     var deferred = $q.defer();
-    $http.get('http://localhost:65159/api/accounts/checkemail/' + email)
+    //var urlForEmail = "http://localhost:65159/api/accounts/checkemail/";
+    var urlForEmail = CONSTANT_DATA.base_url + "accounts/checkemail/";
+    $http.get(urlForEmail + email)
       .then(function() {
       // Found the user, therefore not unique.
         deferred.reject();
@@ -24,10 +26,12 @@
 
   }
 
-  function userNameService($http,$q,exceptionHandler) {
+  function userNameService($http,$q,exceptionHandler,CONSTANT_DATA) {
     return function(username) {
       var deferred = $q.defer();
-      $http.get('http://localhost:65159/api/accounts/checkusername/' + username)
+      var urlForUsername = CONSTANT_DATA.base_url + "accounts/checkusername/";
+     // var urlForUsername =  "http://localhost:65159/api/accounts/checkusername/";
+      $http.get(urlForUsername + username)
         .then(function() {
           // Found the user, therefore not unique.
           deferred.reject();

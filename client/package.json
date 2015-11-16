@@ -1,7 +1,9 @@
 {
   "name": "client",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+
+  },
   "scripts": {
     "test": "gulp test"
   },

@@ -9,16 +9,16 @@
                         <!-- strCtrl.titleOfStrategy -->
                     </div>
                     <div class="button-top-bar">
-                        
+
                         <button type="button" class="btn btn-info" ng-click='strCtrl.newGame()'>New Game</button>
-                        
+
                         <button type="button" class="btn btn-info" ng-click='strCtrl.game.changeStats()' ng-show="strCtrl.game.stats">Score Off</button>
                         <button type="button" class="btn btn-info" ng-click='strCtrl.game.changeStats()' ng-show="!strCtrl.game.stats">Score On</button>
 
                         <button type="button" class="btn btn-info small-button"  ng-disabled='!strCtrl.game.showSubmitButton.truthValue;' ng-show="!strCtrl.game.showNextButton.truthValue;" ng-click="strCtrl.game.evaluateAnswer();" >Submit</button>
 
                         <button  type="button" class="btn btn-info small-button" ng-show='strCtrl.game.showNextButton.truthValue;' ng-click="strCtrl.game.showNextQuestions();" >Next </button>
-                         
+
                     </div>
                     <div class="col-xs-8" >
                     <div class="select-stratergy-question"><span style="font-weight: 700;">
@@ -28,7 +28,7 @@
                         <div id="game-container">
                             <div grid-select-strategy id="game" ng-model='strCtrl.game' class="row game-reduced-height "></div>
                             <div id="game-over" ng-show="!strCtrl.game.countdownfinished" class="row game-overlay game-reduced-height-overlay ">
-                            <h3> <timer countdown="5" interval="1000"  name="gameCountDown">Your game will start in {{countdown}}</timer></h3>
+                            <h3> <timer countdown="5" interval="1000"  name="gameCountDown" >Your game will start in {{countdown}}</timer></h3>
                         </div>
                         <div id="game-over" ng-if="strCtrl.game.gameOver" class="row  game-overlay game-reduced-height-overlay">
                             <h3>  Sorry , play again.
@@ -47,29 +47,29 @@
                         <!-- end of win overlay -->
                         </div> <!-- game-container -->
                         </div> <!-- end of col-sm-8 -->
-                        <div class="col-xs-2 game-side-bar" >    
-                            
+                        <div class="col-xs-2 game-side-bar" >
+
                              <span ng-show="strCtrl.game.stats"> Total Questions <br />
                               {{strCtrl.game.totalfacts}}
-                             </span> 
+                             </span>
                             <span  ng-show="strCtrl.game.stats">
-                            Score <br /> 
+                            Score <br />
                                      {{strCtrl.game.currentScore}}
                             </span>
 
                             <span class="spacer" ng-show="strCtrl.game.stats">
                             </span>
 
-                            <span> 
+                            <span>
                             <span ng-if="strCtrl.game.rightAnswer && !strCtrl.game.netural" ><img  src="app/secure/game/strategy/images/happy.png" style="margin-top:1px;" /> </span>
                              <span ng-if="!strCtrl.game.rightAnswer && !strCtrl.game.netural" ><img  src="app/secure/game/strategy/images/sad.png" style="margin-top:1px;" /></span>
-                             </span>    
+                             </span>
                             <span class="spacer"></span>
                             <span class="build-facts" >
                                     Code <br />
                              <span>
-                              <span  ng-repeat="factdisp in strCtrl.game.factContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}} 
-                              </span>  
+                              <span  ng-repeat="factdisp in strCtrl.game.factContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}}
+                              </span>
                             </span>
                             </span>
 

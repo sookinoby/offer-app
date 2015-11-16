@@ -1,6 +1,56 @@
 <div class="main-content">
                      <h1> {{dashCtrl.message}}  </h1>
- </div>
+                    <h3 style="text-align: center;">
+
+                      <span ng-show="dashCtrl.refreshing"> <img ng-show="dashCtrl.refreshing" height="30px" width="30px" src="assets/images/ajax-loader-light.gif" /> Refreshing </span></span> List of Students <span ng-show="dashCtrl.refreshing"> ... </span>  </h3>
+  <div id="grid1" ui-grid="dashCtrl.gridOptions" class="grid" ng-cloak></div>
+
+  <button type="button" class="btn btn-lg btn-success" ng-click="dashCtrl.showModal()">
+                    Add Student  </button>
+
+  <button type="button" class="btn btn-lg btn-success" ng-click="dashCtrl.populateData()">
+    Refresh List  </button>
+  <br />
+  <form method="post" ng-submit="dashCtrl.savePassword()" name="passwordForm" novalidate>
+    <div class="panel-body">
+  <div class="form-group has-feedback"
+       ng-class="{ 'has-success' : passwordFrom.defaultPassword.$valid && passwordForm.defaultPassword.$dirty, 'has-error' : passwordForm.defaultPassword.$invalid && passwordForm.defaultPassword.$dirty }">
+    <input class="form-control input-lg" type="password" name="defaultPassword"
+           ng-model="dashCtrl.defaultPassword" placeholder="Default Password"  ng-minlength="6"  ng-minlength="20"  required >
+    <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+            <span class="help-block text-danger"
+                  ng-if="passwordForm.defaultPassword.$dirty"
+                  ng-messages="passwordForm.defaultPassword.$error">
+              <span ng-message="required">Password is required.</span>
+              <span ng-message="minlength">Password is too short.</span>
+              <span ng-message="maxlength">Password is too long.</span>
+            </span>
+  </div>
+
+  <div class="form-group has-feedback"
+       ng-class="{ 'has-success' : passwordForm.defaultConfirmPassword.$valid && passwordForm.defaultConfirmPassword.$dirty, 'has-error' : passwordForm.defaultConfirmPassword.$invalid && passwordForm.defaultConfirmPassword.$dirty }">
+    <input class="form-control input-lg" type="password"
+           name="defaultConfirmPassword" ng-model="dashCtrl.defaultConfirmPassword"
+           repeat-password="defaultPassword" placeholder="Default Confirm Password"
+      >
+    <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+            <span class="help-block text-danger "
+                  ng-if="passwordForm.defaultConfirmPassword.$dirty"
+                  ng-messages="passwordForm.defaultConfirmPassword.$error">
+              <span ng-message="required">You must confirm password.</span>
+              <span ng-message="repeat">Passwords do not match.</span>
+            </span>
+  </div>
+      <button class="btn btn-lg btn-block btn-primary" type="submit" ng-disabled="passwordForm.$invalid">Set Password</button>
+      </div>
+    </form>
+
+
+<br />
+
+
+
+</div>
 
 
 

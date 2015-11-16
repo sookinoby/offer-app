@@ -15,7 +15,7 @@
         this.stats = true;
         this.rightAnswer = false;
         this.netural = true;
-        
+
         this.passButton = function() {
             arrowGameService.passSubmitButton(this.showSubmitButton);
             arrowGameService.passNextButton(this.showNextButton);
@@ -39,7 +39,7 @@
             }
             return indexOf.call(this, needle);
         };
-    
+
         this.resetTimer = function() {
             this.countdownfinished = true;
         };
@@ -130,7 +130,7 @@
                     return false;
                 }
                 if (key == "enter") {
-                    if (arrowGameService.getLineNumber() == 0) 
+                    if (arrowGameService.getLineNumber() == 0)
                     {
                       self.enterKeyCount = 0;
                       return;
@@ -143,7 +143,7 @@
                     }
                 } else {
                     if (self.enterKeyCount == 0) {
-                     
+
                         if (arrowGameService.checkIfKeyPressAllowed(key)) {
                             //   self.showSubmitButton.truthValue = true;
                             arrowGameService.storeAnswerAndSelectTileForProcessing(key);

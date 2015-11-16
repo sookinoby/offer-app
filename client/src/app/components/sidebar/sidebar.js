@@ -21,9 +21,10 @@
     return directive;
 
     /** @ngInject */
-    function sideNavbarController() {
+    function sideNavbarController(authService) {
       var vm = this;
       this.shouldShowSideBar = true;
+      this.shouldShowMentorDashBoard =  authService.authentication.roleName == 'Mentor' ? true : false;
       this.showSideBar = function showSideBar()
       {
         this.shouldShowSideBar = true;

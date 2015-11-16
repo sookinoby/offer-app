@@ -100,8 +100,12 @@
         this.countDown();
         var self = this;
         $scope.$watch('ddSelectSelected.text', function(newVal, oldVal) {
-            console.log("fired" + newVal + " " + oldVal);
+
+          if(newVal != undefined)
+          {
+            console.log("fired the $watch " + newVal + " " + oldVal);
             if (self.gameData != null) self.newGame();
+          }
         });
     });
 }());

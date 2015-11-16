@@ -6,7 +6,7 @@
     .controller('ThreeDigitController', ThreeDigitController);
 
   /** @ngInject */
-  function ThreeDigitController($window, $rootScope, $auth,$state,UserData,Restangular,exceptionHandler) {
+  function ThreeDigitController($window, $rootScope,$state,Restangular,exceptionHandler) {
 
 
   }

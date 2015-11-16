@@ -5,22 +5,69 @@
         <button type="button" class="close" ng-click="$hide()">&times;</button>
         <h4 class="modal-title" ng-bind-html="title"></h4>
       </div>
-      <div class="modal-body" ng-show="content">
+      <div class="modal-body">
+        <div class="panel-body">
+        <form method="post" ng-submit="dashCtrl.signupStudent()" name="signupForm" novalidate>
+        <h2>Registration For Student</h2>
+        <div class="form-group has-feedback"
+             ng-class="{ 'has-success' : signupForm.fullname.$valid && signupForm.fullname.$dirty, 'has-error' : signupForm.fullname.$invalid && signupForm.fullname.$dirty }">
+          <input class="form-control input-lg" type="text" name="fullname"
+                 ng-model="dashCtrl.fullname" placeholder="Student's Full Name" required ng-pattern="/^[a-zA-Z\s]*$/"  novalidate >
+          <i class="glyphicon glyphicon-user form-control-feedback"></i>
+            <span class="help-block text-danger"
+                  ng-if="signupForm.fullname.$dirty"
+                  ng-messages="signupForm.fullname.$error">
+                <span ng-message="required">Your name is required.</span>
+                <span ng-message="pattern">only alphabets and spaces.</span>
+            </span>
+        </div>
+          <div class="form-group has-feedback"
+               ng-class="{ 'has-success' : signupForm.dob.$valid && signupForm.dob.$dirty, 'has-error' : signupForm.dob.$invalid && signupForm.dob.$dirty }">
+            <input class="form-control input-lg" type="text" name="dob" data-date-format="yyyy-MM-dd" data-date-type="number" data-min-date="01/01/60" data-max-date="today"
+                   ng-model="dashCtrl.dob" placeholder="Date Of Birth"  novalidate bs-datepicker>
+            <i class="glyphicon glyphicon-calendar form-control-feedback"></i>
+            <span class="help-block text-danger"
+                  ng-if="signupForm.dob.$dirty"
+                  ng-messages="signupForm.dob.$error">
 
-        <h4>Text in a modal</h4>
-        <p ng-bind-html="content"></p>
-        <pre>2 + 3 = {{ 2 + 3 }}</pre>
+              <span ng-message="required">Please enter in year-month-data format</span>
+            </span>
+          </div>
 
-        <h4>Popover in a modal</h4>
-        <p>This <a href="#" role="button" class="btn btn-default popover-test" data-title="A Title" data-content="And here's some amazing content. It's very engaging. right?" bs-popover>button</a> should trigger a popover on click.</p>
+        <div class="form-group has-feedback"
+             ng-class="{ 'has-success' : signupForm.password.$valid && signupForm.password.$dirty, 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
+          <input class="form-control input-lg" type="text" name="password"
+                 ng-model="dashCtrl.password" placeholder="Password" required >
+          <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+            <span class="help-block text-danger"
+                  ng-if="signupForm.password.$dirty"
+                  ng-messages="signupForm.password.$error">
+              <span ng-message="required">Password is required.</span>
+            </span>
+        </div>
 
-        <h4>Tooltips in a modal</h4>
-        <p><a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>This link</a> and <a href="#" class="tooltip-test" data-title="Tooltip" bs-tooltip>that link</a> should have tooltips on hover.</p>
-
+        <div class="form-group has-feedback"
+             ng-class="{ 'has-success' : signupForm.confirmPassword.$valid && signupForm.confirmPassword.$dirty, 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
+          <input class="form-control input-lg" type="text"
+                 name="confirmPassword" ng-model="dashCtrl.confirmPassword"
+                 repeat-password="password" placeholder="Confirm Password"
+            >
+          <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+            <span class="help-block text-danger "
+                  ng-if="signupForm.confirmPassword.$dirty"
+                  ng-messages="signupForm.confirmPassword.$error">
+              <span ng-message="required">You must confirm password.</span>
+              <span ng-message="repeat">Passwords do not match.</span>
+            </span>
+        </div>
+        </form>
+        </div>
       </div>
+
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
-        <button type="button" class="btn btn-primary" ng-click="$hide()">Save changes</button>
+        <button type="button" class="btn btn-default" ng-click="dashCtrl.hideModal();">Close</button>
+        <button type="button" class="btn btn-primary"  ng-disabled="signupForm.$invalid || dashCtrl.creating" ng-click="dashCtrl.signupStudent()">{{dashCtrl.account}}</button>
+
       </div>
     </div>
   </div>

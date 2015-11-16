@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('client', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages','blocks.exception','restangular', 'ui.router', 'mgcrea.ngStrap', 'mgcrea.ngStrap.modal','arrowGame','selectStratergyGameApp','LocalStorageModule','angular-jwt']);
+    .module('client', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMessages','blocks.exception','restangular', 'ui.router', 'mgcrea.ngStrap', 'mgcrea.ngStrap.modal','arrowGame','selectStratergyGameApp','LocalStorageModule','angular-jwt','angularMoment','ui.grid']);
 
 })();

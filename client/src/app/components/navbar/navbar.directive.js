@@ -30,17 +30,17 @@
       if(authService.authentication.isAuth)
       {
         vm.loggedIn = true;
-        console.log("Inside the if statment" + vm.loggedIn);
-        vm.currentUser = authService.authentication.userName;
+      //  console.log("Inside the if statment" + vm.loggedIn);
+        vm.currentUser = authService.authentication.fullName;
 
       }
 
       vm.logout = function()
       {
-        console.log("logout");
+   //     console.log("logout");
 
         vm.loggedIn = false;
-        console.log("logging out" + vm.loggedIn );
+    //    console.log("logging out" + vm.loggedIn );
 
         vm.currentUser = null;
         vm.loggedIn = false;

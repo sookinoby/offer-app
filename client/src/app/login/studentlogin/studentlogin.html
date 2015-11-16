@@ -1,0 +1,16 @@
+    <div class="panel-body">
+      <h2 class="text-center">Student Login</h2>
+
+      <form name="loginForm" method="post" ng-submit="studentLoginCtrl.studentList()" novalidate>
+
+        <div class="form-group  has-feedback">
+          <input class="form-control input-lg" type="text" name="username"
+                 ng-model="studentLoginCtrl.username" placeholder="Mentor User Name" ng-trim="true" required autofocus>
+          <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+        </div>
+
+        <button type="submit" ng-disabled="loginForm.$invalid || studentLoginCtrl.loggining"
+                class="btn btn-lg btn-block btn-success"><img ng-show="studentLoginCtrl.loggining" height="30px" width="30px" src="assets/images/ajax-loader-light.gif"></img> {{studentLoginCtrl.button_message}}</button>
+      </form>
+    </div>
+

@@ -1,0 +1,13 @@
+    <div class="panel-body">
+      <h2 class="text-center">Student Login</h2>
+
+       <h3 class="text-center" > Click on your Name </h3>
+      <ul style="list-style-type: none;margin-left: 10px;padding: 0px;">
+      <li ng-repeat="student in studentListCtrl.studentList" >
+     <button type="button" class="btn btn-success btn-lg btn-block"
+             title="Enter your password" data-template-url="app/login/studentlogin/studentlist/studentpassword.html" data-animation="am-flip-x" data-auto-close="1" bs-popover
+       ng-click="studentListCtrl.setUserName(student.id);">{{student.fullName}}</button> <br />
+      </li>
+      </ul>
+    </div>
+
