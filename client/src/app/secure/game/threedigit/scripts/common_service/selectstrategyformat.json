@@ -1,0 +1,21 @@
+{
+
+  "gametoplay":"selectstratergy",
+  "gamedata": {
+    "name": "Add Merge Bucket A0C1",
+    "isTimed": false,
+    "instantaneousFeedBack" : false,
+    "scoreHide":true,
+    "totalQuestionAsked":0,
+    "totalRightAnswer":0,
+    "errorList": [],
+    "questionList":
+    [
+      {"id":1,  "q":["1 + 1"], "a":["C1"], "o":["A0"], "time":"", "right":""},
+      {"id":2 , "q":["2 + 1"], "a":["C1"], "o":["A0"], "time":"", "right":""},
+      {"id" :3, "q":["0 + 0"], "a":["A0","C1"], "o":[], "time":"", "right":""}
+    ]
+
+
+  }}
+

@@ -1,0 +1,18 @@
+{
+   "gametoplay":"arrowgame1",
+   "gamedata": {
+   "name": "The Count Up By 1 Strategy",
+   "isTimed": true,
+   "instantaneousFeedBack" : true,
+   "totalQuestionAsked":0,
+   "totalRightAnswer":0,
+   "errorList": [],
+   "questionList":
+              [
+              {"id":1,  "q":["1 +"], "a":["1","2","3","4"], "o":[], "time":"", "right":""},
+              {"id":2 , "q":["2 +"], "a":["1"], "o":["2","3","4"], "time":"", "right":""},
+              {"id" :3, "q":["5 +"], "a":["1"], "o":["5","7","9"], "time":"", "right":""}
+              ]
+}}
+
+

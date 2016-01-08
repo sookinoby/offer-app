@@ -1,0 +1,25 @@
+{
+
+  "gametoplay":"3DigitGame",
+  "gamedata": {
+    "name": "The Count Up By 1 Strategy",
+    "isTimed": true,
+    "instantaneousFeedBack" : true,
+    "scoreHide":true,
+    "totalQuestionAsked":0,
+    "totalRightAnswer":0,
+    "errorList": [],
+    "questionList":
+    [
+
+      {"id":1,"q": ["1","+","1","=","?"],  "a":["2"], "time":"", "right":""},
+      {"id":2,"q": ["1","+","2","=","?"],  "a":["3"], "time":"", "right":""},
+      {"id":3,"q": ["1","+","3","=","?"],  "a":["4"], "time":"", "right":""},
+      {"id":4,"q": ["1","+","4","=","?"],  "a":["5"], "time":"", "right":""},
+      {"id":5,"q": ["1","+","5","=","?"],  "a":["6"], "time":"", "right":""}
+    ]
+
+
+  }}
+
+

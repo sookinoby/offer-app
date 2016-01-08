@@ -1,0 +1,22 @@
+{
+
+  "gametoplay":"Two minute challenge",
+  "gamedata": {
+    "name": "The Two minute challenge",
+    "sname": "2min",
+    "isTimed": true,
+    "instantaneousFeedBack" : true,
+    "scoreHide":true,
+    "totalQuestionAsked":0,
+    "totalRightAnswer":0,
+    "errorList": [],
+    "questionList":
+    [
+      {"id":1,  "q":["1 + 2"], "a":["3"], "o":["4","1","2"], "time":"", "right":""},
+      {"id":2 , "q":["2 + 3"], "a":["5"], "o":["1","7","4"], "time":"", "right":""},
+      {"id" :3, "q":["3 + 7"], "a":["10"], "o":["5","7","9"], "time":"", "right":""}
+    ]
+
+
+  }}
+

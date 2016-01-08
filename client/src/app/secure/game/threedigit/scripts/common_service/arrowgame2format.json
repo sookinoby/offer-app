@@ -1,0 +1,21 @@
+{
+
+  "gametoplay":"arrowgame2",
+  "gamedata": {
+    "name": "Build the Strategy (A0C1)",
+    "isTimed": true,
+    "instantaneousFeedBack" : true,
+    "totalQuestionAsked":0,
+    "totalRightAnswer":0,
+    "errorList": [],
+    "questionList":
+    [
+      {"id":1, "q":["C1", "4 +"], "a":["1"], "o":["2","3","4"], "time":"", "right":""},
+      {"id":2, "q":["A0", "4 +"], "a":["0"], "o":["1","7","5"], "time":"", "right":""},
+      {"id":3, "q":["C1" ,"5 +"], "a":["1"], "o":["1","2","3"], "time":"", "right":""}
+    ]
+
+
+  }
+}
+
