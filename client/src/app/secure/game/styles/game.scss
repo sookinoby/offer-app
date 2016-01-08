@@ -17,8 +17,8 @@ $green-color : #006400;
 $red-color: #FF0000;
 $default-color: #EEE4DA;
 $blue-color:#3399ff;
-$tile-font-size: 1.1em;
-$tile-font-size-question: 1.4em;
+$tile-font-size: 2em;
+$tile-font-size-question: 1.8em;
 $tile-font-color: #000000;
 $tile-radius: 3px;
 $tile-font: 'Open Sans', sans-serif;
@@ -32,11 +32,12 @@ $bright-text-color: #f9f6f2;
 
 // DON'T EDIT BELOW
 $tile-size: ($width - $tile-padding * ($max-tile-count + 1)) / $max-tile-count;
+$tile-size-wider: $tile-size * 2 + 10px ;
 $transition-time: 100ms;
+$apperance-time2: 1s;
 $apperance-time: 4s;
-
 .container {
- 
+
 }
 
 
@@ -44,14 +45,14 @@ $apperance-time: 4s;
    position: relative;
    width: $width;
    height: $width;
-   margin-left: 0px; 
+   margin-left: 0px;
 }
 
 #game-container-2 {
    position: relative;
    width: $width;
    height: $height;
-   margin-left: 0px; 
+   margin-left: 0px;
 }
 
 .game-overlay {
@@ -66,7 +67,7 @@ $apperance-time: 4s;
    padding-top: 35%;
    font-size: 3em;
    font-weight: bold;
-    
+
     &.game-reduced-height-overlay {
     height: $height;
     }
@@ -91,6 +92,28 @@ $apperance-time: 4s;
    }
 }
 
+
+.tile-overlay-top {
+  width: 380px;
+  height: 90px;
+  background-color: rgba(0, 0, 0, 0.40);
+  @include border-radius($tile-radius);
+  position: absolute;
+  top: 10px;
+  left: -5px;
+  z-index: 10;
+}
+
+.tile-overlay-bottom {
+  width: 380px;
+  height: 90px;
+  background-color: rgba(0, 0, 0, 0.40);
+  @include border-radius($tile-radius);
+  position: absolute;
+  top: 205px;
+  left: -5px;
+  z-index: 10;
+}
 
 
 
@@ -133,7 +156,7 @@ color:$red-color;
 margin-top:40px;
 }
 
-#game { 
+#game {
   position: relative;
   padding: $tile-padding;
   cursor: default;
@@ -147,7 +170,7 @@ margin-top:40px;
 
 &.game-reduced-height {
      height:$height;
-    
+
 }
   .grid-container {
     position: absolute;
@@ -162,10 +185,13 @@ margin-top:40px;
       background: $tile-background-color;
       float: left;
       @include border-radius($tile-radius);
-      
+
       @include animation(appear $apperance-time 0s ease-in 1);
        &:last-child {
         margin-right: 0
+      }
+      &.grid-cell-wider {
+        width: $tile-size-wider; //($width / $max-tile-count) - ($tile-padding + ($tile-radius * 2));
       }
     }
   }
@@ -181,15 +207,19 @@ margin-top:40px;
       height: $tile-size;
       background: $tile-background-color;
       @include border-radius($tile-radius);
-     
+
       // @include transition-property(transform);
       -webkit-transition-property: -webkit-transform;
       -moz-transition-property: -moz-transform;
       transition-property: transform;
       z-index: 2;
 
+      &.tile-wider {
+        width: $tile-size-wider;
+      }
+
       &.ng-enter {
-        
+
       }
       &.ng-enter-active .tile-inner {
       }
@@ -210,32 +240,55 @@ margin-top:40px;
           $zeroOffsetY: $y - 1;
           $newX: ($tile-size) * ($zeroOffsetX) + ($tile-padding * $zeroOffsetX);
           $newY: ($tile-size) * ($zeroOffsetY) + ($tile-padding * $zeroOffsetY);
-
-          &.position-#{$zeroOffsetX}-#{$zeroOffsetY} { 
-            @include transform(translate($newX, $newY));
+          $newX_wider: $tile-size-wider * ($zeroOffsetX) + ($tile-padding * $zeroOffsetX);
+          @if $zeroOffsetX == 2 {
+            $newX_wider: $tile-size-wider + $tile-size  + ($tile-padding * $zeroOffsetX);
           }
+
+          &.position-#{$zeroOffsetX}-#{$zeroOffsetY} {
+            @include transform(translate($newX, $newY));
+            &.position2-#{$zeroOffsetX}-#{$zeroOffsetY} {
+              @include transform(translate($newX_wider, $newY));
+            }
+          }
+
           &.position-#{$zeroOffsetX}-#{$zeroOffsetY}-add-active .tile-inner {
             // @include animation(appear 200ms ease);
             // @include animation-fill-mode(backwards);
           }
         }
       }
-    
+
      &.selected-answer .tile-inner {
          background: $tile-select-color;
-          
+       font-size: 50px;
+       @include transition($transition-time ease-in-out);
+
+      }
+      .input-size {
+        width: $tile-size;
+        text-align: center;
+        height: $tile-size;
+        @include border-radius($tile-radius);
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
       }
 
      &.tile-question .tile-inner {
          background: $tile-question-color;
          font-size: $tile-font-size-question;
-        
+       @include transition($transition-time ease-in-out);
+
       }
-    
+
      &.right-answer .tile-inner {
          background: $tile-background-color;
          font-size:  $tile-font-size-question;
          color:  $tile-right-color;
+       @include transition($transition-time ease-in-out);
       }
 
       &.wrong-answer .tile-inner {
@@ -247,6 +300,7 @@ margin-top:40px;
         &.tile-right-not-selected .tile-inner {
          background: $tile-right-not-select-color;
          font-size: $tile-font-size;
+          @include transition($transition-time ease-in-out);
       }
 
       &:last-child {
@@ -255,7 +309,7 @@ margin-top:40px;
 
       .tile-inner {
         line-height: ($width/$max-tile-count) - $tile-padding;
-
+        @include transition($transition-time ease-in-out);
         text-align: center;
         font-weight: bold;
         z-index: 10;
@@ -281,7 +335,7 @@ margin-top:40px;
   100% {
     opacity: 1;
     @include transform(scale(1));
-  } 
+  }
 }
 
 @include keyframes(pop) {

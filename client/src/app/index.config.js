@@ -25,8 +25,8 @@
     RestangularProvider.setBaseUrl(
       CONSTANT_DATA.base_url
     );
-    //http://r2mworks.azurewebsites.net/
-    // http://localhost:65159/api
+    //http://r2mworks.azurewebsites.net/api/
+    // http://localhost:65159/api/
     // set url for login
      }
 

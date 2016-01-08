@@ -97,7 +97,7 @@
       .state('home.threedigit',{
         url:'/threedigit',
         templateUrl:'app/secure/game/threedigit/threedigit.html',
-        controller:'ThreeDigitController',
+        controller:'threeDigitGameController',
         controllerAs: 'threeCtrl',
         authenticate:true
       })
