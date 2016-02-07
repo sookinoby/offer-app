@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/client/bower.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/bower_components/angular-timer/app/js/timer.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/bower_components/angular-timer/dist/angular-timer.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/gulp/server.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/SigupConfirmation/signupconfirm.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/SigupConfirmation/sigupconfirm.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/components/navbar/navbar.directive.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/components/navbar/navbar.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/components/sidebar/sidebar.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/components/sidebar/sidebar.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/index.config.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/index.constants.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/index.module.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/index.route.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/index.run.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/login.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/login.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/login.scss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/mentorlogin/mentorlogin.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/mentorlogin/mentorlogin.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/mentorlogin/mentorlogin.scss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/optionlogin/optionlogin.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentlist.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentlistlogin.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentpassword.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlogin.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlogin.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlogin.scss" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/main/main.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/dashboard/dashboard.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/dashboard/dashboard.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/dashboard/studentregistration.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/arrow.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/arrow.app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedata11.4.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/gamedata1.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/gamedata2.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/gamedatabackup.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/gamedatatimechallengebackup.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/gameLogic/arrow.game.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/gamedata11.2.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/gamedata3.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/gamedata3oct10.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/selectstrategy.gamedataservice.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/selectstrategy.app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/strategy.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/threedigit.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/threedigit.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/home/home.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/studentdashboard/student-dashboard.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/studentdashboard/student-dashboard.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/services/api.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/services/authInterceptor.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/services/authService.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/services/getUserFromLocalService.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/signup/signup.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/signup/signup_emailcheck_service.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/signup/sigup.controller.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/signup/singup_directives.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/unauthorized/unauthorized.html" charset="UTF-8" />
+  </component>
+</project>

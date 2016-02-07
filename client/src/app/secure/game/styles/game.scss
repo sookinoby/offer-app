@@ -4,7 +4,9 @@
 
 $width: 400px;
 $height: 304px;
+$height-reduced-2: 244px;
 $max-tile-count: 4;
+$max-tile-count-5: 5;
 $tile-padding: 10px;
 $tile-default-color: #EEE4DA;
 $tile-question-color: #43CEFF;
@@ -33,9 +35,10 @@ $bright-text-color: #f9f6f2;
 // DON'T EDIT BELOW
 $tile-size: ($width - $tile-padding * ($max-tile-count + 1)) / $max-tile-count;
 $tile-size-wider: $tile-size * 2 + 10px ;
+$tile-size-smaller: ($width - $tile-padding * ($max-tile-count-5 + 1)) / $max-tile-count-5;
 $transition-time: 100ms;
 $apperance-time2: 1s;
-$apperance-time: 4s;
+$apperance-time: 1s;
 .container {
 
 }
@@ -71,6 +74,9 @@ $apperance-time: 4s;
     &.game-reduced-height-overlay {
     height: $height;
     }
+  &.game-reduced-height-overlay-2 {
+    height:$height-reduced-2;
+  }
 
    .lower {
       display: block;
@@ -94,24 +100,24 @@ $apperance-time: 4s;
 
 
 .tile-overlay-top {
-  width: 380px;
-  height: 90px;
+  width: 382px;
+  height: 70px;
   background-color: rgba(0, 0, 0, 0.40);
   @include border-radius($tile-radius);
   position: absolute;
-  top: 10px;
-  left: -5px;
+  top: 9px;
+  left: -6px;
   z-index: 10;
 }
 
 .tile-overlay-bottom {
-  width: 380px;
-  height: 90px;
+  width: 382px;
+  height: 70px;
   background-color: rgba(0, 0, 0, 0.40);
   @include border-radius($tile-radius);
   position: absolute;
-  top: 205px;
-  left: -5px;
+  top: 165px;
+  left: -6px;
   z-index: 10;
 }
 
@@ -172,6 +178,10 @@ margin-top:40px;
      height:$height;
 
 }
+  &.game-reduced-height {
+    height:$height-reduced-2;
+
+  }
   .grid-container {
     position: absolute;
     z-index: 1;
@@ -192,6 +202,10 @@ margin-top:40px;
       }
       &.grid-cell-wider {
         width: $tile-size-wider; //($width / $max-tile-count) - ($tile-padding + ($tile-radius * 2));
+      }
+      &.grid-cell-smaller{
+        width: $tile-size-smaller; //($width / $max-tile-count) - ($tile-padding + ($tile-radius * 2));
+        height:$tile-size-smaller;
       }
     }
   }
@@ -216,6 +230,10 @@ margin-top:40px;
 
       &.tile-wider {
         width: $tile-size-wider;
+      }
+      &.tile-smaller {
+        width: $tile-size-smaller;
+        height:  $tile-size-smaller;
       }
 
       &.ng-enter {
@@ -244,19 +262,30 @@ margin-top:40px;
           @if $zeroOffsetX == 2 {
             $newX_wider: $tile-size-wider + $tile-size  + ($tile-padding * $zeroOffsetX);
           }
-
           &.position-#{$zeroOffsetX}-#{$zeroOffsetY} {
             @include transform(translate($newX, $newY));
             &.position2-#{$zeroOffsetX}-#{$zeroOffsetY} {
               @include transform(translate($newX_wider, $newY));
             }
           }
-
           &.position-#{$zeroOffsetX}-#{$zeroOffsetY}-add-active .tile-inner {
             // @include animation(appear 200ms ease);
             // @include animation-fill-mode(backwards);
           }
         }
+      }
+
+      @for $x from 1 through $max-tile-count-5 {
+        @for $y from 1 through $max-tile-count-5 {
+          $zeroOffsetX: $x - 1;
+          $zeroOffsetY: $y - 1;
+          $newX: ($tile-size-smaller) * ($zeroOffsetX) + ($tile-padding * $zeroOffsetX);
+          $newY: ($tile-size-smaller) * ($zeroOffsetY) + ($tile-padding * $zeroOffsetY);
+
+          &.position5-#{$zeroOffsetX}-#{$zeroOffsetY} {
+            @include transform(translate($newX, $newY));
+          }
+       }
       }
 
      &.selected-answer .tile-inner {
@@ -266,9 +295,9 @@ margin-top:40px;
 
       }
       .input-size {
-        width: $tile-size;
+        width: $tile-size-smaller;
         text-align: center;
-        height: $tile-size;
+        height: $tile-size-smaller;
         @include border-radius($tile-radius);
       }
       input[type=number]::-webkit-inner-spin-button,
@@ -315,6 +344,9 @@ margin-top:40px;
         z-index: 10;
         font-size:  $tile-font-size;
         color:$tile-font-color;
+        &.tile-inner-smaller {
+          line-height: ($width/$max-tile-count-5) - $tile-padding;
+        }
       }
     }
   }

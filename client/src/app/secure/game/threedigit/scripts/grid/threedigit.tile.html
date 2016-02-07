@@ -1,14 +1,13 @@
-<div ng-if='ngModel' class="tile position-{{ ngModel.x }}-{{ ngModel.y }}" ng-class="{'tile-wider':ngModel.x %3 ==0  , 'position2-{{ ngModel.x }}-{{ ngModel.y }}':ngModel.x %3 !=0,  'wrong-answer': ngModel.changeColor && !ngModel.answer
-            ,'right-answer':ngModel.changeColor && ngModel.answer ,'selected-answer': ngModel.selected} "
- >
-  <div class="tile-inner" ng-if="ngModel.x %3 !=2 || ngModel.y % 3 != 1" >
+<div ng-if='ngModel' class="tile tile-smaller  position5-{{ ngModel.x }}-{{ ngModel.y }}" ng-class="{'wrong-answer': ngModel.changeColor && !ngModel.answer
+            ,'right-answer':ngModel.changeColor && ngModel.answer ,'selected-answer': ngModel.selected} ">
+  <div class="tile-inner tile-inner-smaller" ng-if='ngModel.value != ""'>
     <!-- {{ ngModel.x }},{{ ngModel.y }} -->
     {{ ngModel.value }}
   </div>
 
-  <div ng-if="ngModel.x %3 == 2 && ngModel.y % 3 == 1" >
+  <div ng-if='ngModel.value == ""' >
     <!-- {{ ngModel.x }},{{ ngModel.y }} -->
-    <input  type="number" class="tile-inner input-size" ng-model="ngModel.value" focus-me="ngModel.y == 1" ng-change="storeAnswer2(ngModel)"  min="0" max="99" />
+    <input  type="number" class="tile-inner tile-inner-smaller input-size" ng-model="ngModel.value" focus-me="ngModel.y == 1" ng-change="storeAnswer2(ngModel)"  min="0" max="99" />
 
   </div>
 

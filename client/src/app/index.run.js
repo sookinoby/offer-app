@@ -10,11 +10,11 @@
         authService.fillAuthData();
 
         // Redirect to login if route requires auth and you're not logged in
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-          $log.debug("starting route changes" );
-          $log.debug(toState.data);
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
+      $log.debug("starting route changes" );
+         // $log.debug(toState.data);
           $log.debug( authService.authentication.roleName);
-          if(toState.data && toState.data.needMentor && authService.authentication.roleName == 'Student')
+          if(toState.data && toState.data.needMentor && authService.authentication.roleName === 'Student')
           {
             $state.go("unauthorized");
             event.preventDefault();

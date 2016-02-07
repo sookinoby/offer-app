@@ -6,13 +6,13 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
   this.getHighScore = function() {
     return  0;
   };
-  this.delay = 5000;
+  this.delay = 1000;
   this.delayedTriggerHolder = null;
   this.grid = threeDigitGridService.grid;
   this.tiles = threeDigitGridService.tiles;
 
   this.storeAnswer = threeDigitGridService.storeAnswer;
-  this.watchList;
+  this.watchList = null;
   //this.winningValue = 2048;
   this.stats = true;
   this.showNextButton = {};
@@ -29,7 +29,7 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
         indexOf = Array.prototype.indexOf;
     } else {
         indexOf = function(needle) {
-            var i = -1, index = -1;
+            var index = -1;
 
             for(i = 0; i < this.length; i++) {
                 if(this[i] === needle) {
@@ -83,8 +83,8 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
       {   this.netural  = false;
           this.rightAnswer = false;
       }
- //   console.log("test");
-  }
+
+  };
 
   this.showNextQuestions = function()
   {
@@ -99,7 +99,7 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
       this.netural  = true;
       this.showNextButton.truthValue = false;
       this.showSubmitButton.truthValue = false;
-  }
+  };
 
    this.showNextQuestions2 = function()
     {
@@ -111,7 +111,7 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
             this.netural  = true;
             this.showNextButton.truthValue = false;
             this.showSubmitButton.truthValue = false;
-    }
+    };
 
 
 
@@ -140,7 +140,7 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
     this.questionToDisplay = {};
     threeDigitGridService.resetWatchList();
     threeDigitGridService.deleteCurrentBoard();
-    threeDigitGridService.toShowQuestion(this.questionToDisplay);
+
     threeDigitGridService.buildDataForGame(gameData,nameOfStrategy);
     threeDigitGridService.buildEmptyGameBoard();
 
@@ -192,7 +192,7 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
       }
       if(key == "enter")
       {
-          console.log("enter pressed");
+
         self.enterCount++;
 
         if(threeDigitGridService.isAnswerSelected() == true)

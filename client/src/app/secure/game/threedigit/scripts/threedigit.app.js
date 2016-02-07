@@ -20,7 +20,7 @@ angular
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
-    $scope.$broadcast('timer-reset-new',"gameCountDown",5);
+    $scope.$broadcast('timer-reset-new',"gameCountDown",1);
     this.titleOfStrategy =  $scope.ddSelectSelected.text;
 
   };
@@ -49,7 +49,7 @@ angular
      }
      self.newGame();
     });
-  }
+  };
 
 
   $scope.ddSelectOptions = [];

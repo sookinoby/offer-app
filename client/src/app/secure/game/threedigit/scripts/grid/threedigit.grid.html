@@ -1,9 +1,11 @@
 <div class="grid-container">
-  <div class="grid-cell" ng-class="{'grid-cell-wider' : $index%3==0   }" ng-repeat="cell in grid track by $index"></div>
+  <div class="grid-cell grid-cell-smaller" ng-repeat="cell in grid track by $index"></div>
+  <!-- <div ng-repeat="abc in ngModel.txt"></div> -->
 </div>
 
 <div class="tile-container">
   <div tile-three-digit
-        ng-model='cell'
-        ng-repeat='cell in tiles track by $id(cell.id || $index)'></div>
+       ng-model='cell'
+       ng-repeat='cell in tiles track by $id($index)'></div>
 </div>
+
