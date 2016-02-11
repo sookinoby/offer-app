@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThreeDigit', function() {
-    var Tile = function(pos, val, answer,numberAnswer) {
+    var Tile = function(pos, val, answer,numberAnswer,toBeFilled) {
         this.x = pos.x;
         this.y = pos.y;
         this.value = val || "";
@@ -10,6 +10,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         this.selected = false;
         this.answer = answer;
         this.numberAnswer = numberAnswer;
+        this.toBeFilled = toBeFilled;
         this.colorchange = false;
     };
     Tile.prototype.savePosition = function() {
@@ -36,7 +37,18 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     Tile.prototype.reset = function() {
         this.merged = null;
     };
-    Tile.prototype.setMergedBy = function(arr) {
+
+    Tile.prototype.setToBeFilled = function(truth) {
+    this.toBeFilled = truth;
+    };
+
+    Tile.prototype.getToBeFilled = function() {
+    return this.toBeFilled;
+    };
+
+
+
+  Tile.prototype.setMergedBy = function(arr) {
         var self = this;
         arr.forEach(function(tile) {
             tile.merged = true;
@@ -66,6 +78,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     var promise = threeDigitGameDataService.getGameData("4");
     this.dataFromFile = null;
     this.linenumber = 0;
+    this.questionCell = null;
     this.watchListLineNumber = 0;
     this.factContent =null;
     this.watchListContent = null;
@@ -325,6 +338,18 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         }];
     }
 
+  this.setQuestionCell = function(tile) {
+      this.questionCell = tile;
+  }
+
+  this.getQuestionCell = function() {
+    return this.questionCell;
+  }
+
+  this.resetQuestionCell = function() {
+    this.questionCell = null;
+  }
+
     /*
      * Build the initial starting position
      * with randomly placed tiles
@@ -360,7 +385,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         var q_next =  statergy_to_select.questions[ran_next].q;
         // hold the arraylist of answers
         var a = statergy_to_select.questions[ran].a;
-        var a_next =  statergy_to_select.questions[ran_next].q;
+        var a_next =  statergy_to_select.questions[ran_next].a;
         // arraylist of options
 
         // list of correctAnswer
@@ -383,12 +408,12 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       this.questionContent[1].result = q[4];
       this.questionContent[1].actualAnswer = a;
 
-      this.questionContent[2].operand1 = q[0];
-      this.questionContent[2].operator = q[1];
-      this.questionContent[2].operand2 = q[2];
-      this.questionContent[2].symbol = q[3];
-      this.questionContent[2].result = q[4];
-      this.questionContent[2].actualAnswer = a;
+      this.questionContent[2].operand1 = q_next[0];
+      this.questionContent[2].operator = q_next[1];
+      this.questionContent[2].operand2 = q_next[2];
+      this.questionContent[2].symbol = q_next[3];
+      this.questionContent[2].result = q_next[4];
+      this.questionContent[2].actualAnswer = a_next;
         this.insertTileWithQuestionAndOperation(this.questionContent);
         //    this.currentQuestionCells = tile;
         //    this.currentAnswersCells = neighbhourCellsAvailable;
@@ -406,8 +431,9 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
                 });
             }
         }
-        this.currentAnswersCells = [];
-        this.currentQuestionCells = null;
+      this.resetQuestionCell();
+      this.currentAnswersCells = [];
+
         this.resetAnswerTile();
     };
 
@@ -429,10 +455,11 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
             var cell = avaiableNeighbhourCells[x];
             var tile;
               if(questionContent[y].operand1 == "") {
-                tile = this.newTile(cell, questionContent[y].operand1, false, questionContent[y].actualAnswer);
+                tile = this.newTile(cell, questionContent[y].operand1, true, questionContent[y].actualAnswer,true);
+
               }
               else {
-                tile = this.newTile(cell, questionContent[y].operand1, false);
+                tile = this.newTile(cell, questionContent[y].operand1, false,-1,false);
               }
               tile.resetChangeColor();
               tile.resetSelected();
@@ -441,11 +468,12 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
 
             var cell = avaiableNeighbhourCells[++x];
-               if(questionContent[y].operand1 == "") {
-                tile = this.newTile(cell, questionContent[y].operator, false, questionContent[y].actualAnswer);
+               if(questionContent[y].operator == "") {
+                tile = this.newTile(cell, questionContent[y].operator, true, questionContent[y].actualAnswer,true);
+
                }
               else {
-                tile = this.newTile(cell, questionContent[y].operator, false);
+                tile = this.newTile(cell, questionContent[y].operator, false,-1,false);
               }
             tile.resetChangeColor();
             tile.resetSelected();
@@ -454,11 +482,12 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
 
           var cell = avaiableNeighbhourCells[++x];
-          if(questionContent[y].operand1 == "") {
-            tile = this.newTile(cell, questionContent[y].operand2, false, questionContent[y].actualAnswer);
+          if(questionContent[y].operand2 == "") {
+            tile = this.newTile(cell, questionContent[y].operand2, true, questionContent[y].actualAnswer,true);
+
           }
           else {
-            tile = this.newTile(cell, questionContent[y].operand2, false);
+            tile = this.newTile(cell, questionContent[y].operand2, false,-1,false);
           }
           tile.resetChangeColor();
           tile.resetSelected();
@@ -466,18 +495,18 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
 
           var cell = avaiableNeighbhourCells[++x];
-            tile = this.newTile(cell, questionContent[y].symbol, false, 0);
+            tile = this.newTile(cell, questionContent[y].symbol, false, -1,false);
             tile.resetChangeColor();
             tile.resetSelected();
             this.insertTile(tile);
 
-
           var cell = avaiableNeighbhourCells[++x];
           if(questionContent[y].result == "") {
-            tile = this.newTile(cell, questionContent[y].result, false, questionContent[y].actualAnswer);
+            tile = this.newTile(cell, questionContent[y].result, true, questionContent[y].actualAnswer,true);
+
           }
           else {
-            tile = this.newTile(cell, questionContent[y].result, false);
+            tile = this.newTile(cell, questionContent[y].result, false,-1,false);
           }
           tile.resetChangeColor();
           tile.resetSelected();
@@ -601,8 +630,8 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         var pos = this._coordinatesToPosition(tile);
         this.tiles[pos] = tile;
     };
-    this.newTile = function(pos, value, isAnswer,numberAnswer) {
-        return new TileModelThreeDigit(pos, value, isAnswer,numberAnswer);
+    this.newTile = function(pos, value, isAnswer,numberAnswer,toBeFilled) {
+        return new TileModelThreeDigit(pos, value, isAnswer,numberAnswer,toBeFilled);
     };
     /*
      * Remove a tile
@@ -690,7 +719,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
     this.storeAnswer2 = function(tileDetail) {
 
-       // console.log(tileDetail.value);
+       console.log(tileDetail.value);
 
         if(!tileDetail)
         {
@@ -703,8 +732,9 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
             tileDetail.resetSelected();
         }
         else {
-            service.showSubmitButton.truthValue = true;
-        tileDetail.setSelected();
+          service.showSubmitButton.truthValue = true;
+          service.setQuestionCell(tileDetail);
+          tileDetail.setSelected();
         }
     }
 
@@ -713,6 +743,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.updateWatchList = function () {
 
         var watchList = this.watchListContent;
+      console.log(watchList);
         for(var i= watchList.length-1; i>0 ;i--)
         {
             var m = i - 1;
@@ -724,9 +755,19 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
             watchList[i].right =  watchList[m].right;
             watchList[i].isAnswer =  watchList[m].isAnswer;
         }
-        var tile = this.getCellAtPostion(3);
 
-        watchList[i].fact = tile.value;
+      var factString = "";
+      for(var k = 5; k < 10; k++)
+        {
+          var tile =  this.getCellAtPostion(k);
+          if(tile.getToBeFilled() == true)
+            factString = factString + " ?";
+          else {
+            factString = factString + tile.value + " ";
+          }
+        }
+
+        watchList[i].fact = factString;
 
         watchList[i].select = true;
         watchList[i].wrong =  true;
@@ -736,25 +777,25 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     }
 
     this.evaluateAnswer2 = function () {
-
-        var tile = this.getCellAtPostion(9);
-        console.log(tile.numberAnswer);
-            if(tile.value == tile.numberAnswer) {
-                tile.setAnswer(true);
-                tile.setChangeColor();
-                return 1;
-            }
-
-        tile.setAnswer(false);
-        this.updateWatchList();
-        tile.setChangeColor();
-
-            return 0;
-
-    }
+    var tile = this.getQuestionCell();
+      console.log(tile.value);
+      console.log("evaluating");
+      if(tile.value !== null && tile.value == tile.numberAnswer) {
+               tile.setAnswer(true);
+               tile.setChangeColor();
+               tile.setToBeFilled(false);
+               return 1;
+      }
+      tile.setAnswer(false);
+      // update the watch list before setting to be filled to false
+      this.updateWatchList();
+      tile.setToBeFilled(false);
+      tile.setChangeColor();
+      return 0;
+   }
 
     this.updateQuestionContent = function(){
-
+        console.log("Executed update question content");
         var statergy_to_select = this.statergy_to_select;
         console.log(this.questionContent);
         for(var i=0;i < this.questionContent.length-1; i++)
@@ -775,7 +816,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
             var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
             var q = statergy_to_select.questions[ran].q;
         }
-        var a = statergy_to_select.questions[ran].a;
+      var a = statergy_to_select.questions[ran].a;
       this.questionContent[2].operand1 = q[0];
       this.questionContent[2].operator = q[1];
       this.questionContent[2].operand2 = q[2];
@@ -792,16 +833,16 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     }
 
     this.moveMiddleRowTop = function () {
-        for(var i =5;i<10;i++) {
-           var tile =  this.getCellAtPostion(i)
+        for(var i =0;i<5;i++) {
+           var tile =  this.getCellAtPostion(i+5)
             var a = this.moveTile(tile,this._positionToCoordinates(i));
         }
 
     }
 
     this.bottomRowToMiddle = function () {
-        for(var i =10;i<15;i++) {
-            var tile =  this.getCellAtPostion(i)
+        for(var i =5;i<10;i++) {
+            var tile =  this.getCellAtPostion(i+5)
             var a = this.moveTile(tile,this._positionToCoordinates(i));
         }
 
@@ -809,52 +850,57 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.addNewBottomRow = function() {
         var tile;
         var y =2;
-        var cell = this._positionToCoordinates(5);
+        var cell = this._positionToCoordinates(10);
         if(this.questionContent[y].operand1 == "") {
-          tile = this.newTile(cell, this.questionContent[y].operand1, false, this.questionContent[y].actualAnswer);
+          tile = this.newTile(cell, this.questionContent[y].operand1, true, this.questionContent[y].actualAnswer,true);
+
         }
         else {
-          tile = this.newTile(cell, this.questionContent[y].operand1, false);
+          tile = this.newTile(cell, this.questionContent[y].operand1, false,false,false);
         }
         tile.resetChangeColor();
         tile.resetSelected();
         this.insertTile(tile);
 
-        if(this.questionContent[y].operand1 == "") {
-          tile = this.newTile(cell, this.questionContent[y].operator, false, this.questionContent[y].actualAnswer);
+      var cell = this._positionToCoordinates(11);
+        if(this.questionContent[y].operator == "") {
+          tile = this.newTile(cell, this.questionContent[y].operator, true, this.questionContent[y].actualAnswer,true);
+
         }
         else {
-          tile = this.newTile(cell, this.questionContent[y].operator, false);
+          tile = this.newTile(cell, this.questionContent[y].operator,  false,-1,false);
         }
         tile.resetChangeColor();
         tile.resetSelected();
         this.insertTile(tile);
 
+       var cell = this._positionToCoordinates(12);
+        if(this.questionContent[y].operand2 == "") {
+          tile = this.newTile(cell, this.questionContent[y].operand2, true, this.questionContent[y].actualAnswer,true);
 
-        if(this.questionContent[y].operand1 == "") {
-          tile = this.newTile(cell, this.questionContent[y].operand2, false, this.questionContent[y].actualAnswer);
         }
         else {
-          tile = this.newTile(cell, this.questionContent[y].operand2, false);
+          tile = this.newTile(cell, this.questionContent[y].operand2,  false,-1,false);
         }
         tile.resetChangeColor();
         tile.resetSelected();
         this.insertTile(tile);
 
 
-        var cell = this._positionToCoordinates(8);
-        tile = this.newTile(cell, this.questionContent[y].symbol, false, 0);
+        var cell = this._positionToCoordinates(13);
+        tile = this.newTile(cell, this.questionContent[y].symbol, false, -1,false);
         tile.resetChangeColor();
         tile.resetSelected();
         this.insertTile(tile);
 
-        var cell = this._positionToCoordinates(9);
+        var cell = this._positionToCoordinates(14);
 
         if(this.questionContent[y].result == "") {
-          tile = this.newTile(cell, this.questionContent[y].result, false, this.questionContent[y].actualAnswer);
+          tile = this.newTile(cell, this.questionContent[y].result, true, this.questionContent[y].actualAnswer,true);
+
         }
         else {
-          tile = this.newTile(cell, this.questionContent[y].result, false);
+          tile = this.newTile(cell, this.questionContent[y].result, false,-1,false);
         }
         tile.resetChangeColor();
         tile.resetSelected();
@@ -871,6 +917,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         this.moveMiddleRowTop();
         this.bottomRowToMiddle();
         this.addNewBottomRow();
+        this.resetQuestionCell();
         // hold the question
         // arraylist of options
 
@@ -896,7 +943,12 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         //    console.log(this.questionToDisplay);
     }
     this.isAnswerSelected = function() {
-        return  this.getCellAtPostion(9).value !== "";
+      var questionCell = this.getQuestionCell();
+
+      if( questionCell !== null && questionCell.value !== "")
+        return true;
+      return false;
+
     }
     /*
      * Check to see there are still cells available

@@ -6,7 +6,7 @@
  function authService($http, $q, localStorageService,jwtHelper,$state,CONSTANT_DATA) {
  // var serviceBase = 'http://localhost:65159/api/';
 
-   var serviceBase = CONSTANT_DATA.base_url;
+   var serviceBase = CONSTANT_DATA.oauth_url;
 
    //http://r2mworks.azurewebsites.net/
    //http://localhost:65159/api/

@@ -1,12 +1,11 @@
-'use strict';
-
 (function(){
-angular
+'use strict';
+ angular
 .module('threeDigitGameApp', ['threeDigitGameLogic', 'ngAnimate', 'ngCookies','timer','ngDropdowns','threeDigitGameData','threeDigitKeyboard'])
-.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService) {
+.controller('threeDigitGameController', function(threeDigitGameManager, threeDigitKeyboardService,$scope,threeDigitGameDataService,$log) {
 
   this.gameType = 4;
-  console.log("The type is" + this.gameType);
+  $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
   this.gameData = null;
   this.timerToggleButton = false;
@@ -16,7 +15,6 @@ angular
   // the new Game
   this.newGame = function() {
   this.game.newGame(this.gameData,$scope.ddSelectSelected.value);
- //   console.log("new");
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
@@ -29,7 +27,7 @@ angular
   this.loadGameData = function() {
    var self = this;
    var scope = $scope;
-      console.log("#" + this.gameType);
+  $log.info("#" + this.gameType);
    var promise= threeDigitGameDataService.getGameData(this.gameType);
 
    promise.then(function (data)
@@ -42,10 +40,8 @@ angular
          var single_data = {
          'text' : self.gameData[i].name,
          'value' : self.gameData[i].sname
-         }
-
-
-         scope.ddSelectOptions.push(single_data);
+         };
+        scope.ddSelectOptions.push(single_data);
      }
      self.newGame();
     });
@@ -81,12 +77,12 @@ angular
 
            $scope.$apply(function () {
              self.game.resetTimer();
-             if(args.name == "gameCountDown")
+             if(args.name === "gameCountDown")
              {
                  self.startTimer("gameTimer");
                    //   console.log('Game Count Down ', args);
              }
-            else if(args.name == "gameTimer")
+            else if(args.name === "gameTimer")
              {
                   if(self.timedGame)
                   {

@@ -1,11 +1,11 @@
 <div ng-if='ngModel' class="tile tile-smaller  position5-{{ ngModel.x }}-{{ ngModel.y }}" ng-class="{'wrong-answer': ngModel.changeColor && !ngModel.answer
             ,'right-answer':ngModel.changeColor && ngModel.answer ,'selected-answer': ngModel.selected} ">
-  <div class="tile-inner tile-inner-smaller" ng-if='ngModel.value != ""'>
+  <div class="tile-inner tile-inner-smaller" ng-if='ngModel.toBeFilled == false'>
     <!-- {{ ngModel.x }},{{ ngModel.y }} -->
     {{ ngModel.value }}
   </div>
 
-  <div ng-if='ngModel.value == ""' >
+  <div ng-if='ngModel.toBeFilled == true && ngModel.y == 1' >
     <!-- {{ ngModel.x }},{{ ngModel.y }} -->
     <input  type="number" class="tile-inner tile-inner-smaller input-size" ng-model="ngModel.value" focus-me="ngModel.y == 1" ng-change="storeAnswer2(ngModel)"  min="0" max="99" />
 

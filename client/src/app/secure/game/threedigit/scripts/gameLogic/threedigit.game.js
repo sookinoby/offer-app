@@ -194,7 +194,7 @@ angular.module('threeDigitGameLogic', ['threeDigitGrid'])
       {
 
         self.enterCount++;
-
+        console.log("testing the input")
         if(threeDigitGridService.isAnswerSelected() == true)
         {
 

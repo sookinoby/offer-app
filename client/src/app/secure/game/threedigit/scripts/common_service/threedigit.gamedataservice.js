@@ -7,7 +7,7 @@
            var deferred = $q.defer();
 
            var gameDataFile = "gamedata" +gameDataFile + ".json";
-            $http.get('app/secure/game/threedigit/scripts/common_service/' + gameDataFile).then(function (data)
+            $http.get('app/secure/game/threedigit/scripts/game_data/' + gameDataFile).then(function (data)
             {
               //game/game3/scripts/game3/
                 deferred.resolve(data);

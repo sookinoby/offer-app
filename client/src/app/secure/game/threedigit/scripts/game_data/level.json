@@ -1,0 +1,12 @@
+{
+  "LevelData":  [
+    {
+      "sname": "A0",
+      "name": "Add Zero Strategy"
+    },
+    {
+      "sname": "C1",
+      "name": "Count Up By One Strategy"
+    }
+  ]
+}
