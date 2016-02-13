@@ -74,20 +74,21 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         };
     };
     return Tile;
-}).service('threeDigitGridService', function(TileModelThreeDigit, threeDigitGameDataService) {
-    var promise = threeDigitGameDataService.getGameData("4");
-    this.dataFromFile = null;
+}).service('threeDigitGridService', function(TileModelThreeDigit, threeDigitGameDataService,$log) {
+
+
     this.linenumber = 0;
     this.questionCell = null;
     this.watchListLineNumber = 0;
     this.factContent =null;
     this.watchListContent = null;
     this.questionContent = null;
+    this.current_qn = 0;
+    this.startTime = null;
+    this.endTime = null;
+    this.next_qn = 1;
     var service = this;
-    promise.then(function(data) {
-        service.dataFromFile = data.data.GameData;
-        //  console.log(service.dataFromFile);
-    });
+
     this.size = 5; // Default size
     this.startingTiles = 15; // default starting tiles
     this.row = 3;
@@ -95,7 +96,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.setSize = function(sz) {
         this.size = sz ? sz : 0;
     };
-    //console.log(this);
+
     this.setStartingTiles = function(num) {
         this.startingTiles = num;
     };
@@ -103,8 +104,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.grid = [];
     this.tiles = [];
     this.gameData = [];
-    this.nameOfStrategy = null;
-    this.statergy_to_select = null;
+
     this.showSubmitButton = null;
     this.questionToDisplay = null;
     this.showNextButton = null;
@@ -127,9 +127,9 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
             y: 1
         }
     };
-    this.buildDataForGame = function(gameData, nameOfStrategy) {
+    this.buildDataForGame = function(gameData) {
         this.gameData = gameData;
-        this.nameOfStrategy = nameOfStrategy;
+
     };
     // Build game board
     this.buildEmptyGameBoard = function() {
@@ -355,52 +355,31 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
      * with randomly placed tiles
      */
     this.buildStartingPosition = function() {
-        var sname = this.nameOfStrategy;
-        var statergy_to_select = null;
-        this.resetQuestionContent();
-        this.resetWatchList();
-        if (sname != null) {
-            for (var i = 0; i < this.gameData.length; i++) {
-                if (this.gameData[i].sname == sname) statergy_to_select = this.gameData[i];
-            }
-            // no matching name found
-            if (statergy_to_select == null) statergy_to_select = this.gameData[0];
-        } else {
-            statergy_to_select = this.gameData[0];
-        }
-        this.statergy_to_select = statergy_to_select;
-        //  console.log(statergy_to_select);
-        var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
-        var ran_next = this._getRandom(0, statergy_to_select.questions.length - 1);
-        // does not allow current and next question to be same
-        while (ran == ran_next)
-        {
-            var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
-            var ran_next = this._getRandom(0, statergy_to_select.questions.length - 1);
-        }
-
-
-        // hold the question
-        var q = statergy_to_select.questions[ran].q;
-        var q_next =  statergy_to_select.questions[ran_next].q;
+        var gameData = this.gameData;
+        var length_of_questions = gameData.questionList.length;
+      /*
+       var ran = this._getRandom(0, length_of_questions-1);
+       var ran_next = this._getRandom(0, length_of_questions-1);
+    //   does not allow current and next question to be same
+       while (ran == ran_next)
+       {
+           var ran = this._getRandom(0, length_of_questions-1);
+          var ran_next = this._getRandom(0, length_of_questions-1);
+       }
+       */
+      // hold the question
+        this.current_qn = this.next_qn - 1;
+        var q = gameData.questionList[this.next_qn-1].q;
+        var q_next =  gameData.questionList[this.next_qn].q;
         // hold the arraylist of answers
-        var a = statergy_to_select.questions[ran].a;
-        var a_next =  statergy_to_select.questions[ran_next].a;
+        var a = gameData.questionList[this.next_qn-1].a[0];
+        var a_next =  gameData.questionList[this.next_qn].a[0];
         // arraylist of options
 
+      $log.log(a);
+      $log.log(a_next);
         // list of correctAnswer
-        this.correctAnswerTile = [];
-        // the slice function will create a copy of arraylist, so we wont destory arraylist
-        //   var answersAndOptions = this.getOptions(a.slice(),optionsArrayList.slice());
-        // console.log(makeOption);
-        // inserts the question at random place
-        // var tile =   this.randomlyInsertNewQuestionTile(q);
-      //  this.questionToDisplay.question = q;
-        // this.factContent = q + a;
-        //var neighbhourCellsAvailable = this.findRelativeAvailableCells(tile);
-        //this.insertTileAtAdjacentPosition(neighbhourCellsAvailable,answersAndOptions,a.length);
-
-
+      this.correctAnswerTile = [];
       this.questionContent[1].operand1 = q[0];
       this.questionContent[1].operator = q[1];
       this.questionContent[1].operand2 = q[2];
@@ -414,11 +393,12 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       this.questionContent[2].symbol = q_next[3];
       this.questionContent[2].result = q_next[4];
       this.questionContent[2].actualAnswer = a_next;
-        this.insertTileWithQuestionAndOperation(this.questionContent);
-        //    this.currentQuestionCells = tile;
-        //    this.currentAnswersCells = neighbhourCellsAvailable;
-        // console.log(neighbhourCellsAvailable);
+      this.insertTileWithQuestionAndOperation(this.questionContent);
+      var d = new Date();
+      this.startTime =  d.getTime();
     };
+
+
     this.deleteCurrentBoard = function() {
         this.storeSelectedPositions = [];
         this.showNextButton.truthValue = false;
@@ -431,10 +411,15 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
                 });
             }
         }
+      this.resetWatchList();
       this.resetQuestionCell();
+      this.resetQuestionContent();
       this.currentAnswersCells = [];
-
-        this.resetAnswerTile();
+      this.resetAnswerTile();
+      this.current_qn = 0;
+      this.startTime = null;
+      this.endTime = null;
+      this.next_qn = 1;
     };
 
     this.insertTileWithQuestionAndOperation = function(questionContent) {
@@ -447,8 +432,6 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
                 });
             }
         }
-        // console.log(optionsArrayList);
-        //console.log(a);
         var y =0;
 
         for (var x = 0; x < avaiableNeighbhourCells.length; x++) {
@@ -719,7 +702,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
     this.storeAnswer2 = function(tileDetail) {
 
-       console.log(tileDetail.value);
+       $log.log(tileDetail.value);
 
         if(!tileDetail)
         {
@@ -743,7 +726,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
     this.updateWatchList = function () {
 
         var watchList = this.watchListContent;
-      console.log(watchList);
+
         for(var i= watchList.length-1; i>0 ;i--)
         {
             var m = i - 1;
@@ -778,14 +761,25 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
     this.evaluateAnswer2 = function () {
     var tile = this.getQuestionCell();
-      console.log(tile.value);
-      console.log("evaluating");
+      $log.debug("evaluating");
+      $log.debug("the tile value " + tile.value);
+      $log.debug("the tile answer " + tile.numberAnswer);
+      this.gameData.questionList[this.current_qn].StudentAnswer = tile.value;
+      var d = new Date();
+      this.endTime =  d.getTime();
+      this.gameData.questionList[this.current_qn].time = this.endTime - this.startTime;
+      d = new Date();
+      this.startTime = d.getTime();
       if(tile.value !== null && tile.value == tile.numberAnswer) {
-               tile.setAnswer(true);
+        this.gameData.questionList[this.current_qn].right = true;
+        tile.setAnswer(true);
                tile.setChangeColor();
                tile.setToBeFilled(false);
+        $log.log(this.gameData.questionList);
                return 1;
       }
+      $log.log(this.gameData.questionList[this.current_qn]);
+      this.gameData.questionList[this.current_qn].right = false;
       tile.setAnswer(false);
       // update the watch list before setting to be filled to false
       this.updateWatchList();
@@ -795,9 +789,9 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
    }
 
     this.updateQuestionContent = function(){
-        console.log("Executed update question content");
-        var statergy_to_select = this.statergy_to_select;
-        console.log(this.questionContent);
+
+        var gameData = this.gameData;
+
         for(var i=0;i < this.questionContent.length-1; i++)
         {
           this.questionContent[i].operand1 = this.questionContent[i+1].operand1
@@ -807,16 +801,18 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
           this.questionContent[i].result =   this.questionContent[i+1].result
           this.questionContent[i].actualAnswer = this.questionContent[i+1].actualAnswer
         }
+        var length_of_questions = gameData.questionList.length
+      //  var ran =    this._getRandom(0, length_of_questions-1);
 
-        var ran =    this._getRandom(0, statergy_to_select.questions.length - 1);
-        var q = statergy_to_select.questions[ran].q;
-        while (q == this.questionContent[1].question)
+       /*while (q == this.questionContent[1].question)
         {
 
-            var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
-            var q = statergy_to_select.questions[ran].q;
+            var ran = this._getRandom(0, length_of_questions-1);
+            var q = gameData.questionList[ran].q;
         }
-      var a = statergy_to_select.questions[ran].a;
+        */
+      var q = gameData.questionList[this.next_qn].q;
+      var a = gameData.questionList[this.next_qn].a[0];
       this.questionContent[2].operand1 = q[0];
       this.questionContent[2].operator = q[1];
       this.questionContent[2].operand2 = q[2];
@@ -909,9 +905,28 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
     }
 
+    this.incrementQuestionCounter = function()
+    {
+      $log.log(this.gameData.questionList.length);
+      if(this.next_qn == (this.gameData.questionList.length - 1))
+      {
+        this.next_qn = 0;
+        this.current_qn = this.gameData.questionList.length - 1;
+      }
+      else if(this.current_qn ==  (this.gameData.questionList.length - 1))
+      {
+        this.current_qn = 0;
+        this.next_qn = this.next_qn + 1;
+      }
+      else {
+        this.current_qn = this.current_qn + 1;
+        this.next_qn = this.next_qn + 1;
+      }
 
+    }
         // editing here
     this.showNextQuestions2 = function() {
+        this.incrementQuestionCounter();
         this.updateQuestionContent();
         this.removeTopRow();
         this.moveMiddleRowTop();
@@ -931,16 +946,14 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
 
     this.toShowSubmitButton = function(submit) {
         this.showSubmitButton = submit;
-        // console.log(submit);
-        // console.log("to show submit button");
+
     }
     this.toShowQuestion = function(question) {
         this.questionToDisplay = question;
-        //    console.log(this.questionToDisplay);
+
     }
     this.toShowNextButton = function(nextButton) {
         this.showNextButton = nextButton;
-        //    console.log(this.questionToDisplay);
     }
     this.isAnswerSelected = function() {
       var questionCell = this.getQuestionCell();

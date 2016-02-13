@@ -2,7 +2,7 @@
 
   "gametoplay":"3DigitGame",
   "gamedata": {
-    "name": "The Count Up By 1 Strategy",
+    "name": "The Count Up By One",
     "isTimed": true,
     "instantaneousFeedBack" : true,
     "scoreHide":true,
@@ -12,11 +12,11 @@
     "questionList":
     [
 
-      {"id":1,"q": ["1","+","1","=","?"],  "a":["2"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":2,"q": ["1","+","2","=","?"],  "a":["3"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":3,"q": ["1","+","3","=","?"],  "a":["4"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":4,"q": ["1","+","4","=","?"],  "a":["5"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":5,"q": ["1","+","5","=","?"],  "a":["6"], "time":null, "StudentAnswer": null, "right":null}
+      {"id":1,"q": ["1","+","1","=",""],  "a":["2"], "time":null, "StudentAnswer": null, "right":null},
+      {"id":2,"q": ["1","+","2","=",""],  "a":["3"], "time":null, "StudentAnswer": null, "right":null},
+      {"id":3,"q": ["1","+","3","=",""],  "a":["4"], "time":null, "StudentAnswer": null, "right":null},
+      {"id":4,"q": ["1","+","4","=",""],  "a":["5"], "time":null, "StudentAnswer": null, "right":null},
+      {"id":5,"q": ["1","+","5","=",""],  "a":["6"], "time":null, "StudentAnswer": null, "right":null}
     ]
 
 

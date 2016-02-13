@@ -25,7 +25,6 @@ angular.module('arrowKeyboard', []).service('ArrowGameKeyboardService', function
         });
     };
     this.destroy = function() {
-        var self = this;
         $document.unbind('keydown');
     };
     this.keyEvents = null;

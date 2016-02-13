@@ -1,12 +1,12 @@
 {
   "LevelData":  [
     {
-      "sname": "A0",
-      "name": "Add Zero Strategy"
+      "sname": "a0",
+      "name": "Add Zero"
     },
     {
-      "sname": "C1",
-      "name": "Count Up By One Strategy"
+      "sname": "c1",
+      "name": "Count Up By One"
     }
   ]
 }

@@ -7,14 +7,14 @@
   this.gameType = 4;
   $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
-  this.gameData = null;
+  this.levelData = null;
   this.timerToggleButton = false;
   threeDigitKeyboardService.destroy();
   threeDigitKeyboardService.init();
 
   // the new Game
   this.newGame = function() {
-  this.game.newGame(this.gameData,$scope.ddSelectSelected.value);
+  this.game.initialiseGame($scope.ddSelectSelected.value);
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
@@ -23,23 +23,24 @@
 
   };
 
-
+  // load the game data.
   this.loadGameData = function() {
    var self = this;
    var scope = $scope;
-  $log.info("#" + this.gameType);
-   var promise= threeDigitGameDataService.getGameData(this.gameType);
+
+   // promise is resolved for getting the gfame data
+   var promise= threeDigitGameDataService.getGameData("level.json");
 
    promise.then(function (data)
     {
-   //  console.log("test" + data.data.GameData);
-     self.gameData  = data.data.GameData;
+     $log.debug( data.data );
+     self.levelData  = data.data.LevelData;
 
-     for(var i=0;i < self.gameData.length; i++)
+     for(var i=0;i < self.levelData.length; i++)
      {
          var single_data = {
-         'text' : self.gameData[i].name,
-         'value' : self.gameData[i].sname
+         'text' : self.levelData[i].name,
+         'value' : self.levelData[i].sname
          };
         scope.ddSelectOptions.push(single_data);
      }
@@ -50,15 +51,14 @@
 
   $scope.ddSelectOptions = [];
    $scope.ddSelectSelected = {
-         'text' : "Add zero",
-         'value' : "AO"
+         'text' : "Add Zero",
+         'value' : "a0"
    };
 
    this.timedGame = false;
    $scope.timerRunning = false;
 
    this.startTimer = function (name){
-  // console.log("what the heck " + name);
    $scope.$broadcast('timer-start',name);
    $scope.timerRunning = true;
    };
@@ -80,7 +80,7 @@
              if(args.name === "gameCountDown")
              {
                  self.startTimer("gameTimer");
-                   //   console.log('Game Count Down ', args);
+                // $log.debug('Game Count Down ', args);
              }
             else if(args.name === "gameTimer")
              {
@@ -88,10 +88,7 @@
                   {
                       self.game.gameOver=true;
                   }
-             //     console.log('Game Timer', args);
              }
-          //   console.log('Time stopped ', args);
-            //  console.log('Game Timer Has stopped ', args);
 
 
 
@@ -119,7 +116,7 @@
 
         var self = this;
  $scope.$watch('ddSelectSelected.text', function(newVal, oldVal){
-    if(self.gameData != null)
+    if(self.levelData != null)
     self.newGame();
   });
 });
