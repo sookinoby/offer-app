@@ -25,13 +25,14 @@
       this.rightAnswer = false;
       this.netural  = true;
       this.indexOf = function(needle) {
+        var indexOf;
         if(typeof Array.prototype.indexOf === 'function') {
-          indexOf = Array.prototype.indexOf;
+           indexOf = Array.prototype.indexOf;
         } else {
-          indexOf = function(needle) {
+            indexOf = function(needle) {
             var index = -1;
 
-            for(i = 0; i < this.length; i++) {
+            for(var i = 0; i < this.length; i++) {
               if(this[i] === needle) {
                 index = i;
                 break;
@@ -188,21 +189,21 @@
            */
 
           if(self.win) { return false; }
-          if(key == "up")
+          if(key === "up")
           {
-            $log.debug("up arrow");
+            $log.debug("up arrow pressed");
           }
-          if(key == "enter")
+          if(key === "enter")
           {
             self.enterCount++;
-            if(threeDigitGridService.isAnswerSelected() == true)
+            if(threeDigitGridService.isAnswerSelected() === true)
             {
 
-              if(self.enterCount == 1)
+              if(self.enterCount === 1)
               {
                 self.evaluateAnswer2();
               }
-              if(self.enterCount == 2)
+              if(self.enterCount === 2)
               {
 
                 self.showNextQuestions2();

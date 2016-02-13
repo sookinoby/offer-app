@@ -61,7 +61,7 @@
              *     throw { message: 'error message we added' };
              */
          //      toaster.pop('success', "title", "text");
-            console.log("some more exception");
+            $log.debug("some more exception");
             $log.error(exception.message, errorData);
         };
     }

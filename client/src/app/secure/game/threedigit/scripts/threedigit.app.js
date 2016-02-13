@@ -8,6 +8,7 @@
   $log.debug("The type is" + this.gameType);
   this.game = threeDigitGameManager;
   this.levelData = null;
+
   this.timerToggleButton = false;
   threeDigitKeyboardService.destroy();
   threeDigitKeyboardService.init();
@@ -115,9 +116,10 @@
     this.countDown();
 
         var self = this;
- $scope.$watch('ddSelectSelected.text', function(newVal, oldVal){
-    if(self.levelData != null)
-    self.newGame();
+ $scope.$watch('ddSelectSelected.text', function(){
+    if(self.levelData !== null) {
+      self.newGame();
+    }
   });
 });
 }
