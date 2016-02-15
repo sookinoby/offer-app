@@ -1,11 +1,14 @@
 {
-
   "gametoplay":"3DigitGame",
   "gamedata": {
-    "name": "The Count Up By One",
+    "name": "Count Up By One",
+    "Game Tile" : "Additon Game",
     "isTimed": true,
-    "instantaneousFeedBack" : true,
-    "scoreHide":true,
+    "instantaneousFeedBack" : false,
+    "pacer" : true,
+    "watchList" : false,
+    "newGameButton" : true,
+    "scoreButton" : true,
     "totalQuestionAsked":0,
     "totalRightAnswer":0,
     "errorList": [],

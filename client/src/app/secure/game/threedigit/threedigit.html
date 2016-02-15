@@ -12,12 +12,12 @@
 
           <button type="button" class="btn btn-info" ng-click='threeCtrl.newGame()'>New Game</button>
 
-          <button type="button" class="btn btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.stats">Score Off</button>
-          <button type="button" class="btn btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="!threeCtrl.game.stats">Score On</button>
+          <button type="button" class="btn btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && threeCtrl.game.stats">Score Off</button>
+          <button type="button" class="btn btn-info" ng-click='threeCtrl.game.changeStats()' ng-show="threeCtrl.game.scoreButton && !threeCtrl.game.stats">Score On</button>
 
           <button type="button" class="btn btn-info small-button"  ng-disabled='!threeCtrl.game.showSubmitButton.truthValue;' ng-show="!threeCtrl.game.showNextButton.truthValue;" ng-click="threeCtrl.game.evaluateAnswer2();" >Submit</button>
 
-          <button  type="button" class="btn btn-info small-button" ng-show='threeCtrl.game.showNextButton.truthValue;' ng-click="threeCtrl.game.showNextQuestions2();" >Next </button>
+       <!--   <button  type="button" class="btn btn-info small-button" ng-show='threeCtrl.game.showNextButton.truthValue;' ng-click="threeCtrl.game.showNextQuestions2();" >Next </button> -->
 
         </div>
         <div class="col-xs-8" >
@@ -60,15 +60,15 @@
                             <span class="spacer" ng-show="threeCtrl.game.stats">
                             </span>
 
-                            <span>
+                            <span ng-if="threeCtrl.game.instantaneousFeedBack">
                             <span ng-if="threeCtrl.game.rightAnswer && !threeCtrl.game.netural" ><img  src="app/secure/game/threedigit/images/happy.png" style="margin-top:1px;" /> </span>
                              <span ng-if="!threeCtrl.game.rightAnswer && !threeCtrl.game.netural" ><img  src="app/secure/game/threedigit/images/sad.png" style="margin-top:1px;" /></span>
                              </span>
           <span class="spacer"></span>
-                            <span class="build-facts" >
-                                    Hard Facts <br />
-                             <span>
-                              <span  ng-repeat="factdisp in threeCtrl.game.watchList" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}}
+                            <span class="build-facts"  ng-show="threeCtrl.game.watchList" >
+                                    Watch List <br />
+                             <span ng-if="threeCtrl.game.watchList">
+                              <span  ng-repeat="factdisp in threeCtrl.game.watchListContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}}
                               </span>
                             </span>
                             </span>
@@ -87,3 +87,5 @@
          dropdown-model="ddSelectSelected"
          dropdown-item-label="text" style="margin-left:0px;border-style: solid; border-width: 5px;"  >
     </div>
+    </div>
+  </div>

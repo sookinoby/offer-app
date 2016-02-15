@@ -45,6 +45,7 @@
          };
         scope.ddSelectOptions.push(single_data);
      }
+
      self.newGame();
     });
   };

@@ -29,6 +29,6 @@
               }
           });
        $log.debug('runBlock end');
-        };
+        }
 
 })();

@@ -1,10 +1,14 @@
 {
   "gametoplay":"3DigitGame",
   "gamedata": {
-    "name": "Add Up My Zero",
+    "name": "Add Up By Zero",
+    "Game Tile" : "Additon Game",
     "isTimed": true,
-    "instantaneousFeedBack" : true,
-    "scoreHide":true,
+    "instantaneousFeedBack" : false,
+    "pacer" : true,
+    "watchList" : true,
+    "newGameButton" : true,
+    "scoreButton" : true,
     "totalQuestionAsked":0,
     "totalRightAnswer":0,
     "errorList": [],

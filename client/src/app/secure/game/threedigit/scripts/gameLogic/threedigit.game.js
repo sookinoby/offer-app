@@ -12,9 +12,17 @@
       this.tiles = threeDigitGridService.tiles;
       this.gameData = null;
       this.storeAnswer = threeDigitGridService.storeAnswer;
-      this.watchList = null;
+      this.watchListContent = null;
       //this.winningValue = 2048;
       this.stats = true;
+      // show/hide UI options
+      this.scoreButton = false;
+      this.watchList = true;
+      this.instantaneousFeedBack = false;
+      this.pacer = false;
+      this.isTimed = false;
+
+
       this.showNextButton = {};
       this.showSubmitButton = {};
       this.showSubmitButton.truthValue = false;
@@ -69,7 +77,9 @@
         this.showNextButton.truthValue = true;
         if(score > 0)
         {
+
           this.rightAnswer = true;
+          $log.debug("right answer" + this.rightAnswer);
           this.netural  = false;
 
           this.updateScore(score);
@@ -78,32 +88,18 @@
         {   this.netural  = false;
           this.rightAnswer = false;
         }
-
+        this.showNextQuestions2();
       };
 
-      this.showNextQuestions = function()
-      {
-
-        this.totalfacts =  this.totalfacts + 1;
-        threeDigitGridService.deleteCurrentBoard();
-        threeDigitGridService.buildStartingPosition();
-        threeDigitGridService.resetWatchList();
-
-        this.watchList = threeDigitGridService.getWatchList();
-        this.rightAnswer = false;
-        this.netural  = true;
-        this.showNextButton.truthValue = false;
-        this.showSubmitButton.truthValue = false;
-      };
 
       this.showNextQuestions2 = function()
       {
         $log.debug("show next question");
         this.totalfacts =  this.totalfacts + 1;
         threeDigitGridService.showNextQuestions2();
-        this.watchList = threeDigitGridService.getWatchList();
-        this.rightAnswer = false;
-        this.netural  = true;
+        this.watchListContent = threeDigitGridService.getWatchList();
+       // this.rightAnswer = false;
+       // this.netural  = true;
         this.showNextButton.truthValue = false;
         this.showSubmitButton.truthValue = false;
       };
@@ -131,6 +127,12 @@
         promise.then(function (data) {
           self.gameData = data.data.gamedata;
           self.newGame(self.gameData);
+          self.setScoreButton(self.gameData.scoreButton);
+          self.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
+          threeDigitGridService.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
+          self.setPacer(self.gameData.pacer);
+          self.setWatchList(self.gameData.watchList);
+          self.setIsTimed(self.gameData.isTimed);
 
         });
       };
@@ -153,28 +155,48 @@
           $log.debug('update with timeout fired');
         }, self.delay);
 
-        this.watchList =  threeDigitGridService.getWatchList();
+        this.watchListContent =  threeDigitGridService.getWatchList();
         this.reinit();
       };
 
+      this.setScoreButton = function(value) {
+        this.scoreButton = value;
+      };
+
+      this.setPacer = function(value) {
+        this.pacer = value;
+      };
+
+      this.setWatchList = function(value) {
+        $log.debug("wacthList" + this.watchList);
+        this.watchList = value;
+      };
+
+      this.setInstantaneousFeedBack = function(value) {
+        this.instantaneousFeedBack  = value;
+      };
+
+      this.setIsTimed = function(value) {
+        this.isTimed  = value;
+      };
 
 
       /*
-       * The game loop
-       *
-       * Inside here, we'll run every 'interesting'
-       * event (interesting events are listed in the Keyboard service)
-       * For every event, we'll:
-       *  1. look up the appropriate vector
-       *  2. find the furthest possible locations for each tile and
-       *     the next tile over
-       *  3. find any spots that can be 'merged'
-       *    a. if we find a spot that can be merged:
-       *      i. remove both tiles
-       *      ii. add a new tile with the double value
-       *    b. if we don't find a merge:
-       *      i. move the original tile
-       */
+          * The game loop
+          *
+          * Inside here, we'll run every 'interesting'
+          * event (interesting events are listed in the Keyboard service)
+          * For every event, we'll:
+          *  1. look up the appropriate vector
+          *  2. find the furthest possible locations for each tile and
+          *     the next tile over
+          *  3. find any spots that can be 'merged'
+          *    a. if we find a spot that can be merged:
+          *      i. remove both tiles
+          *      ii. add a new tile with the double value
+          *    b. if we don't find a merge:
+          *      i. move the original tile
+          */
 
       this.move = function(key) {
 
@@ -202,15 +224,8 @@
               if(self.enterCount === 1)
               {
                 self.evaluateAnswer2();
-              }
-              if(self.enterCount === 2)
-              {
-
-                self.showNextQuestions2();
-
                 self.enterCount = 0;
               }
-
             } else {
               self.enterCount = 0;
             }
