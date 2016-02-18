@@ -74,7 +74,7 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
         };
     };
     return Tile;
-}).service('threeDigitGridService', function(TileModelThreeDigit, threeDigitGameDataService,$log) {
+}).service('threeDigitGridService', function(TileModelThreeDigit,$log) {
 
     this.instantaneousFeedBack = true;
     this.linenumber = 0;

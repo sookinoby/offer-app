@@ -1,66 +1,74 @@
 (function() {
     'use strict';
-    angular.module('arrowGame', ['arrowGameLogic', 'ngAnimate', 'ngCookies', 'timer', 'ngDropdowns', 'arrowGameCommonService', 'arrowKeyboard']).controller('arrowGameController', function(arrowGameManager, ArrowGameKeyboardService, $scope, arrowGameDataService, $stateParams) {
-            console.log("the state param" + $stateParams);
-        if ($stateParams.type == 2) {
+    angular.module('arrowGame', ['arrowGameLogic', 'ngAnimate', 'ngCookies', 'timer', 'ngDropdowns', 'arrowGameCommonService', 'arrowKeyboard']).controller('arrowGameController', function(arrowGameManager, ArrowGameKeyboardService, $scope, arrowGameDataService, $stateParams,$log) {
+            $log.debug("the state param" + $stateParams);
+      $log.debug($stateParams);
+        if ($stateParams.type === "2") {
             this.gameType = 2;
         } else {
             this.gameType = 1;
         }
-        //  console.log("The type is" + this.gameType);
-        this.game = arrowGameManager;
-        this.gameData = null;
-        this.timerToggleButton = false;
-        ArrowGameKeyboardService.destroy();
-        ArrowGameKeyboardService.init();
-        this.newGame = function() {
-            this.game.newGame(this.gameData, $scope.ddSelectSelected.value);
-            //   console.log("new");
+      $log.debug(this.gameType );
+      this.levelData = null;
+      this.game = arrowGameManager;
+      $scope.ddSelectOptions = [];
+      this.timerToggleButton = false;
+      ArrowGameKeyboardService.destroy();
+      ArrowGameKeyboardService.init();
+       this.newGame = function() {
+            this.game.initialiseGame($scope.ddSelectSelected.value);
             this.timedGame = this.timerToggleButton;
             this.game.gameOver = false;
             $scope.$broadcast('timer-reset');
-            $scope.$broadcast('timer-reset-new', "gameCountDown", 5);
+            $scope.$broadcast('timer-reset-new', "gameCountDown", 1);
             this.titleOfStrategy = $scope.ddSelectSelected.text;
-            this.shortTitleOfStrategy = $scope.ddSelectSelected.value;
+
         };
         this.loadGameData = function() {
             var self = this;
+            var promise;
             var scope = $scope;
-            var promise = arrowGameDataService.getGameData(this.gameType);
+            if( this.gameType === 1 ) {
+              $log.debug("one game type");
+               promise = arrowGameDataService.getGameData("level.json");
+            }
+          else {
+              promise = arrowGameDataService.getGameData("challenge.json");
+            }
             promise.then(function(data) {
                 self.initialiseDropDown();
-                //  console.log("test" + data.data.GameData);
-                self.gameData = data.data.GameData;
-                for (var i = 0; i < self.gameData.length; i++) {
+
+                self.levelData = data.data.LevelData;
+                $log.debug(self.levelData);
+                for (var i = 0; i < self.levelData.length; i++) {
                     var single_data = {
-                        'text': self.gameData[i].name,
-                        'value': self.gameData[i].sname
-                    }
+                        'text': self.levelData[i].name,
+                        'value': self.levelData[i].sname
+                    };
                     scope.ddSelectOptions.push(single_data);
                 }
-                //  self.newGame();
+                self.newGame();
             });
-        }
-        $scope.ddSelectOptions = [];
+        };
+
         this.initialiseDropDown = function() {
-            if (this.gameType == 2) {
+            if (this.gameType === 2) {
                 $scope.ddSelectSelected = {
                     'text': "The Two Minute Challenge",
-                    'value': "level1"
+                    'value': "2min"
                 };
                 this.timerToggleButton = true;
             }
-            if (this.gameType == 1) {
+            if (this.gameType === 1) {
                 $scope.ddSelectSelected = {
-                    'text': "The ^A?dd ^Zero? Strategy",
-                    'value': "A0"
+                    'text': "Count Up By One",
+                    'value': "c1"
                 };
             }
-        }
+        };
         this.timedGame = false;
         $scope.timerRunning = false;
         this.startTimer = function(name) {
-            // console.log("what the heck " + name);
             $scope.$broadcast('timer-start', name);
             $scope.timerRunning = true;
         };
@@ -73,17 +81,16 @@
             $scope.$on('timer-stopped', function(event, args) {
                 $scope.$apply(function() {
                     self.game.resetTimer();
-                    if (args.name == "gameCountDown") {
+                    if (args.name === "gameCountDown") {
                         self.startTimer("gameTimer");
-                        //   console.log('Game Count Down ', args);
-                    } else if (args.name == "gameTimer") {
+
+                    } else if (args.name === "gameTimer") {
                         if (self.timedGame) {
                             self.game.gameOver = true;
                         }
-                        //     console.log('Game Timer', args);
+
                     }
-                    //   console.log('Time stopped ', args);
-                    //  console.log('Game Timer Has stopped ', args);
+
                 });
             });
         };
@@ -94,18 +101,19 @@
             });
         };
         this.initialiseCallBack();
-        //  this.countDownTimerStart();
-        //  this.startTimer("gameCountDown");
+
         this.loadGameData();
         this.countDown();
         var self = this;
-        $scope.$watch('ddSelectSelected.text', function(newVal, oldVal) {
+        $scope.$watch('ddSelectSelected.text', function(newVal) {
 
           if(newVal != undefined)
           {
-            console.log("fired the $watch " + newVal + " " + oldVal);
-            if (self.gameData != null) self.newGame();
+            console.log("fired the $watch " + newVal + " ");
+            if (self.levelData !== null)  {
+              self.newGame();
+            }
           }
         });
     });
-}());
+})();

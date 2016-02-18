@@ -1,14 +1,22 @@
 (function() {
     'use strict';
-    angular.module('arrowGameLogic', ['arrowGameGrid']).service('arrowGameManager', function($q, $timeout, arrowGameService, $log) {
-        this.delay = 5000;
+    angular.module('arrowGameLogic', ['arrowGameGrid']).service('arrowGameManager', function($q, $timeout, arrowGameService,arrowGameDataService, $log) {
+        this.delay = 1000;
         this.delayedTriggerHolder = null;
         this.positionToInsert = {};
         this.grid = arrowGameService.grid;
         this.tiles = arrowGameService.tiles;
+        this.gameData = null;
         this.gameOver = false;
         this.showNextButton = {};
         this.showSubmitButton = {}
+      // show/hide UI options
+        this.scoreButton = false;
+        this.watchList = true;
+        this.instantaneousFeedBack = false;
+        this.pacer = false;
+        this.isTimed = false;
+
         this.showSubmitButton.truthValue = false;
         this.showNextButton.truthValue = false;
         // this.winningValue = 2048;
@@ -16,29 +24,29 @@
         this.rightAnswer = false;
         this.netural = true;
 
-        this.passButton = function() {
-            arrowGameService.passSubmitButton(this.showSubmitButton);
-            arrowGameService.passNextButton(this.showNextButton);
-        };
-        this.passButton();
+
+
         this.indexOf = function(needle) {
-            if (typeof Array.prototype.indexOf === 'function') {
-                indexOf = Array.prototype.indexOf;
-            } else {
-                indexOf = function(needle) {
-                    var i = -1,
-                        index = -1;
-                    for (i = 0; i < this.length; i++) {
-                        if (this[i] === needle) {
-                            index = i;
-                            break;
-                        }
-                    }
-                    return index;
-                };
+        var indexOf;
+        if(typeof Array.prototype.indexOf === 'function') {
+          indexOf = Array.prototype.indexOf;
+        } else {
+          indexOf = function(needle) {
+            var index = -1;
+
+            for(var i = 0; i < this.length; i++) {
+              if(this[i] === needle) {
+                index = i;
+                break;
+              }
             }
-            return indexOf.call(this, needle);
-        };
+
+            return index;
+          };
+        }
+
+        return indexOf.call(this, needle);
+      };
 
         this.resetTimer = function() {
             this.countdownfinished = true;
@@ -56,16 +64,39 @@
             this.enterKeyCount = 0;
         };
         this.reinit();
-        this.newGame = function(gameData, nameOfStrategy) {
+
+        this.initialiseGame = function(nameOfStrategy) {
+          var self = this;
+          var promise = arrowGameDataService.getGameData(nameOfStrategy +".json");
+          promise.then(function (data) {
+          self.gameData = data.data.gamedata;
+          self.newGame(self.gameData);
+          self.setScoreButton(self.gameData.scoreButton);
+          self.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
+          arrowGameService.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
+          self.setPacer(self.gameData.pacer);
+          self.setWatchList(self.gameData.watchList);
+          self.setIsTimed(self.gameData.isTimed);
+
+        });
+        };
+
+        this.passButton = function() {
+        arrowGameService.passSubmitButton(this.showSubmitButton);
+        arrowGameService.passNextButton(this.showNextButton);
+        };
+        this.passButton();
+
+        this.newGame = function(gameData) {
             var self = this;
             if(self.delayedTriggerHolder)
             {
                 $timeout.cancel(self.delayedTriggerHolder);
             }
             arrowGameService.deleteCurrentBoard();
-            arrowGameService.buildDataForGame(gameData, nameOfStrategy);
+            arrowGameService.buildDataForGame(gameData);
             arrowGameService.buildEmptyGameBoard();
-            self.delayedTriggerHolder = $timeout(function tobuilstartinPosition() {
+            self.delayedTriggerHolder = $timeout(function toBuildStartinPosition() {
                 self.positionToInsert = arrowGameService.buildStartingPosition();
                 $log.debug('update with timeout fired');
             }, self.delay);
@@ -76,6 +107,7 @@
             this.factContent = arrowGameService.getFactContent();
             this.reinit();
         };
+
         this.showNextQuestions = function() {
             this.enterKeyCount = 0;
             arrowGameService.resetFactContent();
@@ -85,7 +117,8 @@
             this.showNextButton.truthValue = false;
             this.netural = true;
             this.rightAnswer = false;
-        }
+        };
+
         this.evaluateAnswer = function() {
             var points_for_questions = arrowGameService.evaluateAnswer();
             if (points_for_questions != null && points_for_questions > 0) {
@@ -103,7 +136,28 @@
             this.totalfacts++;
             this.showSubmitButton.truthValue = false;
             this.showNextButton.truthValue = true;
-        }
+        };
+
+      this.setScoreButton = function(value) {
+        this.scoreButton = value;
+      };
+
+      this.setPacer = function(value) {
+        this.pacer = value;
+      };
+
+      this.setWatchList = function(value) {
+        $log.debug("wacthList" + this.watchList);
+        this.watchList = value;
+      };
+
+      this.setInstantaneousFeedBack = function(value) {
+        this.instantaneousFeedBack  = value;
+      };
+
+      this.setIsTimed = function(value) {
+        this.isTimed  = value;
+      };
         /*
          * The game loop
          *

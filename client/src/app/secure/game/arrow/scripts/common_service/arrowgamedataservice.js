@@ -1,14 +1,15 @@
 (function() {
-  var arrowGameDataService = function ($http,$q) {
-   
+  'use strict';
+  var arrowGameDataService = function ($http,$q,$log) {
+
       this.getGameData = function(gameDataFile)
       {
-        
+        $log.debug(gameDataFile);
            var deferred = $q.defer();
-           var gameDataFile = "gamedata" +gameDataFile + ".json";
-            $http.get('app/secure/game/arrow/scripts/common_service/' + gameDataFile).then(function (data)
+
+            $http.get('app/secure/game/arrow/scripts/game_data/' + gameDataFile).then(function (data)
             {
-                deferred.resolve(data);                            
+                deferred.resolve(data);
             });
           return deferred.promise;
       }

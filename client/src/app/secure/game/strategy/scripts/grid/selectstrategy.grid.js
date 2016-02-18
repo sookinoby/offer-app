@@ -56,16 +56,15 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         };
     };
     return Tile;
-}).service('SelectStrategyGridService', function(TileModel, gameDataService) {
-    var promise = gameDataService.getGameData("3");
-    this.dataFromFile = null;
+}).service('SelectStrategyGridService', function(TileModel,$log) {
+
+
     this.linenumber = 0;
     this.factContent;
+
+    this.instantaneousFeedBack = true;
     var service = this;
-    promise.then(function(data) {
-        service.dataFromFile = data.data.GameData;
-        //  console.log(service.dataFromFile);          
-    });
+
     this.size = 4; // Default size
     this.startingTiles = 12; // default starting tiles
     this.row = 3;
@@ -104,9 +103,9 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
             y: 1
         }
     };
-    this.buildDataForGame = function(gameData, nameOfStrategy) {
+    this.buildDataForGame = function(gameData) {
         this.gameData = gameData;
-        this.nameOfStrategy = nameOfStrategy;
+        this.current_qn = 0;
     };
     // Build game board
     this.buildEmptyGameBoard = function() {
@@ -124,7 +123,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     };
     /*
      * Prepare for traversal
-  
+
     this.prepareTiles = function() {
       this.forEach(function(x,y,tile) {
         if (tile) {
@@ -133,7 +132,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         }
       });
     };
-       
+
 
     this.cleanupCells = function() {
       var self = this;
@@ -197,7 +196,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
       };
     };
 
-  
+
     this.cellAvailable = function(cell) {
       if (this.withinGrid(cell)) {
         return !this.getCellAt(cell);
@@ -258,39 +257,28 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
      * with randomly placed tiles
      */
     this.buildStartingPosition = function() {
-        var sname = this.nameOfStrategy;
-        var statergy_to_select = null;
-        if (sname != null) {
-            for (var i = 0; i < this.gameData.length; i++) {
-                if (this.gameData[i].sname == sname) statergy_to_select = this.gameData[i];
-            }
-            // no matching name found
-            if (statergy_to_select == null) statergy_to_select = this.gameData[0];
-        } else {
-            statergy_to_select = this.gameData[0];
-        }
-        //  console.log(statergy_to_select);
-        var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
-        // hold the question    
-        var q = statergy_to_select.questions[ran].q;
+        var gameData = this.gameData;
+
+       // hold the question
+        var q = gameData.questionList[this.current_qn].q[0];
         // hold the arraylist of answers
-        var a = statergy_to_select.questions[ran].a;
+        var a = gameData.questionList[this.current_qn].a;
         // arraylist of options
-        var optionsArrayList = statergy_to_select.questions[ran].o;
+        var optionsArrayList = gameData.questionList[ this.current_qn].o;
         // list of correctAnswer
         this.correctAnswerTile = [];
         // the slice function will create a copy of arraylist, so we wont destory arraylist
         //   var answersAndOptions = this.getOptions(a.slice(),optionsArrayList.slice());
         // console.log(makeOption);
-        // inserts the question at random place    
+        // inserts the question at random place
         // var tile =   this.randomlyInsertNewQuestionTile(q);
-        this.questionToDisplay.question = q;
+        this.questionToDisplay.question = q; // This will send the question to display to UI which is not part of Grid.
         // this.factContent = q + a;
         //var neighbhourCellsAvailable = this.findRelativeAvailableCells(tile);
         //this.insertTileAtAdjacentPosition(neighbhourCellsAvailable,answersAndOptions,a.length);
         this.insertTileInOrder(optionsArrayList, a);
         //    this.currentQuestionCells = tile;
-        //    this.currentAnswersCells = neighbhourCellsAvailable;  
+        //    this.currentAnswersCells = neighbhourCellsAvailable;
         // console.log(neighbhourCellsAvailable);
     };
     this.deleteCurrentBoard = function() {
@@ -338,26 +326,6 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
             tile.resetSelected();
             this.insertTile(tile);
         }
-        /*   for (var x = 0; x < avaiableNeighbhourCells.length; x++) {
-        var cell =  avaiableNeighbhourCells[x];
-        var tile; 
-        if( x < no_of_answers )
-        {
-        tile = this.newTile(cell, answerAndOptions[x],true,false);
-        }
-        else {
-        tile = this.newTile(cell, answerAndOptions[x],false,false);
-        }
-        // resetting change color
-        // reset selected color
-        tile.resetChangeColor();
-        tile.resetSelected();
-        if(tile.answer)
-        {
-            this.setAnswerTile(tile)
-        }
-        this.insertTile(tile);
-      } */
     };
     /*
      * Get all the available tiles
@@ -521,7 +489,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 }
             }
         }
-    }
+    };
     /* store answer */
     this.clone = function(obj) {
         var copy;
@@ -565,7 +533,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
             y: c_y
         });
         var index = service.storeSelectedPositions.indexOf(location);
-        // the new answer selected was not found the list of selected, so the index is -1 
+        // the new answer selected was not found the list of selected, so the index is -1
         if (index == -1) {
             if (service.linenumber == 3) return;
             tileDetail.flip();
@@ -626,7 +594,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         if (service.storeSelectedPositions.length !== 0) service.showSubmitButton.truthValue = true;
         else service.showSubmitButton.truthValue = false;
         // console.log(service.storeSelectedPositions);
-    }
+    };
     /* evaluate the selected answers */
     this.evaluateAnswer = function() {
         var isAnswerCorrect = true;
@@ -649,6 +617,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 var right_answers = this.getAnswerTile();
                 for (var j = 0; j < right_answers.length; j++) {
                     var right_answer = right_answers[j];
+                    guessed_answer.resetSelected();
                     right_answer.setChangeColor();
                     //  alert(result);
                 }
@@ -659,9 +628,10 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 guessed_answer.resetSelected();
                 guessed_answer.setChangeColor();
                 //   alert(result);
+              this.incrementQuestionCounter();
             }
         }
-        console.log(points_for_questions);
+        $log.debug(points_for_questions);
         this.factContentColorChange();
         if(isAnswerCorrect === true){
              console.log("returning score");
@@ -672,22 +642,42 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
             return 0;
         }
     };
+
+  this.incrementQuestionCounter = function()
+  {
+      $log.debug(this.gameData.questionList.length);
+
+      if(this.current_qn ===  (this.gameData.questionList.length - 1))
+      {
+        this.current_qn = 0;
+
+      }
+      else {
+        this.current_qn = this.current_qn  + 1;
+      }
+  };
+
     this.toShowSubmitButton = function(submit) {
         this.showSubmitButton = submit;
         // console.log(submit);
         // console.log("to show submit button");
-    }
+    };
     this.toShowQuestion = function(question) {
         this.questionToDisplay = question;
         //    console.log(this.questionToDisplay);
-    }
+    };
     this.toShowNextButton = function(nextButton) {
         this.showNextButton = nextButton;
         //    console.log(this.questionToDisplay);
-    }
+    };
     this.isAnswerSelected = function() {
         return this.storeSelectedPositions.length !== 0;
-    }
+    };
+
+    this.setInstantaneousFeedBack = function (value)
+    {
+    this.instantaneousFeedBack = value;
+    };
     /*
      * Check to see there are still cells available
      */

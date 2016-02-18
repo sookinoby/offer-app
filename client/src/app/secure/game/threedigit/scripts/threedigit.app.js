@@ -75,7 +75,7 @@
 
     this.countDown = function() {
          var self = this;
-      $scope.$on('timer-stopped', function (event, args){
+         $scope.$on('timer-stopped', function (event, args){
 
            $scope.$apply(function () {
              self.game.resetTimer();
@@ -100,8 +100,6 @@
 
   this.initialiseCallBack = function() {
     var self = this;
-
-
       threeDigitKeyboardService.on(function(key) {
       self.game.move(key).then(function() {
 
@@ -109,9 +107,6 @@
     });
   };
     this.initialiseCallBack();
-  //  this.countDownTimerStart();
-
- //   this.startTimer("gameCountDown");
 
     this.loadGameData();
     this.countDown();

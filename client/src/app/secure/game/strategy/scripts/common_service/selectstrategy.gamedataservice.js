@@ -1,12 +1,12 @@
 (function() {
   'use strict';
-  var gameDataService = function ($http,$q) {
+  var gameDataService = function ($http,$q,$log) {
 
       this.getGameData = function(gameDataFile)
       {
+          $log.debug("Executing the get data service" + gameDataFile);
            var deferred = $q.defer();
-           gameDataFile = "gamedata" +gameDataFile + ".json";
-            $http.get('app/secure/game/strategy/scripts/common_service/' + gameDataFile).then(function (data)
+           $http.get('app/secure/game/strategy/scripts/game_data/' + gameDataFile).then(function (data)
             {
               //game/game3/scripts/game3/
                 deferred.resolve(data);

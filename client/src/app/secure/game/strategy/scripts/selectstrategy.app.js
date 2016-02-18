@@ -7,81 +7,77 @@ angular
   this.gameType = 3;
 //  console.log("The type is" + this.gameType);
   this.game = SelectStratergyGameManager;
-  this.gameData = null;
+  this.levelData = null;
   this.timerToggleButton = false;
   KeyboardService.destroy();
   KeyboardService.init();
-
+  $scope.ddSelectOptions = [];
   // the new Game
   this.newGame = function() {
-  this.game.newGame(this.gameData,$scope.ddSelectSelected.value);
- //   console.log("new");
+  this.game.initialiseGame($scope.ddSelectSelected.value);
     this.timedGame = this.timerToggleButton;
     this.game.gameOver=false;
     $scope.$broadcast('timer-reset');
-    $scope.$broadcast('timer-reset-new',"gameCountDown",5);
+    $scope.$broadcast('timer-reset-new',"gameCountDown",1);
     this.titleOfStrategy =  $scope.ddSelectSelected.text;
 
   };
+    $scope.ddSelectSelected = {
+      'text' : "Add Merge Bucket A0C1",
+      'value' : "a0c1"
+    };
 
 
-  this.loadGameData = function() {
+
+   this.loadGameData = function() {
    var self = this;
    var scope = $scope;
-   var promise= gameDataService.getGameData(this.gameType);
+   var promise= gameDataService.getGameData("level.json");
    promise.then(function (data)
     {
    //  console.log("test" + data.data.GameData);
-     self.gameData  = data.data.GameData;
+     self.levelData  = data.data.LevelData;
 
-     for(var i=0;i < self.gameData.length; i++)
+     for(var i=0;i < self.levelData.length; i++)
      {
          var single_data = {
-         'text' : self.gameData[i].sname,
-         'value' : self.gameData[i].sname
-         }
+         'text' : self.levelData[i].name,
+         'value' : self.levelData[i].sname
+         };
 
 
          scope.ddSelectOptions.push(single_data);
      }
      self.newGame();
     });
-  }
+  };
 
 
-  $scope.ddSelectOptions = [];
-   $scope.ddSelectSelected = {
-         'text' : "Add Merge Bucket A0C1",
-         'value' : "A0C1"
-   };
+
 
    this.timedGame = false;
    $scope.timerRunning = false;
 
    this.startTimer = function (name){
-  console.log("what the heck " + name);
    $scope.$broadcast('timer-start',name);
    $scope.timerRunning = true;
    };
 
-    $scope.stopTimer = function (){
-
+   $scope.stopTimer = function (){
     $scope.$broadcast('timer-stop');
     $scope.timerRunning = false;
-    };
+   };
 
 
 
     this.countDown = function() {
-         var self = this;
+      var self = this;
       $scope.$on('timer-stopped', function (event, args){
-
-           $scope.$apply(function () {
+      $scope.$apply(function () {
              self.game.resetTimer();
              if(args.name == "gameCountDown")
              {
                  self.startTimer("gameTimer");
-                   //   console.log('Game Count Down ', args);
              }
             else if(args.name == "gameTimer")
              {
@@ -89,27 +85,20 @@ angular
                   {
                       self.game.gameOver=true;
                   }
-             //     console.log('Game Timer', args);
+
              }
-          //   console.log('Time stopped ', args);
-            //  console.log('Game Timer Has stopped ', args);
-
-
-
            });
        });
      };
 
-  this.initialiseCallBack = function() {
-    var self = this;
+    this.initialiseCallBack = function() {
+     var self = this;
+      KeyboardService.on(function(key) {
+        self.game.move(key).then(function() {
 
-
-    KeyboardService.on(function(key) {
-      self.game.move(key).then(function() {
-
+        });
       });
-    });
-  };
+    };
     this.initialiseCallBack();
   //  this.countDownTimerStart();
 
@@ -119,8 +108,8 @@ angular
     this.countDown();
 
         var self = this;
- $scope.$watch('ddSelectSelected.text', function(newVal, oldVal){
-    if(self.gameData != null)
+ $scope.$watch('ddSelectSelected.text', function(){
+    if(self.levelData != null)
     self.newGame();
   });
 });
