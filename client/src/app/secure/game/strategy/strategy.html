@@ -12,8 +12,8 @@
 
                         <button type="button" class="btn btn-info" ng-click='strCtrl.newGame()'>New Game</button>
 
-                        <button type="button" class="btn btn-info" ng-click='strCtrl.game.changeStats()' ng-show="strCtrl.game.stats">Score Off</button>
-                        <button type="button" class="btn btn-info" ng-click='strCtrl.game.changeStats()' ng-show="!strCtrl.game.stats">Score On</button>
+                        <button type="button" class="btn btn-info" ng-click='strCtrl.game.changeStats()' ng-show="strCtrl.game.scoreButton && strCtrl.game.stats">Score Off</button>
+                        <button type="button" class="btn btn-info" ng-click='strCtrl.game.changeStats()' ng-show="strCtrl.game.scoreButton &&!strCtrl.game.stats">Score On</button>
 
                         <button type="button" class="btn btn-info small-button"  ng-disabled='!strCtrl.game.showSubmitButton.truthValue;' ng-show="!strCtrl.game.showNextButton.truthValue;" ng-click="strCtrl.game.evaluateAnswer();" >Submit</button>
 
@@ -60,12 +60,12 @@
                             <span class="spacer" ng-show="strCtrl.game.stats">
                             </span>
 
-                            <span>
+                            <span ng-if="strCtrl.game.instantaneousFeedBack">
                             <span ng-if="strCtrl.game.rightAnswer && !strCtrl.game.netural" ><img  src="app/secure/game/strategy/images/happy.png" style="margin-top:1px;" /> </span>
                              <span ng-if="!strCtrl.game.rightAnswer && !strCtrl.game.netural" ><img  src="app/secure/game/strategy/images/sad.png" style="margin-top:1px;" /></span>
                              </span>
                             <span class="spacer"></span>
-                            <span class="build-facts" >
+                            <span class="build-facts" ng-show="strCtrl.game.watchList" >
                                     Code <br />
                              <span>
                               <span  ng-repeat="factdisp in strCtrl.game.factContent" ng-class="{'background-color-white':!factdisp.select && !factdisp.right && !factdisp.wrong ,  'background-color-green':factdisp.right, 'background-color-red':factdisp.wrong, 'background-color-blue':factdisp.select }">{{factdisp.fact}}
