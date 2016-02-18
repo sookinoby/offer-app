@@ -10,7 +10,7 @@
   var vm = this;
   if(authService.authentication.isAuth == true)
   {
-      if(authService.authentication.roleName == 'Mentor')
+      if(authService.authentication.roleName === 'Mentor')
       {
         $state.go('home.dashboard');
       }

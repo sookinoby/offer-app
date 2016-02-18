@@ -32,7 +32,7 @@
         show: true,
         aninmation:'am-fade-and-slide-top',
         duration:5};
-      var myAlert = $alert(jsonDataToshow);
+        $alert(jsonDataToshow);
 
     }
 
@@ -41,7 +41,7 @@
       vm.refreshing = true;
       currentMentor.getList('students').then(function (resourceList) {
         var responseList = resourceList.plain();
-        console.log(responseList);
+        $log.debug(responseList);
         vm.listOfStudents = [];
         var index = 1;
         responseList.forEach(function (entry) {
@@ -132,7 +132,7 @@
             show: true,
             aninmation:'am-fade-and-slide-top',
             duration:5};
-          var myAlert = $alert(jsonDataToshow);
+          $alert(jsonDataToshow);
           $log.debug(response.data);
         });
     };

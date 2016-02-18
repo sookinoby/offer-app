@@ -1,7 +1,7 @@
 (function() {
     'use strict';
     angular.module('arrowGame', ['arrowGameLogic', 'ngAnimate', 'ngCookies', 'timer', 'ngDropdowns', 'arrowGameCommonService', 'arrowKeyboard']).controller('arrowGameController', function(arrowGameManager, ArrowGameKeyboardService, $scope, arrowGameDataService, $stateParams,$log) {
-            $log.debug("the state param" + $stateParams);
+            $log.debug("the state param " + $stateParams);
       $log.debug($stateParams);
         if ($stateParams.type === "2") {
             this.gameType = 2;

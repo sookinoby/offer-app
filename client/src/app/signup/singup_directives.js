@@ -1,3 +1,5 @@
+(function() {
+  'use strict';
 angular.module('client')
   .directive('repeatPassword', function() {
     return {
@@ -36,6 +38,7 @@ angular.module('client')
     }
   }
 });
+})();
 
 
 

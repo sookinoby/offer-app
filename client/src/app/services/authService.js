@@ -1,9 +1,9 @@
 (function() {
 
 'use strict';
-  angular.module('client').factory('authService', authService )
+  angular.module('client').factory('authService', authService );
 
- function authService($http, $q, localStorageService,jwtHelper,$state,CONSTANT_DATA) {
+ function authService($http, $q, localStorageService,jwtHelper,$state,$log,CONSTANT_DATA) {
  // var serviceBase = 'http://localhost:65159/api/';
 
    var serviceBase = CONSTANT_DATA.oauth_url;
@@ -41,9 +41,9 @@
     var deferred = $q.defer();
 
     $http.post(serviceBase + 'oauth/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
-      console.log(response);
+      $log.debug(response);
       var tokenPayload = jwtHelper.decodeToken(response.access_token);
-      console.log(tokenPayload);
+      $log.debug(tokenPayload);
       localStorageService.set('authorizationData', { token: response.access_token, userName: tokenPayload.unique_name,roleName : tokenPayload.role, mentoruid :tokenPayload.nameid, fullName : tokenPayload.fullName});
 
       _authentication.isAuth = true;
@@ -101,7 +101,7 @@
       _authentication.fullName = authData.fullName;
     }
 
-  }
+  };
 
   authServiceFactory.saveRegistration = _saveRegistration;
   authServiceFactory.login = _login;

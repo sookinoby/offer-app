@@ -6,7 +6,7 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController($window, $rootScope, authService,$state,$alert,exceptionHandler,$log) {
+  function LoginController( $rootScope, authService,$state,$alert,exceptionHandler,$log) {
      var vm = this;
   }
 })();
