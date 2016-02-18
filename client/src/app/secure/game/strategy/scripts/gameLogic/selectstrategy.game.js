@@ -83,9 +83,7 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
       {
         this.rightAnswer = true;
         this.netural  = false;
-//     SelectStrategyGridService.deleteCurrentBoard();
-  //   SelectStrategyGridService.buildStartingPosition();
-     this.updateScore(score);
+        this.updateScore(score);
       }
       else
       {   this.netural  = false;
