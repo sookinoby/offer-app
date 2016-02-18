@@ -12,7 +12,7 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
   this.tiles = SelectStrategyGridService.tiles;
 
   this.storeAnswer = SelectStrategyGridService.storeAnswer;
-  //this.winningValue = 2048;
+
   this.stats = true;
 
   // show / hide UI options
@@ -215,16 +215,16 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
            */
 
       if(self.win) { return false; }
-      if(key == "enter")
+      if(key === "enter")
       {
         self.enterCount++;
-        if(SelectStrategyGridService.isAnswerSelected() == true)
+        if(SelectStrategyGridService.isAnswerSelected() === true)
         {
-              if(self.enterCount == 1)
+              if(self.enterCount === 1)
               {
              self.evaluateAnswer();
               }
-             if(self.enterCount == 2)
+             if(self.enterCount === 2)
              {
            // console.log("counter");
              self.showNextQuestions();

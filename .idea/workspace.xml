@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3496533d-bed1-43e7-97d0-117aba8f717e" name="Default" comment="Changed to .net backend">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/arrow.app.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/arrow.app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/focusme.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/focusme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="offer-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,10 +29,10 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="threedigit.app.js" pinned="false" current-in-tab="true">
+            <file leaf-file-name="threedigit.app.js" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/threedigit.app.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="0.8489388">
+                  <state vertical-scroll-proportion="0.0">
                     <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
                     <folding />
                   </state>
@@ -45,10 +49,10 @@
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="threedigit.game.js" pinned="false" current-in-tab="false">
+            <file leaf-file-name="threedigit.game.js" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/gameLogic/threedigit.game.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="-3.586207">
+                  <state vertical-scroll-proportion="0.13471502">
                     <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
                     <folding />
                   </state>
@@ -58,8 +62,8 @@
             <file leaf-file-name="threedigit.grid.js" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.grid.js">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state vertical-scroll-proportion="-8.862069">
-                    <caret line="372" column="37" selection-start-line="372" selection-start-column="25" selection-end-line="372" selection-end-column="37" />
+                  <state vertical-scroll-proportion="-10.620689">
+                    <caret line="235" column="38" selection-start-line="235" selection-start-column="38" selection-end-line="235" selection-end-column="38" />
                     <folding />
                   </state>
                 </provider>
@@ -86,11 +90,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="selectstrategy.grid.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="selectstrategy.grid.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="14.655172">
-              <caret line="598" column="38" selection-start-line="598" selection-start-column="38" selection-end-line="598" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.6141215">
+              <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -101,6 +105,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="focusme.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/focusme.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -128,11 +142,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="arrow.app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="arrow.app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/arrow.app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44126984">
-              <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+            <state vertical-scroll-proportion="-11.724138">
+              <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="arrowgamedataservice.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -158,31 +182,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="challenge.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/game_data/challenge.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.230769">
-              <caret line="8" column="38" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="arrow.grid.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.5675673">
-              <caret line="618" column="24" selection-start-line="618" selection-start-column="24" selection-end-line="618" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="selectstrategy.game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5862069">
-              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
+            <state vertical-scroll-proportion="-11.344828">
+              <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -209,7 +213,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.grid_directive.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.tile_directive.js" />
         <option value="$PROJECT_DIR$/client/src/app/index.config.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/styles/game_layout.scss" />
@@ -238,7 +241,6 @@
         <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/threedigit.html" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/common_service/arrowgame1format.json" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/game_data/level.json" />
-        <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/threedigit.app.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.grid.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/gameLogic/arrow.game.js" />
@@ -253,13 +255,15 @@
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/level.json" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/game_data/c2.json" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/game_data/challenge.json" />
-        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.tile.html" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json" />
-        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/selectstrategy.app.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/arrow.app.js" />
+        <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js" />
+        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js" />
+        <option value="$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/focusme.js" />
+        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" />
       </list>
     </option>
   </component>
@@ -1212,18 +1216,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23761855" sideWeight="0.17473118" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23761855" sideWeight="0.8252688" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23761855" sideWeight="0.3483871" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23709168" sideWeight="0.6516129" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.49789253" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.59783787" sideWeight="0.51738673" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31135136" sideWeight="0.5216017" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.49583334" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.49789253" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.59783787" sideWeight="0.48261327" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31135136" sideWeight="0.47839832" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.49789253" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.4915701" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1257,14 +1261,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/src/app/index.run.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.tile_directive.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1395,14 +1391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="73" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="73" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/keyboard/arrow.keyboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1499,14 +1487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/gameLogic/threedigit.game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.586207">
-          <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid_directive.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1595,22 +1575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="14.655172">
-          <caret line="598" column="38" selection-start-line="598" selection-start-column="38" selection-end-line="598" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.tile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.65384614">
@@ -1629,30 +1593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.grid.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.862069">
-          <caret line="372" column="37" selection-start-line="372" selection-start-column="25" selection-end-line="372" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5862069">
-          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/threedigit.app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8489388">
-          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/selectstrategy.app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1663,8 +1603,72 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/arrow.app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44126984">
-          <caret line="65" column="18" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
+        <state vertical-scroll-proportion="-11.724138">
+          <caret line="56" column="53" selection-start-line="56" selection-start-column="53" selection-end-line="56" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/threedigit.app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/threedigit.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.620689">
+          <caret line="235" column="38" selection-start-line="235" selection-start-column="38" selection-end-line="235" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.344828">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/gameLogic/threedigit.game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13471502">
+          <caret line="134" column="49" selection-start-line="134" selection-start-column="49" selection-end-line="134" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/scripts/grid/focusme.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="50" selection-start-line="13" selection-start-column="50" selection-end-line="13" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6141215">
+          <caret line="67" column="20" selection-start-line="67" selection-start-column="20" selection-end-line="67" selection-end-column="20" />
           <folding />
         </state>
       </provider>

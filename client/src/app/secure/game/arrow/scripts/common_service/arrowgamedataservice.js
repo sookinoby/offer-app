@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  var arrowGameDataService = function ($http,$q,$log) {
+  var  arrowGameDataService = function ($http,$q,$log) {
 
       this.getGameData = function(gameDataFile)
       {
@@ -12,7 +12,7 @@
                 deferred.resolve(data);
             });
           return deferred.promise;
-      }
+      };
   };
 angular.module('arrowGameCommonService',[]).service('arrowGameDataService',arrowGameDataService);
 

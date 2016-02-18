@@ -11,7 +11,7 @@
                     if (value === true) {
                         $timeout(function () {
                             element[0].focus();
-                          //  console.log("testing")
+                          //  console.log("testin g")
                         });
                     }
                 });

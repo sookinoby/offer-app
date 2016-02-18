@@ -5,7 +5,6 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         this.x = pos.x;
         this.y = pos.y;
         this.value = val || 2;
-       // this.id = GenerateUniqueId.next();
         this.merged = null;
         this.selected = false;
         this.answer = answer;
@@ -57,10 +56,8 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     };
     return Tile;
 }).service('SelectStrategyGridService', function(TileModel,$log) {
-
-
     this.linenumber = 0;
-    this.factContent;
+    this.factContent = null;
 
     this.instantaneousFeedBack = true;
     var service = this;
@@ -144,13 +141,13 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     }; */
     this.setAnswerTile = function(tile) {
         this.correctAnswerTile.push(tile);
-    }
+    };
     this.getAnswerTile = function() {
         return this.correctAnswerTile;
-    }
-    this.resetAnswerTile = function(tile) {
+    };
+    this.resetAnswerTile = function() {
         this.correctAnswerTile = [];
-    }
+    };
     /*
      * Due to the fact we calculate the next positions
      * in order, we need to specify the order in which
@@ -207,23 +204,24 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
 
      */
     this.indexOf = function(needle) {
-        if (typeof Array.prototype.indexOf === 'function') {
-            indexOf = Array.prototype.indexOf;
-        } else {
-            indexOf = function(needle) {
-                var i = -1,
-                    index = -1;
-                for (i = 0; i < this.length; i++) {
-                    if (this[i] === needle) {
-                        index = i;
-                        break;
-                    }
-                }
-                return index;
-            };
+    var indexOf;
+    if (typeof Array.prototype.indexOf === 'function') {
+      indexOf = Array.prototype.indexOf;
+    } else {
+      indexOf = function(needle) {
+        var i = -1,
+          index = -1;
+        for (i = 0; i < this.length; i++) {
+          if (this[i] === needle) {
+            index = i;
+            break;
+          }
         }
-        return indexOf.call(this, needle);
-    };
+        return index;
+      };
+    }
+    return indexOf.call(this, needle);
+  };
     this.withinGrid = function(cell) {
         return cell.x >= 0 && cell.x < this.column && cell.y >= 0 && cell.y < this.row;
     };
@@ -258,7 +256,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
      */
     this.buildStartingPosition = function() {
         var gameData = this.gameData;
-
+        // game data
        // hold the question
         var q = gameData.questionList[this.current_qn].q[0];
         // hold the arraylist of answers
@@ -481,8 +479,8 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     /* color change */
     this.factContentColorChange = function() {
         for (var i = 0; i < this.factContent.length; i++) {
-            if (this.factContent[i].select == true) {
-                if (this.factContent[i].isAnswer == true) {
+            if (this.factContent[i].select === true) {
+                if (this.factContent[i].isAnswer === true) {
                     this.factContent[i].right = true;
                 } else {
                     this.factContent[i].wrong = true;
@@ -494,7 +492,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     this.clone = function(obj) {
         var copy;
         // Handle the 3 simple types, and null or undefined
-        if (null == obj || "object" != typeof obj) return obj;
+        if (null === obj || "object" !== typeof obj) { return obj;}
         // Handle Date
         if (obj instanceof Date) {
             copy = new Date();
@@ -513,7 +511,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         if (obj instanceof Object) {
             copy = {};
             for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) copy[attr] = this.clone(obj[attr]);
+                if (obj.hasOwnProperty(attr)) { copy[attr] = this.clone(obj[attr]);}
             }
             return copy;
         }
@@ -522,7 +520,6 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     this.storeAnswer = function(tileDetail) {
         // the submit button was already pressed
         if (service.showNextButton.truthValue) {
-            //  console.log(service.showNextButton.truthValue);
             return;
         }
         var c_x, c_y;
@@ -534,17 +531,18 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         });
         var index = service.storeSelectedPositions.indexOf(location);
         // the new answer selected was not found the list of selected, so the index is -1
-        if (index == -1) {
-            if (service.linenumber == 3) return;
+         var tile;
+          if (index === -1) {
+            if (service.linenumber === 3) {return;}
             tileDetail.flip();
             service.storeSelectedPositions.push(service._coordinatesToPosition({
                 x: c_x,
                 y: c_y
             }));
-            var tile = service.getCellAt({
+            tile = service.getCellAt({
                 x: c_x,
                 y: c_y
-            })
+            });
             service.factContent[service.linenumber].fact = tile.value;
             service.factContent[service.linenumber].select = true;
             service.factContent[service.linenumber].isAnswer = tile.answer;
@@ -554,12 +552,13 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         } else {
             service.storeSelectedPositions.splice(index, 1);
             tileDetail.flip();
-            var tile = service.getCellAt({
+            tile = service.getCellAt({
                 x: c_x,
                 y: c_y
-            })
-            for (var i = 0; i < service.factContent.length; i++) {
-                if (service.factContent[i].fact == tile.value) {
+            });
+            var i;
+            for ( i = 0; i < service.factContent.length; i++) {
+                if (service.factContent[i].fact === tile.value) {
                     service.factContent[i].fact = "-";
                     service.factContent[i].select = false;
                     service.factContent[i].isAnswer = false;
@@ -569,17 +568,17 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
             var temp_factContent = service.clone(service.factContent);
             var k = 0;
             var length = service.factContent.length;
-            for (var i = 0; i < service.factContent.length; i++) {
+            for (i = 0; i < service.factContent.length; i++) {
                 //  console.log(service.factContent[i].fact)
-                if (service.factContent[i].fact != "-") {
+                if (service.factContent[i].fact !== "-") {
                     temp_factContent[k].fact = service.factContent[i].fact;
                     temp_factContent[k].select = service.factContent[i].select;
-                    console.log(temp_factContent[k].fact)
-                    console.log(temp_factContent[k].select)
+              //      $log.debug(temp_factContent[k].fact);
+               //     $log.debug(temp_factContent[k].select);
                     k++;
                 }
             }
-            for (var i = 0; i < k; i++) {
+            for (i = 0; i < k; i++) {
                 service.factContent[i].fact = temp_factContent[i].fact;
                 service.factContent[i].select = temp_factContent[i].select;
             }
@@ -588,16 +587,15 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 service.factContent[j].select = false;
                 service.factContent[j].isAnswer = false;
             }
-            //      console.log(service.factContent);
-            //    console.log(temp_factContent);
         }
-        if (service.storeSelectedPositions.length !== 0) service.showSubmitButton.truthValue = true;
-        else service.showSubmitButton.truthValue = false;
+        if (service.storeSelectedPositions.length !== 0) {service.showSubmitButton.truthValue = true;}
+        else {service.showSubmitButton.truthValue = false;}
         // console.log(service.storeSelectedPositions);
     };
     /* evaluate the selected answers */
     this.evaluateAnswer = function() {
         var isAnswerCorrect = true;
+        var points_for_questions = 0;
         for (var i = 0; i < this.storeSelectedPositions.length; i++) {
             // console.log(this.storeSelectedPositions);
             var vector = this._positionToCoordinates(this.storeSelectedPositions[i]);
@@ -605,21 +603,19 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 x: vector.x,
                 y: vector.y
             });
-            var points_for_questions = 0;
-            //  console.log(guessed_answer)
-            if (guessed_answer == null) {
+
+            if (guessed_answer === null) {
                 continue;
             }
             var result = guessed_answer.answer;
-            //  console.log(guessed_answer);
-            if (result == false) {
+
+            if (result === false) {
                 guessed_answer.setChangeColor();
                 var right_answers = this.getAnswerTile();
                 for (var j = 0; j < right_answers.length; j++) {
                     var right_answer = right_answers[j];
                     guessed_answer.resetSelected();
                     right_answer.setChangeColor();
-                    //  alert(result);
                 }
                 isAnswerCorrect = false;
             } else if (result) {
@@ -627,18 +623,16 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 // console.log("correct answer");
                 guessed_answer.resetSelected();
                 guessed_answer.setChangeColor();
-                //   alert(result);
-              this.incrementQuestionCounter();
+                this.incrementQuestionCounter();
             }
         }
         $log.debug(points_for_questions);
         this.factContentColorChange();
         if(isAnswerCorrect === true){
-             console.log("returning score");
-            return points_for_questions;
+                return points_for_questions;
         }
         else {
-            console.log("returning zero");
+            $log.debug("returning zero");
             return 0;
         }
     };
@@ -659,16 +653,12 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
 
     this.toShowSubmitButton = function(submit) {
         this.showSubmitButton = submit;
-        // console.log(submit);
-        // console.log("to show submit button");
     };
     this.toShowQuestion = function(question) {
         this.questionToDisplay = question;
-        //    console.log(this.questionToDisplay);
     };
     this.toShowNextButton = function(nextButton) {
         this.showNextButton = nextButton;
-        //    console.log(this.questionToDisplay);
     };
     this.isAnswerSelected = function() {
         return this.storeSelectedPositions.length !== 0;
