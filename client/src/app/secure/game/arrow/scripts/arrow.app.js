@@ -107,9 +107,8 @@
         var self = this;
         $scope.$watch('ddSelectSelected.text', function(newVal) {
 
-          if(newVal != undefined)
+          if(newVal !== undefined)
           {
-            console.log("fired the $watch " + newVal + " ");
             if (self.levelData !== null)  {
               self.newGame();
             }
