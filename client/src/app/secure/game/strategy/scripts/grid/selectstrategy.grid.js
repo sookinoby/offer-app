@@ -307,17 +307,17 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         }
         var x = 0;
         var possibleOptions = [];
-        for (var x = 0; x < a.length; x++) {
+        for (x = 0; x < a.length; x++) {
           possibleOptions.push( {value:a[x], isAnswer:true});
         }
-        for (var x = 0; x < optionsArrayList.length; x++) {
+        for (x = 0; x < optionsArrayList.length; x++) {
           possibleOptions.push( {value:optionsArrayList[x], isAnswer:false});
         }
         possibleOptions = this.shuffle(possibleOptions);
 
         // console.log(optionsArrayList);
         //console.log(a);
-      for (var x = 0; x < possibleOptions.length; x++) {
+      for (x = 0; x < possibleOptions.length; x++) {
             var cell = avaiableNeighbhourCells[x];
             var tile;
             if (possibleOptions[x].isAnswer === false) {

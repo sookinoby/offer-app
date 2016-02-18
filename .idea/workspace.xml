@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3496533d-bed1-43e7-97d0-117aba8f717e" name="Default" comment="Changed to .net backend">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1.json" afterPath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/gameLogic/arrow.game.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/gameLogic/arrow.game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json" afterPath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" afterPath="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentlist.controller.js" afterPath="$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentlist.controller.js" />
     </list>
     <ignored path="offer-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,16 +87,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="studentlist.controller.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentlist.controller.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="69" column="58" selection-start-line="69" selection-start-column="58" selection-end-line="69" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="arrow.grid.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -150,21 +137,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="a0c1.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="a0c1.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23447205">
-              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+            <state vertical-scroll-proportion="-21.5">
+              <caret line="53" column="100" selection-start-line="15" selection-start-column="4" selection-end-line="53" selection-end-column="100" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selectstrategy.grid.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="a0c1c2.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.807692">
+              <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selectstrategy.grid.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="27.827587">
-              <caret line="261" column="40" selection-start-line="261" selection-start-column="40" selection-end-line="261" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.47368422">
+              <caret line="309" column="13" selection-start-line="309" selection-start-column="13" selection-end-line="309" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -243,7 +240,6 @@
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/game_data/c2.json" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/game_data/challenge.json" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.tile.html" />
-        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/selectstrategy.app.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/arrowgamedataservice.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/gameLogic/selectstrategy.game.js" />
@@ -260,8 +256,9 @@
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/gameLogic/arrow.game.js" />
         <option value="$PROJECT_DIR$/client/src/app/login/studentlogin/studentlist/studentlist.controller.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid.js" />
-        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" />
         <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1.json" />
+        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json" />
+        <option value="$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js" />
       </list>
     </option>
   </component>
@@ -1177,11 +1174,11 @@
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23761855" sideWeight="0.3483871" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25763962" sideWeight="0.6516129" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.49789253" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2454054" sideWeight="0.5216017" order="11" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.56864864" sideWeight="0.5216017" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.49583334" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.49789253" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2454054" sideWeight="0.47839832" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.56864864" sideWeight="0.47839832" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.4915701" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1395,14 +1392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65384614">
-          <caret line="1" column="33" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/selectstrategy.app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1611,18 +1600,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js">
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="27.827587">
-          <caret line="261" column="40" selection-start-line="261" selection-start-column="40" selection-end-line="261" selection-end-column="40" />
+        <state vertical-scroll-proportion="-21.5">
+          <caret line="53" column="100" selection-start-line="15" selection-start-column="4" selection-end-line="53" selection-end-column="100" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1.json">
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/game_data/a0c1c2.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23447205">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+        <state vertical-scroll-proportion="-22.807692">
+          <caret line="70" column="55" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/grid/selectstrategy.grid.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47368422">
+          <caret line="309" column="13" selection-start-line="309" selection-start-column="13" selection-end-line="309" selection-end-column="13" />
           <folding />
         </state>
       </provider>
