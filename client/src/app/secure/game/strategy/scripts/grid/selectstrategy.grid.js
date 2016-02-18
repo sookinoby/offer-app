@@ -305,18 +305,28 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 });
             }
         }
+        var x = 0;
+        var possibleOptions = [];
+        for (var x = 0; x < a.length; x++) {
+          possibleOptions.push( {value:a[x], isAnswer:true});
+        }
+        for (var x = 0; x < optionsArrayList.length; x++) {
+          possibleOptions.push( {value:optionsArrayList[x], isAnswer:false});
+        }
+        possibleOptions = this.shuffle(possibleOptions);
+
         // console.log(optionsArrayList);
         //console.log(a);
-        for (var x = 0; x < optionsArrayList.length; x++) {
+      for (var x = 0; x < possibleOptions.length; x++) {
             var cell = avaiableNeighbhourCells[x];
             var tile;
-            if (a.indexOf(optionsArrayList[x]) === -1) {
+            if (possibleOptions[x].isAnswer === false) {
                 // the last parameter is no used
-                tile = this.newTile(cell, optionsArrayList[x], false, false);
+                tile = this.newTile(cell, possibleOptions[x].value, false, false);
                 // console.log("wrong" + optionsArrayList[x] );
             } else {
                 // the last parameter is not used.
-                tile = this.newTile(cell, optionsArrayList[x], true, false);
+                tile = this.newTile(cell, possibleOptions[x].value, true, false);
                 this.setAnswerTile(tile);
                 //  console.log("right" + optionsArrayList[x] );
             }
@@ -345,6 +355,13 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         });
         return cells;
     };
+    /*
+    Shuffle
+     */
+    this.shuffle = function(o) { //v1.0
+    for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x){}
+    return o;
+  };
     /*
      * Check to see if there are any matches available
      */

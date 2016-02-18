@@ -9,7 +9,7 @@
         this.gameData = null;
         this.gameOver = false;
         this.showNextButton = {};
-        this.showSubmitButton = {}
+        this.showSubmitButton = {};
       // show/hide UI options
         this.scoreButton = false;
         this.watchList = true;
@@ -98,7 +98,7 @@
             arrowGameService.buildEmptyGameBoard();
             self.delayedTriggerHolder = $timeout(function toBuildStartinPosition() {
                 self.positionToInsert = arrowGameService.buildStartingPosition();
-                $log.debug('update with timeout fired');
+                $log.debug('update with timeout fired ');
             }, self.delay);
 
             this.netural = true;
@@ -121,7 +121,7 @@
 
         this.evaluateAnswer = function() {
             var points_for_questions = arrowGameService.evaluateAnswer();
-            if (points_for_questions != null && points_for_questions > 0) {
+            if (points_for_questions !== null && points_for_questions > 0) {
                 this.updateScore(this.currentScore + points_for_questions);
                 this.factContent = arrowGameService.getFactContent();
                 this.rightAnswer = true;
@@ -178,25 +178,25 @@
             var self = this;
             //  console.log(key);
             var f = function() {
-                if (!self.countdownfinished) return;
-                if (self.gameOver) return true;
+                if (!self.countdownfinished) { return;}
+                if (self.gameOver) { return true;}
                 if (self.win) {
                     return false;
                 }
-                if (key == "enter") {
-                    if (arrowGameService.getLineNumber() == 0)
+                if (key === "enter") {
+                    if (arrowGameService.getLineNumber() === 0)
                     {
                       self.enterKeyCount = 0;
                       return;
                     }
                     self.enterKeyCount++;
-                    if (self.enterKeyCount == 1) {
+                    if (self.enterKeyCount === 1) {
                         self.evaluateAnswer();
-                    } else if (self.enterKeyCount == 2) {
+                    } else if (self.enterKeyCount === 2) {
                         self.showNextQuestions();
                     }
                 } else {
-                    if (self.enterKeyCount == 0) {
+                    if (self.enterKeyCount === 0) {
 
                         if (arrowGameService.checkIfKeyPressAllowed(key)) {
                             //   self.showSubmitButton.truthValue = true;

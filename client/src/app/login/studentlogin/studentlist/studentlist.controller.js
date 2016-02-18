@@ -8,11 +8,11 @@
   /** @ngInject */
   function StudentListController($window, $rootScope, authService,$state,$alert,exceptionHandler,$log,$stateParams) {
      var vm = this;
-     vm.n = "hello"
+     vm.n = "hello";
      this.titleCase = function(str)
      {
         return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-     }
+     };
      vm.studentList = $stateParams.studentList;
     if(vm.studentList == null)
     {
@@ -20,12 +20,12 @@
       var student = {
         fullName : "Sooki Booki",
         Age : "24"
-      }
+      };
 
       var student1 = {
         fullName : "Sooki Booki 2",
         Age : "25"
-      }
+      };
 
       vm.studentList.push(student);
       vm.studentList.push(student1);
@@ -40,7 +40,7 @@
     vm.setUserName = function(username) {
       vm.username = username;
       $log.debug(username);
-    }
+    };
 
 
      vm.studentLogin = function() {
@@ -55,7 +55,7 @@
           vm.loggining = false;
           vm.button_message = "Next";
           $log.debug(response);
-          if(authService.authentication.roleName == "Student") {
+          if(authService.authentication.roleName === "Student") {
             $state.go('home.arrowgame');
           }
        })
@@ -63,7 +63,7 @@
           vm.loggining = false;
           vm.button_message = "Next";
           var error_description = "Something went wrong, Please Try again later";
-          if(response !=null )
+          if(response !== null )
           {
             error_description = response.error_description;
           }
@@ -72,7 +72,7 @@
             show: true,
             aninmation:'am-fade-and-slide-top',
             duration:5};
-            var myAlert = $alert(jsonDataToshow);
+            $alert(jsonDataToshow);
             $state.go('login.list');
           $log.debug(response);
         });

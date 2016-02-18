@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('arrowGameGrid', []).factory('ArrowTileModel', function($log) {
+  angular.module('arrowGameGrid', []).factory('ArrowTileModel', function() {
     var Tile = function Tile(pos, val, answer, question) {
       this.x = pos.x;
       this.y = pos.y;
@@ -66,12 +66,12 @@
   }).service('arrowGameService', function(ArrowTileModel,$log) {
     this.size = 4; // Default size
     //  this.startingTiles = 1; // default starting tiles
-    this.currentQuestionCells;
+    this.currentQuestionCells = null;
     this.selectedAnswer = [];
     this.showSubmitButton = null;
     this.showNextButton = null;
     this.linenumber = 0;
-    this.factContent;
+    this.factContent = null;
     // time measurement
     this.startTime = null;
     this.endTime = null;
@@ -111,7 +111,7 @@
     this.clone = function(obj) {
       var copy;
       // Handle the 3 simple types, and null or undefined
-      if (null == obj || "object" != typeof obj) return obj;
+      if (null === obj || "object" !== typeof obj) {return obj;}
       // Handle Date
       if (obj instanceof Date) {
         copy = new Date();
@@ -130,28 +130,31 @@
       if (obj instanceof Object) {
         copy = {};
         for (var attr in obj) {
-          if (obj.hasOwnProperty(attr)) copy[attr] = this.clone(obj[attr]);
+          if (obj.hasOwnProperty(attr)) {copy[attr] = this.clone(obj[attr]);}
         }
         return copy;
       }
       throw new Error("Unable to copy obj! Its type isn't supported.");
     };
     this.indexOf = function(needle) {
-      if (typeof Array.prototype.indexOf === 'function') {
+      var indexOf;
+      if(typeof Array.prototype.indexOf === 'function') {
         indexOf = Array.prototype.indexOf;
       } else {
         indexOf = function(needle) {
-          var i = -1,
-            index = -1;
-          for (i = 0; i < this.length; i++) {
-            if (this[i] === needle) {
+          var index = -1;
+
+          for(var i = 0; i < this.length; i++) {
+            if(this[i] === needle) {
               index = i;
               break;
             }
           }
+
           return index;
         };
       }
+
       return indexOf.call(this, needle);
     };
     this.buildDataForGame = function(gameData) {
@@ -194,21 +197,21 @@
      */
     this.setAnswerTile = function(tile) {
       this.correctAnswerTile.push(tile);
-    }
+    };
     /*
      * returns the answer tile
      *
      */
     this.getAnswerTile = function() {
       return this.correctAnswerTile;
-    }
+    };
     /*
      * Resets answer tile during new round of question
      *
      */
-    this.resetAnswerTile = function(tile) {
+    this.resetAnswerTile = function() {
       this.correctAnswerTile = null;
-    }
+    };
     /*
      * Checks if given cell is with the grid
      * with randomly placed tiles
@@ -229,10 +232,11 @@
      */
     this.getOptions = function getOptions(answer, optionsArrayList) {
       var makeOption = [];
-      for (var x = 0; x < answer.length; x++) {
+      var x;
+      for (x = 0; x < answer.length; x++) {
         makeOption.push(answer[x]);
       }
-      for (var x = 0; x < 4 - answer.length; x++) {
+      for (x = 0; x < 4 - answer.length; x++) {
         var ran = this._getRandom(0, (optionsArrayList.length - 1));
         var op = optionsArrayList.splice(ran, 1).toString();
         $log.debug(op);
@@ -270,7 +274,7 @@
         'right': false,
         'isAnswer': false
       }];
-    }
+    };
     /*
      *function to build the starting position of game
      */
@@ -306,7 +310,7 @@
      * deletes the current board
      */
     this.deleteCurrentBoard = function() {
-      if (this.currentAnswersCells != undefined && this.currentQuestionCells != null) {
+      if (this.currentAnswersCells !== undefined && this.currentQuestionCells !== null) {
         this.storeSelectedPositions = [];
         this.showSubmitButton.truthValue = false;
         this.showNextButton.truthValue = false;
@@ -407,10 +411,10 @@
      */
     this.randomlyInsertNewQuestionTile = function(question, placeToInsert) {
       var cell = null;
-      //   console.log("Testing 1");
-      if (placeToInsert == null || placeToInsert == {}) {
+       $log.log("Place to insert " + placeToInsert);
+      if (placeToInsert === null || placeToInsert === {} || placeToInsert === "" || placeToInsert === undefined) {
         cell = this.randomAvailableCell(); // Sooki edited it the for not making it random  {x:1,y:2},
-        //    console.log(cell);
+         $log.log(cell);
       } else {
         //  console.log("Testing 2");
         cell = placeToInsert;
@@ -424,7 +428,7 @@
      * code edited by suresh
      */
     this.shuffle = function(o) { //v1.0
-      for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+      for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x){}
       return o;
     };
     this.getFactContent = function() {
@@ -433,7 +437,7 @@
     this.findRelativeAvailableCells = function(tile) {
       var x = tile.x;
       var y = tile.y;
-      var avaiableNeighbhourCells = []
+      var avaiableNeighbhourCells = [];
       if (x + 1 < service.size) {
         avaiableNeighbhourCells.push({
           x: x + 1,
@@ -475,7 +479,7 @@
         tile.resetChangeColor();
         tile.resetSelected();
         if (tile.answer) {
-          this.setAnswerTile(tile)
+          this.setAnswerTile(tile);
         }
         this.insertTile(tile);
       }
@@ -484,37 +488,39 @@
     // this function actually marks (changes the color) of  the a selected answer
     this.storeAnswerAndSelectTileForProcessing = function(key, tileDetail) {
       // the user has already clicked on the nexbutton
-      if(tileDetail)
-        $log.debug(tileDetail.x + " , " + tileDetail.y)
-      if (service.showNextButton.truthValue) return;
+      if(tileDetail) {
+        $log.debug(tileDetail.x + " , " + tileDetail.y);
+      }
+      if (service.showNextButton.truthValue) {return;}
       var question_tile = service.currentQuestionCells;
       var ques_x = question_tile.x;
       var ques_y = question_tile.y;
       // check if the selected tile is the question tile. If so, return ;
       if (tileDetail !== undefined) {
-        if (ques_x == tileDetail.x && ques_y == tileDetail.y) return;
+        if (ques_x === tileDetail.x && ques_y === tileDetail.y) { return;}
       }
       var guessed_answer;
-      if (tileDetail !== undefined) {
-        var cal_x = tileDetail.x;
-        var cal_y = tileDetail.y;
+      var cal_x, cal_y;
+     if (tileDetail !== undefined) {
+        cal_x = tileDetail.x;
+        cal_y = tileDetail.y;
         guessed_answer = tileDetail;
 
       } else {
         var vector = vectors[key];
-        var cal_x = ques_x + vector.x;
-        var cal_y = ques_y + vector.y;
+        cal_x = ques_x + vector.x;
+        cal_y = ques_y + vector.y;
         guessed_answer = service.getCellAt({
           x: cal_x,
           y: cal_y
         });
       }
-      if (guessed_answer == null) {
+      if (guessed_answer === null) {
         return false;
       }
       //   if (guessed_answer.getSelected()) return false;
       // check if the guessed answer value is the question tile. If so, return ;
-      if (guessed_answer.value == service.currentQuestionCells.value) return false;
+      if (guessed_answer.value === service.currentQuestionCells.value) { return false;}
       ///             //logic to check if the selected or the guessed cell is already selected
       var location = service._coordinatesToPosition({
         x: guessed_answer.x,
@@ -523,8 +529,8 @@
       var index = service.storeSelectedPositions.indexOf(location);
       //i the selected answer is not already in selected list implies this is new answer selection
 
-      if (index == -1) {
-        if (service.linenumber == 4) return;
+      if (index === -1) {
+        if (service.linenumber === 4) {return;}
         guessed_answer.flip();
         service.storeSelectedPositions.push(service._coordinatesToPosition({
           x: guessed_answer.x,
@@ -540,14 +546,15 @@
         // the selected answer is already in selected list. So user is trying to unslected
         service.storeSelectedPositions.splice(index, 1);
         guessed_answer.flip();
-        var tile = service.getCellAt({
+        service.getCellAt({
           x: guessed_answer.x,
           y: guessed_answer.y
-        })
-        var buildFact = question_tile.value.split("+")[0] + " + " + guessed_answer.value
-        for (var i = 0; i < service.factContent.length; i++) {
+        });
+        var i;
+        var buildFact = question_tile.value.split("+")[0] + " + " + guessed_answer.value;
+        for (i = 0; i < service.factContent.length; i++) {
 
-          if (service.factContent[i].fact == buildFact) {
+          if (service.factContent[i].fact === buildFact) {
             service.factContent[i].fact = "-";
             service.factContent[i].select = false;
             service.factContent[i].isAnswer = false;
@@ -558,20 +565,20 @@
         var k = 0;
         var length = service.factContent.length;
         // this loop copies everything in fact content that is not "-".
-        for (var i = 0; i < service.factContent.length; i++) {
-          //  console.log(service.factContent[i].fact)
-          if (service.factContent[i].fact != "-") {
+
+        for (i = 0; i < service.factContent.length; i++) {
+            if (service.factContent[i].fact !== "-") {
             temp_factContent[k].fact = service.factContent[i].fact;
             temp_factContent[k].select = service.factContent[i].select;
             temp_factContent[k].isAnswer = service.factContent[i].isAnswer;
-            $log.debug("the fact" + temp_factContent[k].fact)
-            $log.debug("the select" + temp_factContent[k].select)
-            $log.debug("the answer" + temp_factContent[k].isAnswer)
+            $log.debug("the fact" + temp_factContent[k].fact);
+            $log.debug("the select" + temp_factContent[k].select);
+            $log.debug("the answer" + temp_factContent[k].isAnswer);
             k++;
           }
         }
         // this loop copies the clone temp_factContent back to factContent
-        for (var i = 0; i < k; i++) {
+        for (i = 0; i < k; i++) {
           service.factContent[i].fact = temp_factContent[i].fact;
           service.factContent[i].select = temp_factContent[i].select;
           service.factContent[i].isAnswer = temp_factContent[k].isAnswer;
@@ -584,13 +591,13 @@
         //      console.log(service.factContent);
         //    console.log(temp_factContent);
       }
-      if (service.storeSelectedPositions.length !== 0) service.showSubmitButton.truthValue = true;
-      else service.showSubmitButton.truthValue = false;
+      if (service.storeSelectedPositions.length !== 0) {service.showSubmitButton.truthValue = true;}
+      else { service.showSubmitButton.truthValue = false;}
     };
     this.factContentColorChange = function() {
       for (var i = 0; i < 4; i++) {
-        if (this.factContent[i].select == true) {
-          if (this.factContent[i].isAnswer == true) {
+        if (this.factContent[i].select === true) {
+          if (this.factContent[i].isAnswer === true) {
             this.factContent[i].right = true;
             $log.debug(this.factContent[i]);
           } else {
@@ -602,8 +609,6 @@
     this.checkIfKeyPressAllowed = function(key) {
       var vector = vectors[key];
       var tile = this.currentQuestionCells;
-      var ques_x = tile.x;
-      var ques_y = tile.y;
       var cal_x = tile.x + vector.x;
       var cal_y = tile.y + vector.y;
       var guessed_answer = this.getCellAt({
@@ -611,7 +616,7 @@
         y: cal_y
       });
       //  console.log(guessed_answer)
-      if (guessed_answer == null) {
+      if (guessed_answer === null) {
         return false;
       }
       return true;
@@ -619,6 +624,10 @@
     // revise this logic
     this.evaluateAnswer = function evaluateAnswer() {
       var isAnswerCorrect = true;
+      var right_answers = null;
+      var points_for_questions = 0;
+      var right_answer = null;
+      var j;
       for (var i = 0; i < this.storeSelectedPositions.length; i++) {
         // console.log(this.storeSelectedPositions);
         var vector = this._positionToCoordinates(this.storeSelectedPositions[i]);
@@ -626,18 +635,18 @@
           x: vector.x,
           y: vector.y
         });
-        var points_for_questions = 0;
+
         //  console.log(guessed_answer)
-        if (guessed_answer == null) {
+        if (guessed_answer === null) {
           continue;
         }
         var result = guessed_answer.answer;
-        //  console.log(guessed_answer);
-        if (result == false) {
+             //  console.log(guessed_answer);
+        if (result === false) {
           guessed_answer.setChangeColor();
-          var right_answers = this.getAnswerTile();
-          for (var j = 0; j < right_answers.length; j++) {
-            var right_answer = right_answers[j];
+          right_answers = this.getAnswerTile();
+          for ( j = 0; j < right_answers.length; j++) {
+            right_answer = right_answers[j];
             right_answer.setChangeColor();
 
           }
@@ -647,20 +656,19 @@
           // console.log("correct answer");
           //  guessed_answer.resetSelected();
           guessed_answer.setChangeColor();
-          var right_answers = this.getAnswerTile();
-          for (var j = 0; j < right_answers.length; j++) {
-            var right_answer = right_answers[j];
+          right_answers = this.getAnswerTile();
+          for ( j = 0; j < right_answers.length; j++) {
+            right_answer = right_answers[j];
             right_answer.setChangeColor();
-            //  alert(result);
           }
-          //   alert(result);
         }
       }
       this.incrementQuestionCounter();
       $log.debug(points_for_questions);
       this.factContentColorChange();
-      if(isAnswerCorrect === true)
+      if(isAnswerCorrect === true) {
         return points_for_questions;
+      }
       else {
         return 0;
       }
