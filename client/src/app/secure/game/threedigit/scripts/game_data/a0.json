@@ -1,25 +1,27 @@
 {
-  "gametoplay":"3DigitGame",
-  "gamedata": {
-    "name": "Add Up By Zero",
+  "gameToPlay":"3DigitGame",
+  "studentGuid":"887a66d6-a966-4a5e-9497-9f052cab9bbf",
+  "GameData": {
+    "Name": "Add Up By Zero",
+    "Sname":null,
     "Game Tile" : "Additon Game",
-    "isTimed": true,
-    "instantaneousFeedBack" : true,
-    "pacer" : true,
-    "watchList" : true,
-    "newGameButton" : true,
-    "scoreButton" : true,
-    "totalQuestionAsked":0,
-    "totalRightAnswer":0,
-    "errorList": [],
+    "IsTimed": true,
+    "InstantaneousFeedBack" : true,
+    "Pacer" : true,
+    "WatchList" : true,
+    "NewGameButton" : true,
+    "ScoreButton" : true,
+    "TotalQuestionAsked":0,
+    "TotalRightAnswer":0,
+    "ErrorList": [],
     "questionList":
     [
 
-      {"id":1,"q": ["1","+","0","=",""],  "a":["1"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":2,"q": ["2","+","0","=",""],  "a":["2"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":3,"q": ["3","+","1","=",""],  "a":["4"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":4,"q": ["4","+","2","=",""],  "a":["6"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":5,"q": ["5","+","0","=",""],  "a":["5"], "time":null, "StudentAnswer": null, "right":null}
+      {"ID":1,"Q": ["1","+","0","=",""],  "A":["1"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":2,"Q": ["2","+","0","=",""],  "A":["2"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":3,"Q": ["3","+","1","=",""],  "A":["4"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":4,"Q": ["4","+","2","=",""],  "A":["6"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":5,"Q": ["5","+","0","=",""],  "A":["5"], "Time":null, "StudentAnswer": null, "Right":null}
     ]
   }
 }

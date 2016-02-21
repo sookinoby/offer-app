@@ -3,6 +3,7 @@
   "studentGuid":"887a66d6-a966-4a5e-9497-9f052cab9bbf",
   "gameData": {
     "Name": "Merge Bucket #1 A0C1C2",
+    "Sname":null,
     "Game Tile" :"Match a Fact to One or More Strategies",
     "IsTimed": true,
     "InstantaneousFeedBack" : false,

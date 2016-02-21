@@ -370,11 +370,11 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
        */
       // hold the question
         this.current_qn = this.next_qn - 1;
-        var q = gameData.questionList[this.next_qn-1].q;
-        var q_next =  gameData.questionList[this.next_qn].q;
+        var q = gameData.questionList[this.next_qn-1].Q;
+        var q_next =  gameData.questionList[this.next_qn].Q;
         // hold the arraylist of answers
-        var a = gameData.questionList[this.next_qn-1].a[0];
-        var a_next =  gameData.questionList[this.next_qn].a[0];
+        var a = gameData.questionList[this.next_qn-1].A[0];
+        var a_next =  gameData.questionList[this.next_qn].A[0];
         // arraylist of options
 
      // $log.log(a);
@@ -832,8 +832,8 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
             var q = gameData.questionList[ran].q;
         }
         */
-      var q = gameData.questionList[this.next_qn].q;
-      var a = gameData.questionList[this.next_qn].a[0];
+      var q = gameData.questionList[this.next_qn].Q;
+      var a = gameData.questionList[this.next_qn].A[0];
       this.questionContent[2].operand1 = q[0];
       this.questionContent[2].operator = q[1];
       this.questionContent[2].operand2 = q[2];
