@@ -1,28 +1,30 @@
 {
-   "gametoplay":"Arrow Game 1",
-   "gamedata": {
-    "name": "Count Up By Two",
+   "gameToPlay":"Arrow Game 1",
+   "studentGuid":"887a66d6-a966-4a5e-9497-9f052cab9bbf",
+   "gameData": {
+    "Name": "Count Up By Two",
+    "Sname":null,
     "Game Tile" : "Arrow game",
-    "isTimed": true,
-    "instantaneousFeedBack" : false,
-    "pacer" : true,
-    "watchList" : false,
-    "newGameButton" : true,
-    "scoreButton" : true,
-    "totalQuestionAsked":0,
-    "totalRightAnswer":0,
-    "errorList": [],
+    "IsTimed": true,
+    "InstantaneousFeedBack" : false,
+    "Pacer" : true,
+    "WatchList" : false,
+    "NewGameButton" : true,
+    "ScoreButton" : true,
+    "TotalQuestionAsked":0,
+    "TotalRightAnswer":0,
+    "ErrorList": [],
     "questionList": [
-    {"id":1,"q": ["2+"], "a":["0","1","2","3"], "o":[],"time":null, "StudentAnswer": null, "right":null},
-    {"id":1,"q": ["0+"], "a":["2"], "o":["0","1","3"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":2,"q": ["1+"], "a":["2"], "o":["0","1","9"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":3,"q": ["3+"], "a":["2"], "o":["3","4","6"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":4,"q": ["4+"], "a":["2"], "o":["0","1","9"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":5,"q": ["5+"], "a":["2"], "o":["5","6","8"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":6,"q": ["6+"], "a":["2"], "o":["6","7","8"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":7,"q": ["7+"], "a":["2"], "o":["6","7","8"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":8,"q": ["8+"], "a":["2"], "o":["7","8","9"],"time":null, "StudentAnswer": null, "right":null},
-    {"id":9,"q": ["9+"], "a":["2"], "o":["6","7","8"],"time":null, "StudentAnswer": null, "right":null}
+    {"ID":1,"Q": ["2+"], "A":["0","1","2","3"], "o":[],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":1,"Q": ["0+"], "A":["2"], "o":["0","1","3"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":2,"Q": ["1+"], "A":["2"], "o":["0","1","9"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":3,"Q": ["3+"], "A":["2"], "o":["3","4","6"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":4,"Q": ["4+"], "A":["2"], "o":["0","1","9"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":5,"Q": ["5+"], "A":["2"], "o":["5","6","8"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":6,"Q": ["6+"], "A":["2"], "o":["6","7","8"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":7,"Q": ["7+"], "A":["2"], "o":["6","7","8"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":8,"Q": ["8+"], "A":["2"], "o":["7","8","9"],"Time":null, "StudentAnswer": null, "Right":null},
+    {"ID":9,"Q": ["9+"], "A":["2"], "o":["6","7","8"],"Time":null, "StudentAnswer": null, "Right":null}
     ]
    }
 }
