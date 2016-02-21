@@ -1,24 +1,25 @@
 {
-  "gametoplay":"Arrow Game 1",
-  "gamedata": {
-    "name": "Count Up By One",
+  "gameToPlay":"Arrow Game 1",
+  "studentGuid":"887a66d6-a966-4a5e-9497-9f052cab9bbf",
+  "gameData": {
+    "Name": "Count Up By One",
     "Game Tile" : "Arrow game",
-    "isTimed": true,
-    "instantaneousFeedBack" : true,
-    "pacer" : true,
-    "watchList" : true,
-    "newGameButton" : true,
-    "scoreButton" : true,
-    "totalQuestionAsked":0,
-    "totalRightAnswer":0,
-    "errorList": [],
+    "IsTimed": true,
+    "InstantaneousFeedBack" : true,
+    "Pacer" : true,
+    "WatchList" : true,
+    "NewGameButton" : true,
+    "ScoreButton" : true,
+    "TotalQuestionAsked":0,
+    "TotalRightAnswer":0,
+    "ErrorList": [],
     "questionList":
     [
-      {"id":1, "q": ["1 +"], "a":["1","2","3","4"], "o":[],            "time":null, "StudentAnswer": null, "right":null},
-      {"id":2, "q": ["2 +"], "a":["1"],             "o":["2","3","4"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":3, "q": ["5 +"], "a":["1"],             "o":["5","7","9"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":4, "q": ["6 +"], "a":["1"],             "o":["5","7","9"], "time":null, "StudentAnswer": null, "right":null},
-      {"id":5, "q": ["7 +"], "a":["1"],             "o":["5","7","9"], "time":null, "StudentAnswer": null, "right":null}
+      {"ID":1, "Q": ["1 +"], "A":["1","2","3","4"], "O":[],            "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":2, "Q": ["2 +"], "A":["1"],             "O":["2","3","4"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":3, "Q": ["5 +"], "A":["1"],             "O":["5","7","9"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":4, "Q": ["6 +"], "A":["1"],             "O":["5","7","9"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":5, "Q": ["7 +"], "A":["1"],             "O":["5","7","9"], "Time":null, "StudentAnswer": null, "Right":null}
     ]
   }
 }

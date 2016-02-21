@@ -285,11 +285,11 @@
 
   //    var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
       // hold the question
-       var q = gameData.questionList[this.current_qn].q[0];
+       var q = gameData.questionList[this.current_qn].Q[0];
       // hold the arraylist of answers
-       var a =  gameData.questionList[this.current_qn].a;
+       var a =  gameData.questionList[this.current_qn].A;
 
-       var optionsArrayList = gameData.questionList[this.current_qn].o;
+       var optionsArrayList = gameData.questionList[this.current_qn].O;
       // list of correctAnswer
       this.correctAnswerTile = [];
       // the slice function will create a copy of arraylist, so we wont destory arraylist

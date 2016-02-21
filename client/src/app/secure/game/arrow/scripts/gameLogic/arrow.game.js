@@ -69,14 +69,14 @@
           var self = this;
           var promise = arrowGameDataService.getGameData(nameOfStrategy +".json");
           promise.then(function (data) {
-          self.gameData = data.data.gamedata;
+          self.gameData = data.data.gameData;
           self.newGame(self.gameData);
-          self.setScoreButton(self.gameData.scoreButton);
-          self.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
-          arrowGameService.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
-          self.setPacer(self.gameData.pacer);
-          self.setWatchList(self.gameData.watchList);
-          self.setIsTimed(self.gameData.isTimed);
+          self.setScoreButton(self.gameData.ScoreButton);
+          self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+          arrowGameService.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+          self.setPacer(self.gameData.Pacer);
+          self.setWatchList(self.gameData.WatchList);
+          self.setIsTimed(self.gameData.IsTimed);
 
         });
         };
