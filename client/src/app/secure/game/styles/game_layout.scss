@@ -11,7 +11,7 @@ $black-color: #000000;
 	border: 2px;
 	border-style: solid;
 	width: 622px;
-	height: 580px;
+	height: 632px;
 	//margin: auto;
 	background-color:rgba($outer-game-box, .50);
 	&.outer-game-box-select-stratergy {
@@ -57,9 +57,9 @@ $black-color: #000000;
 	border: 2px solid;
 	line-height: 70px;
 	background-color: $select-stratergy-question-color;
-  font-size: 2em;
+  font-size: 1.2em;
 	color:$black-color;
-  @include animation(appear 400ms ease);
+  @include animation(appear 200ms ease);
 	margin-left: -15px; //this is margin from the grid game container. So added it here too.
 
 	span {

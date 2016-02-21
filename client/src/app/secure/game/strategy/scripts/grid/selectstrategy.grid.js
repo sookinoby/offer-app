@@ -258,11 +258,11 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         var gameData = this.gameData;
         // game data
        // hold the question
-        var q = gameData.questionList[this.current_qn].q[0];
+        var q = gameData.questionList[this.current_qn].Q[0];
         // hold the arraylist of answers
-        var a = gameData.questionList[this.current_qn].a;
+        var a = gameData.questionList[this.current_qn].A;
         // arraylist of options
-        var optionsArrayList = gameData.questionList[ this.current_qn].o;
+        var optionsArrayList = gameData.questionList[ this.current_qn].O;
         // list of correctAnswer
         this.correctAnswerTile = [];
         // the slice function will create a copy of arraylist, so we wont destory arraylist
@@ -656,8 +656,6 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
 
   this.incrementQuestionCounter = function()
   {
-      $log.debug(this.gameData.questionList.length);
-
       if(this.current_qn ===  (this.gameData.questionList.length - 1))
       {
         this.current_qn = 0;

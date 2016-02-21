@@ -4,7 +4,7 @@
   @if $n >= 0 {
     @for $i from 1 through $n {
       $ret: $ret * $x;
-    } 
+    }
   } @else {
     @for $i from $n to 0 {
       $ret: $ret / $x;
@@ -48,7 +48,7 @@
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
-    @content; 
+    @content;
   }
   @-moz-keyframes #{$name} {
     @content;
@@ -58,7 +58,7 @@
   }
   @keyframes #{$name} {
     @content;
-  } 
+  }
 }
 
 @mixin animation($name...) {
@@ -81,4 +81,51 @@
   -webkit-animation-fill-mode: $args;
   -moz-animation-fill-mode: $args;
   animation-fill-mode: $args;
+}
+
+
+
+@include keyframes(appear) {
+  0% {
+    opacity: 0;
+    @include transform(scale(0));
+  }
+  50% {
+    opacity: 0.5;
+    @include transform(scale(1.2));
+  }
+  100% {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+}
+
+@include keyframes(pop) {
+  0% {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+  50% {
+    // opacity: 0;
+    @include transform(scale(1.2));
+  }
+  100% {
+    opacity: 0;
+    @include transform(scale(1));
+  }
+}
+
+@include keyframes(disappear) {
+  0% {
+    opacity: 1;
+    @include transform(scale(1));
+  }
+  50% {
+    opacity: 0.5;
+    @include transform(scale(0.5));
+  }
+  100% {
+    opacity: 0;
+    @include transform(scale(0));
+  }
 }

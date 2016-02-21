@@ -16,10 +16,15 @@
 
                         <button type="button" class="btn btn-info small-button"  ng-disabled='!arrowCtrl.game.showSubmitButton.truthValue;' ng-show="!arrowCtrl.game.showNextButton.truthValue;" ng-click="arrowCtrl.game.evaluateAnswer();" >Submit</button>
 
-                        <button  type="button" class="btn btn-info small-button" ng-show='arrowCtrl.game.showNextButton.truthValue;' ng-click="arrowCtrl.game.showNextQuestions();" >Next </button>
+                        <button  type="button" class="btn btn-info small-button"  ng-disabled='!arrowCtrl.game.showNextButton.truthValue;' ng-show='arrowCtrl.game.showNextButton.truthValue;' ng-click="arrowCtrl.game.showNextQuestions();" >Next </button>
 
                     </div>
                     <div class="col-xs-8" >
+                      <div class="select-stratergy-question" >
+                      <span style="font-weight: 100;">
+                          {{arrowCtrl.titleOfStrategy }}
+                         </span>
+                      </div>
                         <div id="game-container">
                             <div arrow-grid id="game"  ng-model='arrowCtrl.game' class="row"></div>
                             <div id="game-over" ng-show="!arrowCtrl.game.countdownfinished" class="row game-overlay" >
@@ -56,8 +61,8 @@
                             </span>
 
                             <span ng-if ="arrowCtrl.game.instantaneousFeedBack">
-                            <span ng-if="arrowCtrl.game.rightAnswer && !arrowCtrl.game.netural" ><img  src="app/secure/game/arrow/images/happy.png" style="margin-top:1px;" /> </span>
-                            <span ng-if="!arrowCtrl.game.rightAnswer && !arrowCtrl.game.netural" ><img  src="app/secure/game/arrow/images/sad.png" style="margin-top:1px;" /></span>
+                            <span ng-if="arrowCtrl.game.rightAnswer && !arrowCtrl.game.netural" class="animate-if" ><img  src="app/secure/game/arrow/images/happy.png" style="margin-top:1px;" /> </span>
+                            <span ng-if="!arrowCtrl.game.rightAnswer && !arrowCtrl.game.netural" class="animate-if" ><img  src="app/secure/game/arrow/images/sad.png" style="margin-top:1px;" /></span>
                             </span>
                             <br />
                             <br />

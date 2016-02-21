@@ -1,5 +1,3 @@
-
-
 @import "_functions";
 
 $width: 400px;
@@ -40,8 +38,22 @@ $transition-time: 100ms;
 $apperance-time2: 1s;
 $apperance-time: 1s;
 .container {
-
+ //@include animation(appear $apperance-time 0s ease-in );
 }
+
+.animate-if {
+}
+
+.animate-if.ng-enter{
+  @include animation(appear 0.5s 0s ease-in );
+}
+
+
+
+.animate-if.ng-leave{
+  @include animation(disappear 0.5s 0s ease-in);
+}
+
 
 
 #game-container {
@@ -353,34 +365,3 @@ margin-top:40px;
 }
 
 
-
-
-@include keyframes(appear) {
-  0% {
-    opacity: 0;
-    @include transform(scale(0));
-  }
-  50% {
-    opacity: 1;
-    @include transform(scale(1.2));
-  }
-  100% {
-    opacity: 1;
-    @include transform(scale(1));
-  }
-}
-
-@include keyframes(pop) {
-  0% {
-    opacity: 1;
-    @include transform(scale(1));
-  }
-  50% {
-    // opacity: 0;
-    @include transform(scale(1.2));
-  }
-  100% {
-    opacity: 0;
-    @include transform(scale(1));
-  }
-}

@@ -4,7 +4,7 @@
     "name": "Add Up By Zero",
     "Game Tile" : "Additon Game",
     "isTimed": true,
-    "instantaneousFeedBack" : false,
+    "instantaneousFeedBack" : true,
     "pacer" : true,
     "watchList" : true,
     "newGameButton" : true,

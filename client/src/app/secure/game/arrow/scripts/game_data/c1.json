@@ -4,7 +4,7 @@
     "name": "Count Up By One",
     "Game Tile" : "Arrow game",
     "isTimed": true,
-    "instantaneousFeedBack" : false,
+    "instantaneousFeedBack" : true,
     "pacer" : true,
     "watchList" : true,
     "newGameButton" : true,

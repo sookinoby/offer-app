@@ -8,20 +8,21 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
   };
   this.delay = 1000;
   this.delayedTriggerHolder = null;
+  this.delayedTriggerHolder2 = false;
   this.grid = SelectStrategyGridService.grid;
   this.tiles = SelectStrategyGridService.tiles;
 
   this.storeAnswer = SelectStrategyGridService.storeAnswer;
 
   this.stats = true;
-
+  this.showQuestion = true;
   // show / hide UI options
   this.scoreButton = false;
   this.watchList = true;
   this.instantaneousFeedBack = false;
   this.pacer = false;
   this.isTimed = false;
-
+  this.changeQuestionAnimation = false;
   this.showNextButton = {};
   this.showSubmitButton = {};
   this.showSubmitButton.truthValue = false;
@@ -76,9 +77,10 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
 
   this.evaluateAnswer = function()
   {
-     var score = SelectStrategyGridService.evaluateAnswer();
+     $log.debug("evaluate called");
      this.showSubmitButton.truthValue = false;
-      this.showNextButton.truthValue = true;
+     this.showNextButton.truthValue = true;
+     var score = SelectStrategyGridService.evaluateAnswer();
       if(score > 0)
       {
         this.rightAnswer = true;
@@ -94,16 +96,26 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
 
   this.showNextQuestions = function()
   {
-
-      this.totalfacts =  this.totalfacts + 1;
-      SelectStrategyGridService.deleteCurrentBoard();
-      SelectStrategyGridService.buildStartingPosition();
-      SelectStrategyGridService.resetFactContent();
-      this.factContent = SelectStrategyGridService.getFactContent();
-      this.rightAnswer = false;
-      this.netural  = true;
+      $log.debug("Show next question is called");
       this.showNextButton.truthValue = false;
+      this.changeQuestionAnimation = true;
       this.showSubmitButton.truthValue = false;
+      var self = this;
+      if(self.delayedTriggerHolder2 === false) {
+      self.delayedTriggerHolder2 = true;
+      $timeout(function () {
+        $log.debug("time out fired really");
+        self.changeQuestionAnimation = false;
+        SelectStrategyGridService.deleteCurrentBoard();
+        self.totalfacts = self.totalfacts + 1;
+        SelectStrategyGridService.buildStartingPosition();
+        SelectStrategyGridService.resetFactContent();
+        self.factContent = SelectStrategyGridService.getFactContent();
+        self.rightAnswer = false;
+        self.netural = true;
+        self.delayedTriggerHolder2 = false;
+      }, 100);
+    }
 
   };
 
@@ -151,14 +163,14 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
       $log.debug(nameOfStrategy);
       var promise = gameDataService.getGameData(nameOfStrategy +".json");
       promise.then(function (data) {
-        self.gameData = data.data.gamedata;
+        self.gameData = data.data.Gamedata;
         self.newGame(self.gameData);
-        self.setScoreButton(self.gameData.scoreButton);
-        self.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
-        SelectStrategyGridService.setInstantaneousFeedBack(self.gameData.instantaneousFeedBack);
-        self.setPacer(self.gameData.pacer);
-        self.setWatchList(self.gameData.watchList);
-        self.setIsTimed(self.gameData.isTimed);
+        self.setScoreButton(self.gameData.ScoreButton);
+        self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+        SelectStrategyGridService.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
+        self.setPacer(self.gameData.Pacer);
+        self.setWatchList(self.gameData.WatchList);
+        self.setIsTimed(self.gameData.IsTimed);
 
       });
     };
