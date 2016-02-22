@@ -775,12 +775,12 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       var d = new Date();
       this.endTime =  d.getTime();
       this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
+      this.gameData.TotalQuestionAsked =  this.gameData.TotalQuestionAsked + 1;
       d = new Date();
       this.startTime = d.getTime();
       if(tile.value !== null && (tile.value+"") === tile.numberAnswer) {
         this.gameData.questionList[this.current_qn].Right = true;
         tile.setAnswer(true);
-        $log.debug(this.instantaneousFeedBack);
         if( this.instantaneousFeedBack === true ) {
           tile.setChangeColor();
         }
@@ -789,24 +789,28 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
           tile.resetSelected();
         }
         tile.setToBeFilled(false);
-        $log.log(this.gameData.questionList);
+        this.gameData.TotalRightAnswer = this.gameData.TotalRightAnswer + 1;
+        $log.log(this.gameData);
         $log.log("the answer entered was correct");
         return 1;
       }
-      $log.log(this.gameData.questionList[this.current_qn]);
-      this.gameData.questionList[this.current_qn].right = false;
-      tile.setAnswer(false);
-      // update the watch list before setting to be filled to false
-      this.updateWatchList();
-      tile.setToBeFilled(false);
-      if(  this.instantaneousFeedBack === true ) {
-        tile.setChangeColor();
-      }
       else {
-        tile.resetChangeColor();
-        tile.resetSelected();
+        $log.log(this.gameData.questionList[this.current_qn]);
+        this.gameData.questionList[this.current_qn].right = false;
+        tile.setAnswer(false);
+        // update the watch list before setting to be filled to false
+        this.updateWatchList();
+        tile.setToBeFilled(false);
+        if (this.instantaneousFeedBack === true) {
+
+          tile.setChangeColor();
+        }
+        else {
+          tile.resetChangeColor();
+          tile.resetSelected();
+        }
+        return 0;
       }
-      return 0;
    };
 
     this.updateQuestionContent = function(){

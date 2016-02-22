@@ -239,7 +239,6 @@
       for (x = 0; x < 4 - answer.length; x++) {
         var ran = this._getRandom(0, (optionsArrayList.length - 1));
         var op = optionsArrayList.splice(ran, 1).toString();
-        $log.debug(op);
         makeOption.push(op);
       }
       return makeOption;
@@ -281,7 +280,6 @@
     this.buildStartingPosition = function(placeToInsert) {
 
       var gameData = this.gameData;
-      $log.debug(gameData);
 
   //    var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
       // hold the question
@@ -629,8 +627,8 @@
       this.endTime =  d.getTime();
       this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
       d = new Date();
-
-
+      this.gameData.questionList[this.current_qn].StudentAnswer = [];
+      this.gameData.TotalQuestionAsked =  this.gameData.TotalQuestionAsked + 1;
       var isAnswerCorrect = true;
       var right_answers = null;
       var points_for_questions = 0;
@@ -645,7 +643,7 @@
         });
 
         //  console.log(guessed_answer)
-        if (guessed_answer === null) {
+        if (guessed_answer === null || guessed_answer === undefined) {
           continue;
         }
         var result = guessed_answer.answer;
@@ -653,33 +651,36 @@
         if (result === false) {
           guessed_answer.setChangeColor();
           right_answers = this.getAnswerTile();
-          for ( j = 0; j < right_answers.length; j++) {
-            right_answer = right_answers[j];
-            right_answer.setChangeColor();
-
-          }
-          this.gameData.questionList[this.current_qn].Right = false;
           isAnswerCorrect = false;
+          this.gameData.questionList[this.current_qn].StudentAnswer.push(guessed_answer.value);
         } else if (result) {
           points_for_questions = points_for_questions + 1;
-          this.gameData.questionList[this.current_qn].Right = true;
+
           // console.log("correct answer");
           //  guessed_answer.resetSelected();
           guessed_answer.setChangeColor();
           right_answers = this.getAnswerTile();
-          for ( j = 0; j < right_answers.length; j++) {
-            right_answer = right_answers[j];
-            right_answer.setChangeColor();
-          }
+          this.gameData.questionList[this.current_qn].StudentAnswer.push(guessed_answer.value);
         }
       }
-      this.incrementQuestionCounter();
+      for ( j = 0; j < right_answers.length; j++) {
+        right_answer = right_answers[j];
+        right_answer.setChangeColor();
+      }
+
       $log.debug(points_for_questions);
       this.factContentColorChange();
       if(isAnswerCorrect === true) {
+        this.gameData.TotalRightAnswer =  this.gameData.TotalRightAnswer + 1;
+        this.gameData.questionList[this.current_qn].Right = true;
+        $log.debug(this.gameData);
+        this.incrementQuestionCounter();
         return points_for_questions;
       }
       else {
+        this.gameData.questionList[this.current_qn].Right = false;
+        $log.debug(this.gameData);
+        this.incrementQuestionCounter();
         return 0;
       }
     };

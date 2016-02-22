@@ -614,11 +614,12 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     };
     /* evaluate the selected answers */
     this.evaluateAnswer = function() {
-        var isAnswerCorrect = true;
-        var points_for_questions = 0;
-        var d = new Date();
-        this.endTime =  d.getTime();
-        this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
+      var isAnswerCorrect = true;
+      var points_for_questions = 0;
+      var d = new Date();
+      this.endTime =  d.getTime();
+      this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
+      this.gameData.TotalQuestionAsked =  this.gameData.TotalQuestionAsked + 1;
       this.gameData.questionList[this.current_qn].StudentAnswer = [];
         for (var i = 0; i < this.storeSelectedPositions.length; i++) {
             // console.log(this.storeSelectedPositions);
@@ -661,6 +662,7 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
 
         if(isAnswerCorrect === true){
                 this.gameData.questionList[this.current_qn].Right = true;
+          this.gameData.TotalRightAnswer =  this.gameData.TotalRightAnswer + 1;
                 $log.debug(this.gameData);
                  this.incrementQuestionCounter();
                 return points_for_questions;
