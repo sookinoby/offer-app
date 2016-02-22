@@ -23,7 +23,7 @@
   //  var baseService = 'http://localhost:65159/api/';
 
     RestangularProvider.setBaseUrl(
-      CONSTANT_DATA.base_url
+      CONSTANT_DATA.business_url
     );
     //http://r2mworks.azurewebsites.net/api/
     // http://localhost:65159/api/
