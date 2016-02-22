@@ -3,9 +3,13 @@
     angular.module('arrowGame', ['arrowGameLogic', 'ngAnimate', 'ngCookies', 'timer', 'ngDropdowns', 'arrowGameCommonService', 'arrowKeyboard']).controller('arrowGameController', function(arrowGameManager, ArrowGameKeyboardService, $scope, arrowGameDataService, $stateParams,$log) {
             $log.debug("the state param " + $stateParams);
       $log.debug($stateParams);
-        if ($stateParams.type === "2") {
-            this.gameType = 2;
-        } else {
+        if ($stateParams.type === "3") {
+            this.gameType = 3;
+        }
+        else if( this.gameType === "2") {
+          this.gameType = 2;
+        }
+        else {
             this.gameType = 1;
         }
       $log.debug(this.gameType );
@@ -32,9 +36,12 @@
               $log.debug("one game type");
                promise = arrowGameDataService.getGameData("level.json");
             }
+          else if( this.gameType === 2) {
+              promise = arrowGameDataService.getGameData("level2.json");
+            }
           else {
               promise = arrowGameDataService.getGameData("challenge.json");
-            }
+          }
             promise.then(function(data) {
                 self.initialiseDropDown();
 

@@ -58,7 +58,8 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
 }).service('SelectStrategyGridService', function(TileModel,$log) {
     this.linenumber = 0;
     this.factContent = null;
-
+    this.startTime = null;
+    this.endTime = null;
     this.instantaneousFeedBack = true;
     var service = this;
 
@@ -278,6 +279,8 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
         //    this.currentQuestionCells = tile;
         //    this.currentAnswersCells = neighbhourCellsAvailable;
         // console.log(neighbhourCellsAvailable);
+      var d = new Date();
+      this.startTime =  d.getTime();
     };
     this.deleteCurrentBoard = function() {
         this.storeSelectedPositions = [];
@@ -613,6 +616,10 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
     this.evaluateAnswer = function() {
         var isAnswerCorrect = true;
         var points_for_questions = 0;
+        var d = new Date();
+        this.endTime =  d.getTime();
+        this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
+      this.gameData.questionList[this.current_qn].StudentAnswer = [];
         for (var i = 0; i < this.storeSelectedPositions.length; i++) {
             // console.log(this.storeSelectedPositions);
             var vector = this._positionToCoordinates(this.storeSelectedPositions[i]);
@@ -625,7 +632,8 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                 continue;
             }
             var result = guessed_answer.answer;
-
+            this.gameData.questionList[this.current_qn].StudentAnswer.push(guessed_answer.value);
+            $log.debug(result);
             if (result === false) {
                 guessed_answer.setChangeColor();
                 var right_answers = this.getAnswerTile();
@@ -634,21 +642,33 @@ angular.module('selectStrategyGrid', ['selectStrategyGameData']).factory('TileMo
                     guessed_answer.resetSelected();
                     right_answer.setChangeColor();
                 }
+
+
                 isAnswerCorrect = false;
             } else if (result) {
                 points_for_questions = points_for_questions + 1;
                 // console.log("correct answer");
                 guessed_answer.resetSelected();
                 guessed_answer.setChangeColor();
-                this.incrementQuestionCounter();
+
+
             }
         }
         $log.debug(points_for_questions);
         this.factContentColorChange();
+
+
+
         if(isAnswerCorrect === true){
+                this.gameData.questionList[this.current_qn].Right = true;
+                $log.debug(this.gameData);
+                 this.incrementQuestionCounter();
                 return points_for_questions;
         }
         else {
+            this.gameData.questionList[this.current_qn].Right = false;
+            $log.debug(this.gameData);
+            this.incrementQuestionCounter();
             $log.debug("returning zero");
             return 0;
         }

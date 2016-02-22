@@ -774,11 +774,11 @@ angular.module('threeDigitGrid', ['threeDigitGameData']).factory('TileModelThree
       this.gameData.questionList[this.current_qn].StudentAnswer = tile.value;
       var d = new Date();
       this.endTime =  d.getTime();
-      this.gameData.questionList[this.current_qn].time = this.endTime - this.startTime;
+      this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
       d = new Date();
       this.startTime = d.getTime();
       if(tile.value !== null && (tile.value+"") === tile.numberAnswer) {
-        this.gameData.questionList[this.current_qn].right = true;
+        this.gameData.questionList[this.current_qn].Right = true;
         tile.setAnswer(true);
         $log.debug(this.instantaneousFeedBack);
         if( this.instantaneousFeedBack === true ) {

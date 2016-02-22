@@ -21,7 +21,11 @@
 
         </div>
         <div class="col-xs-8" >
-
+          <div class="header-question" >
+                      <span style="font-weight: 100;">
+                          {{threeCtrl.titleOfStrategy }}
+                         </span>
+          </div>
           <div id="game-container">
             <div grid-three-digit id="game" ng-model='threeCtrl.game' class="row game-reduced-height-2 "></div>
             <div class="tile-overlay-top" ng-show="threeCtrl.game.countdownfinished"></div>

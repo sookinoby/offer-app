@@ -163,7 +163,8 @@ angular.module('selectStrategyGameLogic', ['selectStrategyGrid'])
       $log.debug(nameOfStrategy);
       var promise = gameDataService.getGameData(nameOfStrategy +".json");
       promise.then(function (data) {
-        self.gameData = data.data.Gamedata;
+        self.gameData = data.data.gameData;
+        $log.debug(self.gameData);
         self.newGame(self.gameData);
         self.setScoreButton(self.gameData.ScoreButton);
         self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);

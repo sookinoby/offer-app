@@ -303,6 +303,8 @@
       this.insertTileAtAdjacentPosition(neighbhourCellsAvailable, answersAndOptions, a.length);
       this.currentQuestionCells = tile;
       this.currentAnswersCells = neighbhourCellsAvailable;
+      var d = new Date();
+      this.startTime =  d.getTime();
       // console.log(neighbhourCellsAvailable);
       return neighbhourCellsAvailable[0];
     };
@@ -623,6 +625,12 @@
     };
     // revise this logic
     this.evaluateAnswer = function evaluateAnswer() {
+      var d = new Date();
+      this.endTime =  d.getTime();
+      this.gameData.questionList[this.current_qn].Time = this.endTime - this.startTime;
+      d = new Date();
+
+
       var isAnswerCorrect = true;
       var right_answers = null;
       var points_for_questions = 0;
@@ -650,9 +658,11 @@
             right_answer.setChangeColor();
 
           }
+          this.gameData.questionList[this.current_qn].Right = false;
           isAnswerCorrect = false;
         } else if (result) {
           points_for_questions = points_for_questions + 1;
+          this.gameData.questionList[this.current_qn].Right = true;
           // console.log("correct answer");
           //  guessed_answer.resetSelected();
           guessed_answer.setChangeColor();
