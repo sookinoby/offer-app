@@ -3,6 +3,7 @@
     angular.module('arrowGameLogic', ['arrowGameGrid']).service('arrowGameManager', function($q, $timeout, arrowGameService,arrowGameDataService, $log) {
         this.delay = 1000;
         this.delayedTriggerHolder = null;
+        this.delayedTriggerHolder2 = false;
         this.positionToInsert = {};
         this.grid = arrowGameService.grid;
         this.tiles = arrowGameService.tiles;
@@ -10,12 +11,15 @@
         this.gameOver = false;
         this.showNextButton = {};
         this.showSubmitButton = {};
+        this.questionHeader = {};
+        this.changeQuestionAnimation = false;
       // show/hide UI options
         this.scoreButton = false;
         this.watchList = true;
         this.instantaneousFeedBack = false;
         this.pacer = false;
         this.isTimed = false;
+        this.questionHeader.value = "Make Strategy";
 
         this.showSubmitButton.truthValue = false;
         this.showNextButton.truthValue = false;
@@ -65,12 +69,12 @@
         };
         this.reinit();
 
-        this.initialiseGame = function(nameOfStrategy) {
+        this.initialiseGame = function(nameOfStrategy,gameType) {
           var self = this;
           var promise = arrowGameDataService.getGameData(nameOfStrategy +".json");
           promise.then(function (data) {
           self.gameData = data.data.gameData;
-          self.newGame(self.gameData);
+          self.newGame(self.gameData,gameType);
           self.setScoreButton(self.gameData.ScoreButton);
           self.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
           arrowGameService.setInstantaneousFeedBack(self.gameData.InstantaneousFeedBack);
@@ -84,17 +88,19 @@
         this.passButton = function() {
         arrowGameService.passSubmitButton(this.showSubmitButton);
         arrowGameService.passNextButton(this.showNextButton);
+        arrowGameService.passQuestionHeader(this.questionHeader);
         };
         this.passButton();
 
-        this.newGame = function(gameData) {
+        this.newGame = function(gameData,gameType) {
             var self = this;
             if(self.delayedTriggerHolder)
             {
                 $timeout.cancel(self.delayedTriggerHolder);
             }
             arrowGameService.deleteCurrentBoard();
-            arrowGameService.buildDataForGame(gameData);
+            arrowGameService.buildDataForGame(gameData,gameType);
+            $log.debug(gameType);
             arrowGameService.buildEmptyGameBoard();
             self.delayedTriggerHolder = $timeout(function toBuildStartinPosition() {
                 self.positionToInsert = arrowGameService.buildStartingPosition();
@@ -109,14 +115,24 @@
         };
 
         this.showNextQuestions = function() {
+          this.changeQuestionAnimation = true;
             this.enterKeyCount = 0;
-            arrowGameService.resetFactContent();
-            this.factContent = arrowGameService.getFactContent();
-            arrowGameService.deleteCurrentBoard();
-            this.positionToInsert = arrowGameService.buildStartingPosition(this.positionToInsert);
-            this.showNextButton.truthValue = false;
-            this.netural = true;
-            this.rightAnswer = false;
+          var self = this;
+          if(self.delayedTriggerHolder2 === false) {
+            self.delayedTriggerHolder2 = true;
+            $timeout(function () {
+              $log.debug("time out fired really");
+              self.changeQuestionAnimation = false;
+              arrowGameService.resetFactContent();
+              self.factContent = arrowGameService.getFactContent();
+              arrowGameService.deleteCurrentBoard();
+              self.positionToInsert = arrowGameService.buildStartingPosition(self.positionToInsert);
+              self.showNextButton.truthValue = false;
+              self.netural = true;
+              self.rightAnswer = false;
+              self.delayedTriggerHolder2 = false;
+            }, 100);
+          }
         };
 
         this.evaluateAnswer = function() {

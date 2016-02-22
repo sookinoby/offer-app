@@ -5,12 +5,15 @@
       $log.debug($stateParams);
         if ($stateParams.type === "3") {
             this.gameType = 3;
+          $log.debug("this gameType" + this.gameType);
         }
-        else if( this.gameType === "2") {
+        else if($stateParams.type === "2") {
           this.gameType = 2;
+          $log.debug("this gameType" + this.gameType);
         }
         else {
             this.gameType = 1;
+          $log.debug("this gameType" + this.gameType);
         }
       $log.debug(this.gameType );
       this.levelData = null;
@@ -20,7 +23,7 @@
       ArrowGameKeyboardService.destroy();
       ArrowGameKeyboardService.init();
        this.newGame = function() {
-            this.game.initialiseGame($scope.ddSelectSelected.value);
+            this.game.initialiseGame($scope.ddSelectSelected.value,this.gameType);
             this.timedGame = this.timerToggleButton;
             this.game.gameOver = false;
             $scope.$broadcast('timer-reset');
@@ -37,6 +40,7 @@
                promise = arrowGameDataService.getGameData("level.json");
             }
           else if( this.gameType === 2) {
+              $log.debug("this gameType" + this.gameType);
               promise = arrowGameDataService.getGameData("level2.json");
             }
           else {
@@ -59,14 +63,20 @@
         };
 
         this.initialiseDropDown = function() {
-            if (this.gameType === 2) {
+            if (this.gameType === 3) {
                 $scope.ddSelectSelected = {
                     'text': "The Two Minute Challenge",
                     'value': "2min"
                 };
                 this.timerToggleButton = true;
             }
-            if (this.gameType === 1) {
+            else if (this.gameType === 2) {
+              $scope.ddSelectSelected = {
+                'text': "Make Strategy",
+                'value': "aoc1"
+              };
+            }
+             else  {
                 $scope.ddSelectSelected = {
                     'text': "Count Up By One",
                     'value': "c1"

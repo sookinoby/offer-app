@@ -77,7 +77,8 @@
     this.endTime = null;
     this.current_qn = 0;
     this.instantaneousFeedBack = true;
-
+    this.gameType = 0;
+    this.questionHeader = null;
     this.currentAnswersCells = [];
     this.setSize = function(sz) {
       this.size = sz ? sz : 0;
@@ -157,9 +158,11 @@
 
       return indexOf.call(this, needle);
     };
-    this.buildDataForGame = function(gameData) {
+    this.buildDataForGame = function(gameData,gameType) {
       this.current_qn = 0;
       this.gameData = gameData;
+      this.gameType = gameType;
+
     };
     /*
      * builds empty game board
@@ -284,6 +287,11 @@
   //    var ran = this._getRandom(0, statergy_to_select.questions.length - 1);
       // hold the question
        var q = gameData.questionList[this.current_qn].Q[0];
+       if(this.gameType === 2)
+       {
+        this.questionHeader.value = gameData.questionList[this.current_qn].Q[1];
+         $log.debug("The question header is on" + this.questionHeader);
+       }
       // hold the arraylist of answers
        var a =  gameData.questionList[this.current_qn].A;
 
@@ -706,6 +714,11 @@
     this.passNextButton = function(nextButton) {
       this.showNextButton = nextButton;
     };
+
+    this.passQuestionHeader = function(questionHeader) {
+      this.questionHeader = questionHeader;
+    };
+
     this.getLineNumber = function() {
       return service.linenumber;
     };

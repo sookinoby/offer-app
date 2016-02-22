@@ -20,10 +20,13 @@
 
                     </div>
                     <div class="col-xs-8" >
-                      <div class="header-question" >
-                      <span style="font-weight: 100;">
+                      <div class="header-question"  ng-show="!arrowCtrl.game.changeQuestionAnimation"  >
+                      <span style="font-weight: 100;" ng-if="arrowCtrl.gameType === 1 || arrow.Ctrl.gameType ===3">
                           {{arrowCtrl.titleOfStrategy }}
-                         </span>
+                      </span>
+                        <span  style="font-weight: 700;font-size: 2em;" ng-if="arrowCtrl.gameType === 2">
+                          {{arrowCtrl.game.questionHeader.value }}
+                      </span>
                       </div>
                         <div id="game-container">
                             <div arrow-grid id="game"  ng-model='arrowCtrl.game' class="row"></div>
