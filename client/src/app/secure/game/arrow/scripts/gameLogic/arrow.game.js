@@ -13,6 +13,7 @@
         this.showSubmitButton = {};
         this.questionHeader = {};
         this.changeQuestionAnimation = false;
+        this.gameType = 0;
       // show/hide UI options
         this.scoreButton = false;
         this.watchList = true;
@@ -100,7 +101,8 @@
             }
             arrowGameService.deleteCurrentBoard();
             arrowGameService.buildDataForGame(gameData,gameType);
-            $log.debug(gameType);
+            this.gameType = gameType;
+            $log.debug(this.gameType);
             arrowGameService.buildEmptyGameBoard();
             self.delayedTriggerHolder = $timeout(function toBuildStartinPosition() {
                 self.positionToInsert = arrowGameService.buildStartingPosition();
@@ -115,14 +117,16 @@
         };
 
         this.showNextQuestions = function() {
-          this.changeQuestionAnimation = true;
+          if(this.gameType === 2) {
+            this.changeQuestionAnimation = true;
+          }
             this.enterKeyCount = 0;
           var self = this;
           if(self.delayedTriggerHolder2 === false) {
             self.delayedTriggerHolder2 = true;
             $timeout(function () {
               $log.debug("time out fired really");
-              self.changeQuestionAnimation = false;
+               self.changeQuestionAnimation = false;
               arrowGameService.resetFactContent();
               self.factContent = arrowGameService.getFactContent();
               arrowGameService.deleteCurrentBoard();

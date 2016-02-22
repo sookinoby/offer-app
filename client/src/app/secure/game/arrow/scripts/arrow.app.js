@@ -28,6 +28,7 @@
             this.game.gameOver = false;
             $scope.$broadcast('timer-reset');
             $scope.$broadcast('timer-reset-new', "gameCountDown", 1);
+            $log.debug($scope.ddSelectSelected.text);
             this.titleOfStrategy = $scope.ddSelectSelected.text;
 
         };

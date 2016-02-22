@@ -18,8 +18,8 @@
     [
 
       {"ID":1,"Q": ["1","+","0","=",""],  "A":["1"], "Time":null, "StudentAnswer": null, "Right":null},
-      {"ID":2,"Q": ["2","+","0","=",""],  "A":["2"], "Time":null, "StudentAnswer": null, "Right":null},
-      {"ID":3,"Q": ["3","+","1","=",""],  "A":["4"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":2,"Q": ["","+","0","=","2"],  "A":["2"], "Time":null, "StudentAnswer": null, "Right":null},
+      {"ID":3,"Q": ["3","+","","=","4"],  "A":["1"], "Time":null, "StudentAnswer": null, "Right":null},
       {"ID":4,"Q": ["4","+","2","=",""],  "A":["6"], "Time":null, "StudentAnswer": null, "Right":null},
       {"ID":5,"Q": ["5","+","0","=",""],  "A":["5"], "Time":null, "StudentAnswer": null, "Right":null}
     ]
