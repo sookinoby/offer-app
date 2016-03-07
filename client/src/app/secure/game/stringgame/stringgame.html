@@ -1,0 +1,23 @@
+
+<!-- heading -->
+<div  id="heading" class="row">
+  <div class="col-sm-12" >
+    <div class="outer-game-box outer-game-box-select-stratergy">
+      <div class="inner-game-box" >
+        {{stringCtrl.gameType }}{{name}}
+        <div question-display  ng-model="stringCtrl.game.displayQuestion">Test </div>
+
+      </div> <!-- inner game box -->
+  </div> <!-- outer game box -->
+
+  </div> <!-- col sm 12 -->
+
+</div> <!-- end of id = heading -->
+<div class="row">
+  <div class="col-sm-12" >
+    <div dropdown-select="ddSelectOptions"
+         dropdown-model="ddSelectSelected"
+         dropdown-item-label="text" style="margin-left:0px;border-style: solid; border-width: 5px;"  >
+    </div>
+  </div>
+</div>

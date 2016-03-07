@@ -299,6 +299,8 @@
       // list of correctAnswer
       this.correctAnswerTile = [];
       // the slice function will create a copy of arraylist, so we wont destory arraylist
+      $log.debug(optionsArrayList);
+
       var answersAndOptions = this.getOptions(a.slice(), optionsArrayList.slice());
       // console.log(makeOption);
       // inserts the question at random place

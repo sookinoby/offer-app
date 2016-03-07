@@ -101,6 +101,13 @@
         controllerAs: 'threeCtrl',
         authenticate:true
       })
+      .state('home.stringgame',{
+        url:'/stringGame',
+        templateUrl:'app/secure/game/stringgame/stringgame.html',
+        controller:'stringGameAppController',
+        controllerAs: 'stringCtrl',
+        authenticate:true
+      })
       .state('home.dashboard',{
         url:'/dashboard',
         templateUrl:'app/secure/dashboard/dashboard.html',
@@ -110,7 +117,10 @@
         data: {
           needMentor: true
         }
-      });
+      })
+
+
+    ;
 
 
 

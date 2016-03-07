@@ -15,7 +15,7 @@ angular.module('arrowGameGrid')
       //  console.log(scope)
       scope.grid = scope.ngModel.grid;
       scope.tiles = scope.ngModel.tiles;
-    
+
     }
   };
 });

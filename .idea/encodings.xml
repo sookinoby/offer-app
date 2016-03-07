@@ -42,12 +42,21 @@
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/gamedatabackup.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/common_service/gamedatatimechallengebackup.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/gameLogic/arrow.game.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/arrow/scripts/grid/arrow.grid_directive.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/gamedata11.2.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/gamedata3.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/gamedata3oct10.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/common_service/selectstrategy.gamedataservice.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/scripts/selectstrategy.app.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/strategy/strategy.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/common_service/stringgamedataservice.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/directive/questionRender.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/game_data/1.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/game_data/level.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/gamelogic/string.game.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/keyboard/stringGame.keyboard.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/scripts/stringgame.app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/client/src/app/secure/game/stringgame/stringgame.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/threedigit.controller.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/game/threedigit/threedigit.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/client/src/app/secure/home/home.controller.js" charset="UTF-8" />
